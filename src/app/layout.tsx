@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, JetBrains_Mono } from "next/font/google";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 import "./portfolio.css";
 
@@ -21,18 +22,21 @@ export const viewport = {
   viewportFit: "cover",
 };
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
-  ),
+  metadataBase: new URL(siteUrl),
   title: "Ali Hamieh — Portfolio",
   description:
     "Portfolio of Ali Hamieh — developer, maker, and student building web, mobile, and hardware projects.",
   openGraph: {
     title: "Ali Hamieh — Portfolio",
+    url: siteUrl,
+    siteName: "printsLB",
     images: ["/me_standing.png"],
+  },
+  alternates: {
+    canonical: siteUrl,
   },
 };
 

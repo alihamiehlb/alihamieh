@@ -6,12 +6,23 @@
       "id": "PrintsLB",
       "name": "printsLB",
       "description": "3d printing saas",
-      "homepage": "https://prints-lb.vercel.app",
+      "homepage": "https://printslb.com",
       "github": "https://github.com/alihamiehlb/PrintsLB",
       "language": "TypeScript",
       "stars": 1,
       "featured": true,
       "isFounder": true
+    },
+    {
+      "id": "alihamieh",
+      "name": "alihamieh",
+      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
+      "homepage": "https://alihamieh.vercel.app",
+      "github": "https://github.com/alihamiehlb/alihamieh",
+      "language": "TypeScript",
+      "stars": 0,
+      "featured": true,
+      "isFounder": false
     },
     {
       "id": "ssa-shoot-score-academy",
@@ -44,17 +55,6 @@
       "language": "TypeScript",
       "stars": 1,
       "featured": true,
-      "isFounder": false
-    },
-    {
-      "id": "alihamieh",
-      "name": "alihamieh",
-      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
-      "homepage": null,
-      "github": "https://github.com/alihamiehlb/alihamieh",
-      "language": "TypeScript",
-      "stars": 0,
-      "featured": false,
       "isFounder": false
     },
     {

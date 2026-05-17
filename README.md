@@ -29,6 +29,10 @@ Copy `.env.example` → `.env.local` for `/admin` only. Never commit real passwo
 | `ADMIN_SESSION_SECRET` | Session cookie signing |
 | `BLOB_READ_WRITE_TOKEN` | Persist admin edits on Vercel |
 
+## Domain
+
+Production canonical URL is **https://printslb.com** (set `NEXT_PUBLIC_SITE_URL` in Vercel). In Vercel → Project → **Domains**, add `printslb.com` and point DNS as instructed so the live site is not only `*.vercel.app`.
+
 ## Deploy
 
-Connect this repo on [Vercel](https://vercel.com), framework **Next.js**, add env vars above for admin + Blob.
+Connect this repo on [Vercel](https://vercel.com), framework **Next.js**, add env vars above for admin + Blob + `NEXT_PUBLIC_SITE_URL`.

@@ -38,7 +38,7 @@ async function main() {
     .filter((r) => !r.fork && !SKIP_REPOS.has(r.name))
     .map((r) => {
       let homepage = r.homepage || null;
-      if (r.name === "PrintsLB" && !homepage) {
+      if (r.name === "PrintsLB") {
         homepage = "https://printslb.com";
       }
       return {
