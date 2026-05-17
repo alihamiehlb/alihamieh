@@ -113,15 +113,11 @@
       ]
     },
     {
-      "label": "Linux & systems",
+      "label": "Systems",
       "items": [
-        "Linux (2+ years)",
-        "Arch Linux",
-        "Garuda",
-        "Ubuntu",
-        "Kali Linux",
-        "Parrot OS",
-        "Kali NetHunter",
+        "Multi-platform — Linux & Windows",
+        "Any major Linux distribution (2+ years)",
+        "Windows desktop & tooling",
         "Bash / shell",
         "System administration"
       ]
