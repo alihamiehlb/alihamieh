@@ -6,6 +6,7 @@ import type { ProfileData } from "@/lib/content";
 type SocialLinksProps = {
   profile: ProfileData;
   compact?: boolean;
+  lite?: boolean;
 };
 
 const fadeUp = {
@@ -17,7 +18,7 @@ const fadeUp = {
   }),
 };
 
-export default function SocialLinks({ profile, compact }: SocialLinksProps) {
+export default function SocialLinks({ profile, compact, lite }: SocialLinksProps) {
   const links = [
     {
       id: "github",
@@ -69,7 +70,7 @@ export default function SocialLinks({ profile, compact }: SocialLinksProps) {
           className={`social-link glass${link.founder ? " social-link--founder" : ""}`}
           variants={fadeUp}
           custom={i}
-          whileHover={{ y: -4, scale: 1.02 }}
+          whileHover={lite ? undefined : { y: -4, scale: 1.02 }}
         >
           <span className="social-link-label">
             {link.label}

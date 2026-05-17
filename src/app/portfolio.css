@@ -1196,9 +1196,42 @@ code {
   margin-top: 0.35rem;
 }
 
+/* Mobile / touch — lighter motion (JS adds .portfolio-shell--lite) */
+.portfolio-shell--lite .scene3d {
+  display: none;
+}
+
+.ambient-motion--lite {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(168, 232, 240, 0.45), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 90%, rgba(94, 200, 216, 0.2), transparent);
+}
+
+.character-stage--lite {
+  transform: none !important;
+  perspective: none !important;
+}
+
+.character-stage--lite .character-frame {
+  box-shadow: 0 14px 36px rgba(42, 154, 173, 0.22);
+  transform: none !important;
+}
+
+.character-stage--lite .character-video {
+  image-rendering: auto;
+}
+
+html.portfolio-lite {
+  scroll-behavior: auto;
+}
+
+html.portfolio-lite .character-video {
+  will-change: auto;
+}
+
 @media (max-width: 900px) {
   .scene3d {
-    opacity: 0.5;
+    display: none;
   }
 
   .hero-panel {
@@ -1373,6 +1406,20 @@ code {
   .section-nav .cv-open-btn--nav {
     font-size: 0.6rem;
     padding: 0.35rem 0.5rem;
+  }
+}
+
+@media (hover: none) {
+  .project-card:active,
+  .deployed-card:active,
+  .achievement-card--clickable:active,
+  .social-link:active {
+    opacity: 0.92;
+  }
+
+  .btn-primary:active,
+  .btn-ghost:active {
+    transform: scale(0.98);
   }
 }
 

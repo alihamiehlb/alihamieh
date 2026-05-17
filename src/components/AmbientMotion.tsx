@@ -11,7 +11,25 @@ const BUBBLES = Array.from({ length: 12 }, (_, i) => ({
   duration: 4 + (i % 5),
 }));
 
-export default function AmbientMotion() {
+const LITE_BUBBLES = BUBBLES.slice(0, 4);
+
+type AmbientMotionProps = {
+  lite?: boolean;
+};
+
+export default function AmbientMotion({ lite = false }: AmbientMotionProps) {
+  if (lite) {
+    return (
+      <motion.div
+        className="ambient-motion ambient-motion--lite"
+        aria-hidden
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      />
+    );
+  }
+
   return (
     <motion.div className="ambient-motion" aria-hidden>
       {BUBBLES.map((b) => (

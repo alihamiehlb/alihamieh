@@ -7,18 +7,6 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-
-function useNarrowViewport(max = 900) {
-  const [narrow, setNarrow] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${max}px)`);
-    const update = () => setNarrow(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, [max]);
-  return narrow;
-}
 import type {
   Achievement,
   CvData,
@@ -31,6 +19,7 @@ import { SECTIONS } from "@/lib/content";
 import { getAge, getAgePhrase, getBirthdayLabel } from "@/lib/age";
 import { getDisplaySkills } from "@/lib/skills";
 import CharacterAvatar from "./CharacterAvatar";
+import CharacterAvatarLite from "./CharacterAvatarLite";
 import AchievementsSection from "./AchievementsSection";
 import DeployedProjects from "./DeployedProjects";
 import ProjectDetailModal from "./ProjectDetailModal";
@@ -46,6 +35,7 @@ type ScrollSectionsProps = {
   instagramUrl: string;
   mouseX: number;
   mouseY: number;
+  lite?: boolean;
 };
 
 type LearningSource = {
@@ -88,6 +78,19 @@ const fadeUp = {
   }),
 };
 
+const fadeUpLite = {
+  hidden: { opacity: 0, y: 8 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: Math.min(i * 0.02, 0.1),
+      duration: 0.28,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
 export default function ScrollSections({
   cv,
   projects,
@@ -97,11 +100,12 @@ export default function ScrollSections({
   instagramUrl,
   mouseX,
   mouseY,
+  lite = false,
 }: ScrollSectionsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<SectionId>("hero");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const narrow = useNarrowViewport();
+  const fade = lite ? fadeUpLite : fadeUp;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -148,7 +152,7 @@ export default function ScrollSections({
     <motion.div
       ref={containerRef}
       className="scroll-root"
-      style={{ x: narrow ? 0 : parallaxX }}
+      style={{ x: lite ? 0 : parallaxX }}
     >
       <nav className="section-nav" aria-label="Portfolio sections">
         {SECTIONS.map((s) => (
@@ -167,10 +171,17 @@ export default function ScrollSections({
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -12, filter: "blur(4px)" }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            initial={
+              lite ? { opacity: 0 } : { opacity: 0, y: 20, filter: "blur(8px)" }
+            }
+            animate={
+              lite ? { opacity: 1 } : { opacity: 1, y: 0, filter: "blur(0px)" }
+            }
+            exit={lite ? { opacity: 0 } : { opacity: 0, y: -12, filter: "blur(4px)" }}
+            transition={{
+              duration: lite ? 0.2 : 0.4,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="rail-card glass"
           >
             <p className="rail-label">
@@ -212,42 +223,49 @@ export default function ScrollSections({
       </aside>
 
       <SectionPanel id="hero" className="hero-panel">
-        <motion.div className="hero-grid" style={{ opacity: heroOpacity }}>
+        <motion.div
+          className="hero-grid"
+          style={lite ? undefined : { opacity: heroOpacity }}
+        >
           <motion.div
             className="hero-copy"
             initial="hidden"
             animate="visible"
             variants={{
-              visible: { transition: { staggerChildren: 0.08 } },
+              visible: {
+                transition: { staggerChildren: lite ? 0.03 : 0.08 },
+              },
             }}
           >
-            <motion.span className="eyebrow" variants={fadeUp} custom={0}>
+            <motion.span className="eyebrow" variants={fade} custom={0}>
               Developer · Maker · {age} yrs
             </motion.span>
-            <motion.h1 variants={fadeUp} custom={1}>
+            <motion.h1 variants={fade} custom={1}>
               {name}
             </motion.h1>
-            <motion.p className="lead" variants={fadeUp} custom={2}>
+            <motion.p className="lead" variants={fade} custom={2}>
               {heroTitle}
             </motion.p>
             {profile.aiDiploma && (
-              <motion.p className="hero-diploma" variants={fadeUp} custom={3}>
+              <motion.p className="hero-diploma" variants={fade} custom={3}>
                 {profile.aiDiploma}
               </motion.p>
             )}
-            <motion.p className="hero-headline" variants={fadeUp} custom={4}>
+            <motion.p className="hero-headline" variants={fade} custom={4}>
               {heroHeadline}
             </motion.p>
-            <motion.p className="age-badge" variants={fadeUp} custom={5}>
+            <motion.p className="age-badge" variants={fade} custom={5}>
               {agePhrase} · born {birthday}
             </motion.p>
-            <motion.p className="hint" variants={fadeUp} custom={6}>
-              Portrait loops on its own · move to steer · pauses when you scroll away
+            <motion.p className="hint" variants={fade} custom={6}>
+              {lite
+                ? "Portrait plays automatically · scroll to explore"
+                : "Portrait loops on its own · move to steer · pauses when you scroll away"}
             </motion.p>
-            <motion.div variants={fadeUp} custom={7}>
-              <SocialLinks profile={profile} compact />
+            <motion.div variants={fade} custom={7}>
+              <SocialLinks profile={profile} compact lite={lite} />
             </motion.div>
-            <motion.div className="hero-cta-row" variants={fadeUp} custom={8}>
+            <motion.div className="hero-cta-row" variants={fade} custom={8}>
               <a href="#projects" className="btn-primary">
                 View work
               </a>
@@ -260,11 +278,18 @@ export default function ScrollSections({
 
           <motion.div
             className="hero-visual"
-            initial={{ opacity: 0, scale: 0.92, rotateY: -12 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            initial={lite ? { opacity: 0, y: 8 } : { opacity: 0, scale: 0.92, rotateY: -12 }}
+            animate={lite ? { opacity: 1, y: 0 } : { opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{
+              duration: lite ? 0.35 : 0.85,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
-            <CharacterAvatar mouseX={mouseX} mouseY={mouseY} />
+            {lite ? (
+              <CharacterAvatarLite />
+            ) : (
+              <CharacterAvatar mouseX={mouseX} mouseY={mouseY} />
+            )}
           </motion.div>
         </motion.div>
       </SectionPanel>
@@ -310,8 +335,8 @@ export default function ScrollSections({
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  whileHover={{ y: -4 }}
+                  transition={{ delay: lite ? i * 0.03 : i * 0.06 }}
+                  whileHover={lite ? undefined : { y: -4 }}
                 >
                   <h4>{src.name}</h4>
                   <p>{src.focus}</p>
@@ -344,16 +369,18 @@ export default function ScrollSections({
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
           variants={{
-            visible: { transition: { staggerChildren: 0.025 } },
+            visible: {
+              transition: { staggerChildren: lite ? 0.015 : 0.025 },
+            },
           }}
         >
           {displaySkills.map((skill, i) => (
             <motion.span
               key={`${skill}-${i}`}
               className="skill-chip"
-              variants={fadeUp}
+              variants={fade}
               custom={i % 12}
-              whileHover={{ scale: 1.08, y: -3 }}
+              whileHover={lite ? undefined : { scale: 1.08, y: -3 }}
             >
               {skill}
             </motion.span>
@@ -364,6 +391,7 @@ export default function ScrollSections({
       <AchievementsSection
         achievements={achievements}
         instagramUrl={instagramUrl}
+        lite={lite}
       />
 
       <SectionPanel id="projects">
@@ -384,14 +412,22 @@ export default function ScrollSections({
           breakdown.
         </motion.p>
 
-        <DeployedProjects projects={deployed} githubUrl={profile.github} />
+        <DeployedProjects
+          projects={deployed}
+          githubUrl={profile.github}
+          lite={lite}
+        />
 
         <motion.div
           className="project-grid"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
+          variants={{
+            visible: {
+              transition: { staggerChildren: lite ? 0.03 : 0.06 },
+            },
+          }}
         >
           {featured.map((p, i) => (
             <ProjectCard
@@ -399,6 +435,8 @@ export default function ScrollSections({
               project={p}
               index={i}
               featured
+              lite={lite}
+              fade={fade}
               onOpen={() => setSelectedProject(p)}
             />
           ))}
@@ -412,6 +450,8 @@ export default function ScrollSections({
                   key={p.id}
                   project={p}
                   index={i}
+                  lite={lite}
+                  fade={fade}
                   onOpen={() => setSelectedProject(p)}
                 />
               ))}
@@ -445,7 +485,7 @@ export default function ScrollSections({
           </a>
         </motion.p>
 
-        <SocialLinks profile={profile} />
+        <SocialLinks profile={profile} lite={lite} />
 
         <motion.div
           className="contact-cv-row"
@@ -467,9 +507,9 @@ export default function ScrollSections({
             <motion.a
               className="contact-card glass"
               href={`mailto:${cv.email}`}
-              variants={fadeUp}
+              variants={fade}
               custom={0}
-              whileHover={{ y: -4 }}
+              whileHover={lite ? undefined : { y: -4 }}
             >
               Email
               <span>{cv.email}</span>
@@ -479,9 +519,9 @@ export default function ScrollSections({
             <motion.a
               className="contact-card glass"
               href={`tel:${cv.phone.replace(/\s/g, "")}`}
-              variants={fadeUp}
+              variants={fade}
               custom={1}
-              whileHover={{ y: -4 }}
+              whileHover={lite ? undefined : { y: -4 }}
             >
               Phone
               <span>{cv.phone}</span>
@@ -497,21 +537,29 @@ function ProjectCard({
   project,
   index,
   featured,
+  lite,
+  fade,
   onOpen,
 }: {
   project: Project;
   index: number;
   featured?: boolean;
+  lite?: boolean;
+  fade: typeof fadeUp;
   onOpen: () => void;
 }) {
   return (
     <motion.button
       type="button"
       className={`project-card glass${featured ? " featured" : ""}`}
-      variants={fadeUp}
+      variants={fade}
       custom={index}
-      whileHover={{ y: -8, boxShadow: "0 32px 64px rgba(42,154,173,0.2)" }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={
+        lite
+          ? undefined
+          : { y: -8, boxShadow: "0 32px 64px rgba(42,154,173,0.2)" }
+      }
+      whileTap={{ scale: lite ? 0.99 : 0.98 }}
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();

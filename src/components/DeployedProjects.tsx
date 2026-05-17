@@ -7,6 +7,7 @@ import { clampText, deployedDisplayName } from "@/lib/format";
 type DeployedProjectsProps = {
   projects: DeployedProject[];
   githubUrl: string;
+  lite?: boolean;
 };
 
 const fadeUp = {
@@ -21,6 +22,7 @@ const fadeUp = {
 export default function DeployedProjects({
   projects,
   githubUrl,
+  lite = false,
 }: DeployedProjectsProps) {
   const live = projects.filter((p) => p.homepage || p.isFounder);
   if (live.length === 0) return null;
@@ -57,7 +59,7 @@ export default function DeployedProjects({
               className={`deployed-card${project.isFounder ? " deployed-card--founder" : ""}`}
               variants={fadeUp}
               custom={i + 1}
-              whileHover={{ y: -8, scale: 1.01 }}
+              whileHover={lite ? undefined : { y: -8, scale: 1.01 }}
             >
               <motion.div className="deployed-card-top">
                 <motion.div className="deployed-icon" aria-hidden>

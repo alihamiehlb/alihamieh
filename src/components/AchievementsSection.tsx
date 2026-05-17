@@ -13,6 +13,7 @@ type AchievementItem = AchievementDetail;
 type AchievementsSectionProps = {
   achievements: AchievementItem[];
   instagramUrl: string;
+  lite?: boolean;
 };
 
 const fadeUp = {
@@ -24,11 +25,22 @@ const fadeUp = {
   }),
 };
 
+const fadeUpLite = {
+  hidden: { opacity: 0, y: 8 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: Math.min(i * 0.02, 0.1), duration: 0.28 },
+  }),
+};
+
 export default function AchievementsSection({
   achievements,
   instagramUrl,
+  lite = false,
 }: AchievementsSectionProps) {
   const [selected, setSelected] = useState<AchievementItem | null>(null);
+  const fade = lite ? fadeUpLite : fadeUp;
 
   return (
     <>
@@ -38,12 +50,16 @@ export default function AchievementsSection({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+          variants={{
+            visible: {
+              transition: { staggerChildren: lite ? 0.025 : 0.05 },
+            },
+          }}
         >
-          <motion.h2 variants={fadeUp} custom={0}>
+          <motion.h2 variants={fade} custom={0}>
             Achievements
           </motion.h2>
-          <motion.p className="section-sub" variants={fadeUp} custom={1}>
+          <motion.p className="section-sub" variants={fade} custom={1}>
             Competitions, certifications, robotics, and hands-on work — tap a
             card for details · also on{" "}
             <a
@@ -62,16 +78,18 @@ export default function AchievementsSection({
                 type="button"
                 key={item.id}
                 className="achievement-card glass achievement-card--clickable"
-                variants={fadeUp}
+                variants={fade}
                 custom={i + 2}
-                whileHover={{ y: -6, scale: 1.02, rotateX: 4 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={
+                  lite ? undefined : { y: -6, scale: 1.02, rotateX: 4 }
+                }
+                whileTap={{ scale: lite ? 0.99 : 0.98 }}
                 onClick={() => setSelected(item)}
-                style={{ transformPerspective: 900 }}
+                style={lite ? undefined : { transformPerspective: 900 }}
               >
                 <motion.div
                   className="achievement-image-wrap"
-                  style={{ translateZ: 8 }}
+                  style={lite ? undefined : { translateZ: 8 }}
                 >
                   <Image
                     src={item.image}
@@ -83,7 +101,10 @@ export default function AchievementsSection({
                   />
                   <span className="achievement-category">{item.category}</span>
                 </motion.div>
-                <motion.div className="achievement-body" style={{ translateZ: 12 }}>
+                <motion.div
+                  className="achievement-body"
+                  style={lite ? undefined : { translateZ: 12 }}
+                >
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                   <span className="achievement-tap-hint">Tap for details →</span>

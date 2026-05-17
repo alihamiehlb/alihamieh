@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
+import { useMobileLite } from "@/lib/use-mobile-lite";
 import AmbientMotion from "./AmbientMotion";
 import ScrollSections from "./ScrollSections";
 import type {
@@ -38,6 +39,7 @@ export default function PortfolioShell({
   profile,
   instagramUrl,
 }: PortfolioShellProps) {
+  const lite = useMobileLite();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   const onMove = useCallback((clientX: number, clientY: number) => {
@@ -45,25 +47,16 @@ export default function PortfolioShell({
   }, []);
 
   useEffect(() => {
+    if (lite) return;
     const onMouse = (e: MouseEvent) => onMove(e.clientX, e.clientY);
-    const onTouch = (e: TouchEvent) => {
-      const t = e.touches[0];
-      if (t) onMove(t.clientX, t.clientY);
-    };
     window.addEventListener("mousemove", onMouse, { passive: true });
-    window.addEventListener("touchmove", onTouch, { passive: true });
-    window.addEventListener("touchstart", onTouch, { passive: true });
-    return () => {
-      window.removeEventListener("mousemove", onMouse);
-      window.removeEventListener("touchmove", onTouch);
-      window.removeEventListener("touchstart", onTouch);
-    };
-  }, [onMove]);
+    return () => window.removeEventListener("mousemove", onMouse);
+  }, [lite, onMove]);
 
   return (
-    <main className="portfolio-shell">
-      <Scene3D mouseX={mouse.x} mouseY={mouse.y} />
-      <AmbientMotion />
+    <main className={`portfolio-shell${lite ? " portfolio-shell--lite" : ""}`}>
+      {!lite && <Scene3D mouseX={mouse.x} mouseY={mouse.y} />}
+      <AmbientMotion lite={lite} />
       <ScrollSections
         cv={cv}
         projects={projects}
@@ -73,6 +66,7 @@ export default function PortfolioShell({
         instagramUrl={instagramUrl}
         mouseX={mouse.x}
         mouseY={mouse.y}
+        lite={lite}
       />
     </main>
   );
