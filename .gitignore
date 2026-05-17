@@ -11,5 +11,5 @@ out
 # Duplicate / unused media (hero uses public/character.mp4 only)
 Pixel_art_character_animation_loop_*
 public/character.gif
-me_crossing.png
-me_standing.png
+/me_crossing.png
+/me_standing.png

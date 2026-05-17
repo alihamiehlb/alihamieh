@@ -103,13 +103,19 @@ function safeName(name) {
     .replace(/-+/g, "-");
 }
 
-function copyCert(item) {
-  const src = path.join(CERTS_DIR, item.file);
-  if (!fs.existsSync(src)) return null;
+function certImagePath(item) {
   const destName = safeName(item.file);
   const dest = path.join(PUBLIC_DIR, destName);
-  fs.copyFileSync(src, dest);
-  return `/achievements/${destName}`;
+  const webPath = `/achievements/${destName}`;
+  const src = path.join(CERTS_DIR, item.file);
+  if (fs.existsSync(src)) {
+    fs.mkdirSync(PUBLIC_DIR, { recursive: true });
+    fs.copyFileSync(src, dest);
+    return webPath;
+  }
+  /* On Vercel there is no local certs folder — use images already in git */
+  if (fs.existsSync(dest)) return webPath;
+  return null;
 }
 
 async function fetchInstagramThumb(postUrl) {
@@ -185,7 +191,7 @@ async function main() {
   const achievements = [];
 
   for (const item of CERT_CATALOG) {
-    const image = copyCert(item);
+    const image = certImagePath(item);
     if (!image) continue;
     achievements.push({
       id: safeName(item.file).replace(/\.[a-z]+$/, ""),
