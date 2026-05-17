@@ -1,0 +1,96 @@
+{
+  "instagram": "https://www.instagram.com/alihamiehlb/",
+  "updatedAt": "2026-05-17",
+  "achievements": [
+    {
+      "id": "wro",
+      "title": "World Robot Olympiad",
+      "description": "Robotics competition — design, build, and program competition robots.",
+      "detail": "Featured on my Instagram highlights (robotics). WRO pushed my mechanical design, sensors, and coding under real competition pressure.",
+      "instagramHighlight": "Robotics highlight reel on @alihamiehlb",
+      "category": "Robotics",
+      "image": "/achievements/wro.jpeg",
+      "source": "certificate"
+    },
+    {
+      "id": "completing-olympiad",
+      "title": "STEAM Center AIO — Cybersecurity & Olympiad",
+      "description": "Cybersecurity certifications and olympiad completion at STEAM Center AIO (same program).",
+      "detail": "Certificate from STEAM Center AIO for cybersecurity training and academic olympiad completion — this is one program, not two separate entries.",
+      "instagramHighlight": "Certificates highlight · @alihamiehlb",
+      "category": "Cybersecurity",
+      "image": "/achievements/completing-olympiad.jpeg",
+      "source": "certificate"
+    },
+    {
+      "id": "participation-in-olempiad",
+      "title": "Olympiad participation",
+      "description": "Competed in multi-round olympiad challenges.",
+      "detail": "Participation badge from national-style olympiad rounds in Lebanon — part of the same awards story I share on Instagram.",
+      "instagramHighlight": "Certificates highlight",
+      "category": "Academic",
+      "image": "/achievements/participation-in-olempiad.jpeg",
+      "source": "certificate"
+    },
+    {
+      "id": "innovators-all",
+      "title": "Innovators Academy",
+      "description": "Innovators Academy — robotics, Flutter, Python, web, and AI tracks.",
+      "detail": "Years of Innovators Academy training (also on my CV): programming fundamentals through robotics and modern dev stacks. Posted on IG as part of my learning journey.",
+      "instagramHighlight": "Academy & robotics posts",
+      "category": "Academy",
+      "image": "/achievements/innovators-all.jpeg",
+      "source": "certificate"
+    },
+    {
+      "id": "semi-colon-certificate",
+      "title": "Semicolon — Cybersecurity",
+      "description": "Offensive cybersecurity program at Semicolon Academy.",
+      "detail": "One-year offensive security track — the certificate in my highlights matches the Semicolon line on my CV and portfolio.",
+      "instagramHighlight": "Certificates highlight",
+      "category": "Academy",
+      "image": "/achievements/semi-colon-certificate.png",
+      "source": "certificate"
+    },
+    {
+      "id": "alison-python-certificate",
+      "title": "Alison — Python",
+      "description": "Python fundamentals certification (Alison).",
+      "detail": "Early formal Python credential — complements self-taught work and is listed under my Alison learning path on the site.",
+      "instagramHighlight": "Certificates highlight",
+      "category": "Certification",
+      "image": "/achievements/alison-python-certificate.png",
+      "source": "certificate"
+    },
+    {
+      "id": "phone-fixing",
+      "title": "Phone repair",
+      "description": "Real device repair — screens, boards, and diagnostics.",
+      "detail": "Hands-on phone repair is in my Instagram bio skills. These photos are workshop practice I share with followers.",
+      "instagramHighlight": "Bio: phone repair · ML · Arduino",
+      "category": "Hardware",
+      "image": "/achievements/phone-fixing.jpeg",
+      "source": "certificate"
+    },
+    {
+      "id": "another-phone-fixing",
+      "title": "Mobile repair workshop",
+      "description": "More advanced handset repair sessions.",
+      "detail": "Additional repair work documenting teardowns and fixes — part of the same hardware story on @alihamiehlb.",
+      "instagramHighlight": "Personal / maker highlights",
+      "category": "Hardware",
+      "image": "/achievements/another-phone-fixing.jpeg",
+      "source": "certificate"
+    },
+    {
+      "id": "arc",
+      "title": "ARC robotics event",
+      "description": "ARC-style robotics event and team engineering.",
+      "detail": "Event photo from robotics community work — aligned with WRO/Innovators path and my IG robotics highlight.",
+      "instagramHighlight": "Robotics highlight",
+      "category": "Robotics",
+      "image": "/achievements/arc.jpeg",
+      "source": "certificate"
+    }
+  ]
+}

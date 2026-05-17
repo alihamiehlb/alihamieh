@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="STEAM Center AIO">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a9aad"/>
+      <stop offset="100%" stop-color="#5ec8d8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="16" fill="#f4fbfc"/>
+  <rect x="24" y="24" width="352" height="252" rx="12" fill="url(#g)" opacity="0.15"/>
+  <text x="200" y="120" text-anchor="middle" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#2a9aad">STEAM Center</text>
+  <text x="200" y="160" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="600" fill="#1a3a45">AIO</text>
+  <text x="200" y="210" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#4a6b78">Cybersecurity</text>
+</svg>

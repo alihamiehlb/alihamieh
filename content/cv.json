@@ -1,0 +1,201 @@
+{
+  "name": "Ali Hamieh",
+  "birthDate": "2009-05-14",
+  "title": "Student at Al Mahdi School · Founder of printsLB",
+  "tagline": "Cybersecurity · Embedded Systems · ML · Full-Stack Development",
+  "email": "alihamiehlb@gmail.com",
+  "phone": "+961 76 696 385",
+  "linkedin": "https://linkedin.com/in/ali-hamieh-a98b6b302",
+  "github": "https://github.com/alihamiehlb",
+  "instagram": "https://www.instagram.com/alihamiehlb/",
+  "linktree": "https://linktr.ee/alihamiehlb",
+  "location": "Tyre, South Lebanon",
+  "documentFileName": "Ali_Hamieh_CV_2026.html",
+  "summary": "Self-driven developer and ethical hacker with 230+ hours of academy training and hands-on builds across web, mobile, AI, embedded hardware, and security. Founded printsLB, a Lebanese 3D-printing platform. Comfortable on Linux (Arch, Ubuntu, Kali, Parrot, NetHunter) and embedded stacks (ESP32, Arduino, custom firmware). Competed in robotics (WRO) and cybersecurity programs while pursuing an AI diploma at MUC University.",
+  "highlights": [
+    "Founder of printsLB — online 3D printing service (printslb.com)",
+    "AI diploma at MUC University (started at age 15)",
+    "ESP32 & Arduino builds: custom firmware, ESP32 Marauder & DSAI Mochi forks, IoT prototypes",
+    "Linux power user (~2 years): Arch, Garuda, Ubuntu, Kali, Parrot OS, Kali NetHunter",
+    "National/regional robotics & cybersecurity competition experience (WRO, olympiads, Semicolon)",
+    "STEAM Center AIO — cybersecurity & olympiad completion"
+  ],
+  "experience": [
+    {
+      "title": "Founder — printsLB",
+      "period": "2024 — Present",
+      "summary": "Built and deployed a full-stack 3D printing ordering platform for Lebanon. Product design, customer flows, and live deployment at printslb.com."
+    },
+    {
+      "title": "Freelance & client web projects",
+      "period": "2023 — Present",
+      "summary": "Delivered production sites for clients (e.g. soccer academy management, pharmacy, bakery) with admin panels, Postgres backends, and Vercel deployment."
+    },
+    {
+      "title": "Embedded & hardware projects",
+      "period": "2022 — Present",
+      "summary": "ESP32 and Arduino firmware, sensor builds, PCB-related prototyping (KiCad), and custom hardware enclosures. Forks and tooling around ESP32 Marauder and DSAI Mochi."
+    },
+    {
+      "title": "Cybersecurity & automation",
+      "period": "2022 — Present",
+      "summary": "Offensive security training (Semicolon), VPN/tunnel tooling, news automation bots, and security-focused Python utilities."
+    }
+  ],
+  "education": [
+    {
+      "school": "Al Mahdi School",
+      "detail": "Current student — Tyre, Lebanon"
+    },
+    {
+      "school": "MUC University",
+      "detail": "Diploma in Artificial Intelligence (2023–2025)"
+    },
+    {
+      "school": "Innovators Academy",
+      "detail": "Programming, Flutter, Python, web development, AI, and robotics"
+    },
+    {
+      "school": "Semicolon Academy",
+      "detail": "Offensive cybersecurity — one-year program (2019–2023)"
+    },
+    {
+      "school": "Hexapi Academy",
+      "detail": "PCB design, electronics, and hardware prototyping"
+    },
+    {
+      "school": "Alison",
+      "detail": "Python fundamentals certification"
+    }
+  ],
+  "skillGroups": [
+    {
+      "label": "Development",
+      "items": [
+        "Python",
+        "JavaScript / TypeScript",
+        "Flutter / Dart",
+        "React / Next.js",
+        "HTML / CSS / PHP",
+        "SQL",
+        "C++",
+        "PHP",
+        "Node.js",
+        "Vercel",
+        "Git"
+      ]
+    },
+    {
+      "label": "Security & AI",
+      "items": [
+        "Ethical Hacking",
+        "Offensive & Defensive Security",
+        "Machine Learning",
+        "Deep Learning",
+        "Data Science",
+        "Generative Robotics"
+      ]
+    },
+    {
+      "label": "Embedded & hardware",
+      "items": [
+        "Embedded systems",
+        "ESP32",
+        "Arduino",
+        "Microcontrollers",
+        "IoT prototyping",
+        "KiCad / PCB design",
+        "3D Modeling",
+        "Fusion 360",
+        "Blender",
+        "Phone Repair",
+        "Generative Robotics"
+      ]
+    },
+    {
+      "label": "Linux & systems",
+      "items": [
+        "Linux (2+ years)",
+        "Arch Linux",
+        "Garuda",
+        "Ubuntu",
+        "Kali Linux",
+        "Parrot OS",
+        "Kali NetHunter",
+        "Bash / shell",
+        "System administration"
+      ]
+    },
+    {
+      "label": "Soft skills",
+      "items": [
+        "Team collaboration",
+        "Fast learner",
+        "Public speaking",
+        "Communication",
+        "Problem solving",
+        "Adaptability",
+        "Time management"
+      ]
+    }
+  ],
+  "skills": [],
+  "selectedProjects": [
+    {
+      "name": "printsLB",
+      "role": "Founder",
+      "url": "https://printslb.com"
+    },
+    {
+      "name": "SSA Academy",
+      "role": "Full-stack web",
+      "url": "https://ssa-shoot-score-academy.vercel.app"
+    },
+    {
+      "name": "Hash-Sec Tunnel",
+      "role": "Mobile / Azure VPN",
+      "url": "https://github.com/alihamiehlb"
+    },
+    {
+      "name": "Khaybar News Bot",
+      "role": "Python automation",
+      "url": "https://github.com/alihamiehlb"
+    }
+  ],
+  "certifications": [
+    "World Robot Olympiad (WRO) — robotics competition",
+    "Academic olympiad — participation & completion",
+    "Innovators Academy — robotics & programming tracks",
+    "Semicolon Academy — offensive cybersecurity",
+    "STEAM Center AIO — cybersecurity & olympiad (completion certificate)",
+    "Alison — Python fundamentals"
+  ],
+  "learningSources": [
+    {
+      "name": "Innovators Academy",
+      "focus": "Robotics, innovation, and competition-ready engineering"
+    },
+    {
+      "name": "Semicolon",
+      "focus": "Offensive cybersecurity and secure development"
+    },
+    {
+      "name": "STEAM Center AIO",
+      "focus": "Cybersecurity certifications and olympiad — same STEAM Center AIO program"
+    },
+    {
+      "name": "Hexapi Academy",
+      "focus": "PCB design, electronics, and hardware prototyping"
+    },
+    {
+      "name": "Alison",
+      "focus": "Certifications and self-paced learning"
+    }
+  ],
+  "lastUpdated": "2026-05-17",
+  "sourcePdfs": [
+    "Ali_Hamieh_Professional_CV_Final.pdf",
+    "Profile.pdf",
+    "ali_hamieh_cv_not_all_complete_8_11_2024.pdf"
+  ]
+}

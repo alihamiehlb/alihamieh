@@ -1,0 +1,288 @@
+{
+  "projects": [
+    {
+      "id": "luxe-boutique",
+      "title": "Luxe Boutique",
+      "slug": "luxe-boutique",
+      "tags": [
+        "web",
+        "e-commerce",
+        "node.js",
+        "vite"
+      ],
+      "description": "A full luxury fashion store in the browser — browse dresses and accessories, add to cart, check out, and log in as a customer or admin to manage stock.",
+      "overview": "Built with React and Vite. Shoppers search categories, pick sizes and colors, and use a live cart. Admins edit products, stock, and orders from the same app — it is a complete boutique storefront, not just a landing page.",
+      "techStack": [
+        "Node.js",
+        "Vite"
+      ],
+      "dependencies": [
+        "lucide-react",
+        "react",
+        "react-dom",
+        "@eslint/js",
+        "@tailwindcss/postcss",
+        "@types/react",
+        "@types/react-dom",
+        "@vitejs/plugin-react",
+        "autoprefixer",
+        "eslint",
+        "eslint-plugin-react-hooks",
+        "eslint-plugin-react-refresh",
+        "globals",
+        "postcss",
+        "tailwindcss",
+        "vite"
+      ],
+      "languages": [
+        {
+          "name": "JavaScript",
+          "count": 5
+        }
+      ],
+      "highlights": [
+        "A full luxury fashion store in the browser — browse dresses and accessories, add to cart, check out, and log in as a customer or admin to manage stock."
+      ],
+      "structure": [],
+      "scripts": [
+        "dev",
+        "build",
+        "lint",
+        "preview"
+      ],
+      "fileCount": 0,
+      "featured": true
+    },
+    {
+      "id": "kalo-academy",
+      "title": "SSA Academy",
+      "slug": "kalo-academy",
+      "tags": [
+        "web",
+        "education"
+      ],
+      "description": "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard.",
+      "overview": "Next.js app with Postgres (Prisma): search players, export CSV/JSON, generate invoices, and run the academy back-office. Live at ssa-shoot-score-academy.vercel.app.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "count": 17
+        }
+      ],
+      "highlights": [
+        "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": true
+    },
+    {
+      "id": "tzeva_adom_blue_dashboard",
+      "title": "Tzeva Adom Dashboard",
+      "slug": "tzeva_adom_blue_dashboard",
+      "tags": [
+        "web",
+        "dashboard",
+        "python"
+      ],
+      "description": "A blue-themed dashboard that maps Tzeva Adom alert history — filter by date, see threat types, and compare activity across cities from spreadsheet data.",
+      "overview": "Flask app loads cities, polygons, and historical alerts from Excel, then charts alerts per day, threat breakdowns, and top affected cities. Built to explore real alert datasets interactively in the browser.",
+      "techStack": [
+        "Python"
+      ],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 1
+        },
+        {
+          "name": "JavaScript",
+          "count": 1
+        }
+      ],
+      "highlights": [
+        "A blue-themed dashboard that maps Tzeva Adom alert history — filter by date, see threat types, and compare activity across cities from spreadsheet data."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": true
+    },
+    {
+      "id": "holy-tunnel-operation",
+      "title": "Hash-Sec Tunnel",
+      "slug": "holy-tunnel-operation",
+      "tags": [
+        "mobile",
+        "security",
+        "azure"
+      ],
+      "description": "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone.",
+      "overview": "Flutter client provisions a VM in your Azure subscription, runs the hamieh relay, and uses Android VpnService + tun2socks so browsing goes through the tunnel. Fork of mission-sni-spoofing with on-device login instead of desktop CLI.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 25
+        },
+        {
+          "name": "Dart",
+          "count": 1
+        }
+      ],
+      "highlights": [
+        "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": true
+    },
+    {
+      "id": "advertisment-proj",
+      "title": "Hamieh Ads",
+      "slug": "advertisment-proj",
+      "tags": [
+        "mobile",
+        "flutter",
+        "go"
+      ],
+      "description": "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks.",
+      "overview": "Combines a Dart/Flutter front end with Go binaries (whatsapp.go, native libs) for Windows/Android builds. Built for campaign and messaging automation use cases.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Dart",
+          "count": 31
+        },
+        {
+          "name": "JavaScript",
+          "count": 1
+        }
+      ],
+      "highlights": [
+        "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": true
+    },
+    {
+      "id": "automation-pentagon",
+      "title": "Khaybar News Bot",
+      "slug": "automation-pentagon",
+      "tags": [
+        "automation",
+        "python",
+        "ai"
+      ],
+      "description": "Telegram-to-WhatsApp news bot — watches channels, filters posts with Gemini AI, translates to Arabic, and forwards text and media to a WhatsApp group.",
+      "overview": "Python bot using Telethon and Green API: urgency detection, bias filtering, media forwarding, and Docker/Railway deployment. Automates a news desk workflow end to end.",
+      "techStack": [
+        "Python"
+      ],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 5
+        }
+      ],
+      "highlights": [
+        "Telegram-to-WhatsApp news bot — watches channels, filters posts with Gemini AI, translates to Arabic, and forwards text and media to a WhatsApp group."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "automation_secret_mission",
+      "title": "Automation Secret Mission",
+      "slug": "automation_secret_mission",
+      "tags": [
+        "automation",
+        "python"
+      ],
+      "description": "> Arabic Version available here: [إقرأ النسخة العربية من هنا (README_AR.md)](./README_AR.md)",
+      "overview": "# scrible-mission 🤖🗞️ > [!NOTE] > **Arabic Version available here:** [إقرأ النسخة العربية من هنا (README_AR.md)](./README_AR.md) An advanced, AI-powered automated news monitoring and analysis system for Telegram. Designed for high-fidelity extraction, filtering, and reporting of military and geopolitical news. --- ## 🏗️ System Architecture & Workflow The system follows a modular pipeline designed to handle high message volumes while maintaining data integrity and generating premium reports. ```mermaid graph TD A[Telegram Channels] -->|Telethon Listener| B[Message Ingestion] B -->|Regex/Keyword Filter| C[Relevance Filtering] C -->|Deduplication| D[SQLite + FTS5] D -->|Persistent Volume| E[(/data/app.db)] F[User Commands/Scheduler] -->|Trigger| G[Batch Processor] G -->|Context Chunking| H[AI Analysis Layer] H -->|LLM: OpenAI/Gemini| I[Structured Insights] I -->|python-docx| J[Premium DO",
+      "techStack": [
+        "Python"
+      ],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 14
+        }
+      ],
+      "highlights": [
+        "> Arabic Version available here: [إقرأ النسخة العربية من هنا (README_AR.md)](./README_AR.md)"
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "trading_bot",
+      "title": "RL Trading Agent",
+      "slug": "trading_bot",
+      "tags": [
+        "python",
+        "ml",
+        "finance"
+      ],
+      "description": "Reinforcement-learning forex bot — trains an agent in a custom Gym environment to go long, short, or stay out using historical price windows.",
+      "overview": "RLTradingAgent includes trading_env.py (balance, commission, positions), training scripts, checkpoints, and evaluation plots. It simulates 0.01-lot trades and learns from market features over sliding windows.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 19
+        }
+      ],
+      "highlights": [
+        "Reinforcement-learning forex bot — trains an agent in a custom Gym environment to go long, short, or stay out using historical price windows."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "data_cleaning",
+      "title": "Data Cleaning Pipeline",
+      "slug": "data_cleaning",
+      "tags": [
+        "python",
+        "data"
+      ],
+      "description": "Data pipeline that turns raw spreadsheets into cleaned JSON and formatted Word reports with stats and loss summaries.",
+      "overview": "Python scripts extract, aggregate, and document structured datasets (including israel_losses workbooks) — export to DOCX/JSON for analysis and presentation.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 4
+        }
+      ],
+      "highlights": [
+        "Data pipeline that turns raw spreadsheets into cleaned JSON and formatted Word reports with stats and loss summaries."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    }
+  ]
+}

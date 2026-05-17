@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.vercel
+*.log
+.env
+.env.local
+.env*.local
+.DS_Store
+
+# Duplicate source media (canonical copies in public/)
+Pixel_art_character_animation_loop_*
+me_crossing.png
+me_standing.png
