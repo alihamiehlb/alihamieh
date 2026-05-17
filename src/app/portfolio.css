@@ -665,7 +665,7 @@
   image-rendering: pixelated;
   opacity: 0;
   transition: opacity 0.35s ease;
-  will-change: contents;
+  will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
 }

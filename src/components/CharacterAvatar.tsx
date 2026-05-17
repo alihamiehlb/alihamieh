@@ -8,6 +8,8 @@ type CharacterAvatarProps = {
   mouseY: number;
 };
 
+type VideoMode = "scrub" | "play" | "paused";
+
 const POSE_WEIGHTS = [
   { x: -1, y: 0, weight: 0 },
   { x: -0.55, y: -0.2, weight: 0.14 },
@@ -22,7 +24,7 @@ const POSE_WEIGHTS = [
 type PoseWeight = (typeof POSE_WEIGHTS)[number];
 
 const IDLE_AFTER_MS = 700;
-const IDLE_PLAYBACK = 0.38;
+const VIDEO_SRC = "/character.mp4";
 
 function mapMouseToTime(mx: number, my: number, duration: number) {
   let best: PoseWeight = POSE_WEIGHTS[3];
@@ -63,19 +65,13 @@ function seekVideo(video: HTMLVideoElement, t: number) {
   video.currentTime = t;
 }
 
-function wrapTime(t: number, duration: number) {
-  const max = Math.max(0.05, duration - 0.03);
-  if (t >= max) return t - max + 0.02;
-  if (t < 0.02) return max - 0.02;
-  return t;
-}
-
 export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps) {
   const stageRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const pointerRef = useRef({ x: 0, y: 0 });
   const timeRef = useRef(0);
   const durationRef = useRef(0);
+  const modeRef = useRef<VideoMode>("paused");
   const readyRef = useRef(false);
   const visibleRef = useRef(true);
   const lastInteractRef = useRef(0);
@@ -89,8 +85,29 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
   const floatY = useSpring(0, { stiffness: 40, damping: 14 });
   const depthZ = useSpring(0, { stiffness: 60, damping: 18 });
 
+  const isIdle = () =>
+    performance.now() - lastInteractRef.current > IDLE_AFTER_MS;
+
   const markInteract = () => {
     lastInteractRef.current = performance.now();
+  };
+
+  const startNativePlay = (video: HTMLVideoElement) => {
+    modeRef.current = "play";
+    video.loop = true;
+    video.playbackRate = 1;
+    timeRef.current = video.currentTime;
+    void video.play().catch(() => {
+      /* autoplay blocked until gesture — scrub path still works */
+    });
+  };
+
+  const startScrub = (video: HTMLVideoElement) => {
+    if (modeRef.current !== "scrub") {
+      video.pause();
+      timeRef.current = video.currentTime;
+      modeRef.current = "scrub";
+    }
   };
 
   useEffect(() => {
@@ -126,6 +143,14 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
     const io = new IntersectionObserver(
       ([entry]) => {
         visibleRef.current = entry.isIntersecting;
+        const video = videoRef.current;
+        if (!video || !readyRef.current) return;
+        if (!entry.isIntersecting) {
+          video.pause();
+          modeRef.current = "paused";
+        } else if (isIdle()) {
+          startNativePlay(video);
+        }
       },
       { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
     );
@@ -173,34 +198,45 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
       }
     };
 
+    const syncMode = () => {
+      if (!readyRef.current || !visibleRef.current) {
+        if (!video.paused) video.pause();
+        modeRef.current = "paused";
+        return;
+      }
+
+      if (isIdle()) {
+        if (modeRef.current !== "play") startNativePlay(video);
+        return;
+      }
+
+      startScrub(video);
+    };
+
     const tick = (now: number) => {
       if (cancelled) return;
       const last = lastFrameRef.current || now;
       const dt = Math.min(0.032, (now - last) / 1000);
       lastFrameRef.current = now;
 
-      const duration = durationRef.current;
-      if (duration > 0 && readyRef.current && visibleRef.current) {
-        const idle =
-          performance.now() - lastInteractRef.current > IDLE_AFTER_MS;
+      syncMode();
 
-        if (idle) {
-          const next = wrapTime(
-            timeRef.current + dt * IDLE_PLAYBACK,
-            duration
-          );
-          applyTime(next);
-        } else {
-          const { x, y } = pointerRef.current;
-          const target = mapMouseToTime(x, y, duration);
-          const err = target - timeRef.current;
-          const absErr = Math.abs(err);
-          const next =
-            absErr > duration * 0.12
-              ? easeToward(timeRef.current, target, dt, 0.022)
-              : easeToward(timeRef.current, target, dt, 0.038);
-          applyTime(next, absErr > 0.08);
-        }
+      const duration = durationRef.current;
+      if (
+        duration > 0 &&
+        readyRef.current &&
+        visibleRef.current &&
+        modeRef.current === "scrub"
+      ) {
+        const { x, y } = pointerRef.current;
+        const target = mapMouseToTime(x, y, duration);
+        const err = target - timeRef.current;
+        const absErr = Math.abs(err);
+        const next =
+          absErr > duration * 0.12
+            ? easeToward(timeRef.current, target, dt, 0.022)
+            : easeToward(timeRef.current, target, dt, 0.038);
+        applyTime(next, absErr > 0.08);
       }
 
       raf = requestAnimationFrame(tick);
@@ -215,6 +251,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
       readyRef.current = true;
       setReady(true);
       lastFrameRef.current = performance.now();
+      syncMode();
       raf = requestAnimationFrame(tick);
     };
 
@@ -289,12 +326,13 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
         <video
           ref={videoRef}
           className={`character-video${ready ? " ready" : ""}`}
-          src="/character.mp4"
+          src={VIDEO_SRC}
           muted
           playsInline
+          loop
           preload="auto"
           poster="/me_standing.png"
-          aria-label="Interactive portrait — plays automatically; move to change angle"
+          aria-label="Interactive portrait video — plays automatically; move to change angle"
         />
         {!ready && <span className="character-loading">Loading…</span>}
       </motion.div>

@@ -52,7 +52,7 @@
       "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
       "homepage": null,
       "github": "https://github.com/alihamiehlb/alihamieh",
-      "language": null,
+      "language": "TypeScript",
       "stars": 0,
       "featured": false,
       "isFounder": false
