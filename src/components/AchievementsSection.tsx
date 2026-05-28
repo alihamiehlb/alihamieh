@@ -97,7 +97,9 @@ export default function AchievementsSection({
                     width={400}
                     height={300}
                     className="achievement-image"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 320px"
+                    quality={72}
+                    loading="lazy"
                   />
                   <span className="achievement-category">{item.category}</span>
                 </motion.div>

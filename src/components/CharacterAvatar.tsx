@@ -2,6 +2,7 @@
 
 import { motion, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import PortraitVideo from "./PortraitVideo";
 
 type CharacterAvatarProps = {
   mouseX: number;
@@ -24,7 +25,6 @@ const POSE_WEIGHTS = [
 type PoseWeight = (typeof POSE_WEIGHTS)[number];
 
 const IDLE_AFTER_MS = 700;
-const VIDEO_SRC = "/character.mp4";
 
 function mapMouseToTime(mx: number, my: number, duration: number) {
   let best: PoseWeight = POSE_WEIGHTS[3];
@@ -77,6 +77,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
   const lastInteractRef = useRef(0);
   const lastFrameRef = useRef(0);
   const [ready, setReady] = useState(false);
+  const [attachVideo, setAttachVideo] = useState(false);
 
   const rotateX = useSpring(0, { stiffness: 85, damping: 20 });
   const rotateY = useSpring(0, { stiffness: 85, damping: 20 });
@@ -143,6 +144,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
     const io = new IntersectionObserver(
       ([entry]) => {
         visibleRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) setAttachVideo(true);
         const video = videoRef.current;
         if (!video || !readyRef.current) return;
         if (!entry.isIntersecting) {
@@ -152,7 +154,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
           startNativePlay(video);
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.1, rootMargin: "80px 0px -8% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -177,6 +179,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
   }, [floatY]);
 
   useEffect(() => {
+    if (!attachVideo) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -265,7 +268,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
       video.removeEventListener("loadeddata", onReady);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [attachVideo]);
 
   return (
     <motion.div
@@ -323,18 +326,13 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
           boxShadow: `0 42px 100px rgba(42,154,173,${0.28 + Math.abs(mouseX) * 0.14}), 0 12px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.55) inset`,
         }}
       >
-        <video
-          ref={videoRef}
-          className={`character-video${ready ? " ready" : ""}`}
-          src={VIDEO_SRC}
-          muted
-          playsInline
-          loop
-          preload="auto"
-          poster="/me_standing.png"
-          aria-label="Interactive portrait video — plays automatically; move to change angle"
+        <PortraitVideo
+          mode="scrub"
+          ready={ready}
+          videoRef={videoRef}
+          attachSrc={attachVideo}
+          onReady={() => setReady(true)}
         />
-        {!ready && <span className="character-loading">Loading…</span>}
       </motion.div>
 
       <motion.div

@@ -6,9 +6,10 @@
     "node": "20.x"
   },
   "scripts": {
-    "predev": "node scripts/extract-cv.mjs && node scripts/scan-projects.mjs && node scripts/sync-github.mjs && node scripts/sync-achievements.mjs && node scripts/generate-cv-html.mjs",
-    "prebuild": "node scripts/extract-cv.mjs && node scripts/scan-projects.mjs && node scripts/sync-github.mjs && node scripts/sync-achievements.mjs && node scripts/generate-cv-html.mjs",
-    "content": "node scripts/extract-cv.mjs && node scripts/scan-projects.mjs && node scripts/sync-github.mjs && node scripts/sync-achievements.mjs && node scripts/generate-cv-html.mjs",
+    "predev": "node scripts/extract-cv.mjs && node scripts/scan-projects.mjs && node scripts/sync-github.mjs && node scripts/sync-achievements.mjs && node scripts/generate-cv-html.mjs && node scripts/optimize-assets.mjs",
+    "prebuild": "node scripts/extract-cv.mjs && node scripts/scan-projects.mjs && node scripts/sync-github.mjs && node scripts/sync-achievements.mjs && node scripts/generate-cv-html.mjs && node scripts/optimize-assets.mjs",
+    "content": "node scripts/extract-cv.mjs && node scripts/scan-projects.mjs && node scripts/sync-github.mjs && node scripts/sync-achievements.mjs && node scripts/generate-cv-html.mjs && node scripts/optimize-assets.mjs",
+    "optimize": "node scripts/optimize-assets.mjs",
     "cv": "node scripts/generate-cv-html.mjs",
     "dev": "next dev",
     "dev:lan": "next dev -H 0.0.0.0 -p 3000",
@@ -31,6 +32,7 @@
     "@types/react-dom": "^19.0.2",
     "@types/three": "^0.171.0",
     "pdf-parse": "^1.1.1",
+    "sharp": "^0.33.5",
     "typescript": "^5.7.2"
   }
 }

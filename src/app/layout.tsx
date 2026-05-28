@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Ali Hamieh — Portfolio",
     url: siteUrl,
     siteName: "printsLB",
-    images: ["/me_standing.png"],
+    images: ["/portrait-poster.webp"],
   },
   alternates: {
     canonical: siteUrl,
@@ -47,6 +47,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} ${jetbrains.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          href="/portrait-poster.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

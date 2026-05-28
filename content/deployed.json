@@ -1,6 +1,6 @@
 {
   "username": "alihamiehlb",
-  "updatedAt": "2026-05-17",
+  "updatedAt": "2026-05-28",
   "projects": [
     {
       "id": "PrintsLB",
@@ -14,24 +14,24 @@
       "isFounder": true
     },
     {
-      "id": "alihamieh",
-      "name": "alihamieh",
-      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
-      "homepage": "https://alihamieh.vercel.app",
-      "github": "https://github.com/alihamiehlb/alihamieh",
-      "language": "TypeScript",
-      "stars": 0,
-      "featured": true,
-      "isFounder": false
-    },
-    {
       "id": "ssa-shoot-score-academy",
       "name": "ssa shoot score academy",
       "description": "its a site for khali that is for his academy for admin control and invoice and player managment and stats with great desgin",
       "homepage": "https://ssa-shoot-score-academy.vercel.app",
       "github": "https://github.com/alihamiehlb/ssa-shoot-score-academy",
       "language": "TypeScript",
-      "stars": 0,
+      "stars": 1,
+      "featured": true,
+      "isFounder": false
+    },
+    {
+      "id": "alihamieh",
+      "name": "alihamieh",
+      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
+      "homepage": "https://alihamieh.vercel.app",
+      "github": "https://github.com/alihamiehlb/alihamieh",
+      "language": "TypeScript",
+      "stars": 1,
       "featured": true,
       "isFounder": false
     },

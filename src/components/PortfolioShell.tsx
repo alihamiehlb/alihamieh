@@ -13,7 +13,10 @@ import type {
   Project,
 } from "@/lib/content";
 
-const Scene3D = dynamic(() => import("./Scene3D"), { ssr: false });
+const Scene3D = dynamic(() => import("./Scene3D"), {
+  ssr: false,
+  loading: () => null,
+});
 
 type PortfolioShellProps = {
   cv: CvData;

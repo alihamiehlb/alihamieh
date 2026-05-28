@@ -656,6 +656,30 @@
   line-height: 0;
 }
 
+.portrait-video-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  aspect-ratio: 1;
+}
+
+.character-poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  transition: opacity 0.25s ease;
+}
+
+.character-poster--hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
 .character-video {
   display: block;
   width: 100%;
@@ -665,13 +689,38 @@
   image-rendering: pixelated;
   opacity: 0;
   transition: opacity 0.35s ease;
-  will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
 
+.portrait-video-wrap .character-video {
+  position: absolute;
+  inset: 0;
+}
+
 .character-video.ready {
   opacity: 1;
+}
+
+.portrait-load-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  transform: translateX(-50%);
+  z-index: 4;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(26, 58, 69, 0.82);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.portrait-load-btn:active {
+  transform: translateX(-50%) scale(0.98);
 }
 
 .character-loading {
@@ -1219,6 +1268,10 @@ code {
 
 .character-stage--lite .character-video {
   image-rendering: auto;
+}
+
+.character-stage--lite .portrait-video-wrap .character-video {
+  will-change: auto;
 }
 
 html.portfolio-lite {

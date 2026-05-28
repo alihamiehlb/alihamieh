@@ -2,7 +2,8 @@ import PortfolioShell from "@/components/PortfolioShell";
 import { getSiteContent } from "@/lib/get-site-content";
 import type { Achievement, CvData, DeployedProject, ProfileData, Project } from "@/lib/content";
 
-export const dynamic = "force-dynamic";
+/** Cache page at the edge; admin/blob overrides still apply per request */
+export const revalidate = 120;
 
 export default async function Home() {
   const site = await getSiteContent();
