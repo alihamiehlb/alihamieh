@@ -271,6 +271,13 @@
   object-fit: cover;
 }
 
+.achievement-image--modal {
+  object-fit: contain;
+  background: var(--ice);
+  border-radius: 12px;
+  max-height: 50vh;
+}
+
 .achievement-category {
   position: absolute;
   top: 0.65rem;

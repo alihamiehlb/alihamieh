@@ -88,7 +88,7 @@ export default function AchievementDetailModal({
               <LightboxImage
                 src={achievement.image}
                 alt={achievement.title}
-                className="achievement-image w-full h-auto object-cover"
+                className="achievement-image achievement-image--modal"
               />
               <span className="achievement-category">{achievement.category}</span>
             </motion.div>

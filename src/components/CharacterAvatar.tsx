@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -79,12 +79,12 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
   const [ready, setReady] = useState(false);
   const [attachVideo, setAttachVideo] = useState(false);
 
-  const rotateX = useSpring(0, { stiffness: 85, damping: 20 });
-  const rotateY = useSpring(0, { stiffness: 85, damping: 20 });
-  const scale = useSpring(1, { stiffness: 75, damping: 18 });
-  const tiltZ = useSpring(0, { stiffness: 70, damping: 22 });
-  const floatY = useSpring(0, { stiffness: 40, damping: 14 });
-  const depthZ = useSpring(0, { stiffness: 60, damping: 18 });
+  const rotateX = useSpring(0, { stiffness: 60, damping: 30 });
+  const rotateY = useSpring(0, { stiffness: 60, damping: 30 });
+  const scale = useSpring(1, { stiffness: 50, damping: 25 });
+  const tiltZ = useSpring(0, { stiffness: 60, damping: 30 });
+  const floatY = useSpring(0, { stiffness: 30, damping: 20 });
+  const depthZ = useSpring(0, { stiffness: 50, damping: 25 });
 
   const isIdle = () =>
     performance.now() - lastInteractRef.current > IDLE_AFTER_MS;
@@ -161,11 +161,11 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
   }, []);
 
   useEffect(() => {
-    rotateX.set(mouseY * -28);
-    rotateY.set(mouseX * 32);
-    scale.set(1.04 + Math.hypot(mouseX, mouseY) * 0.09);
-    tiltZ.set(mouseX * -6);
-    depthZ.set(mouseX * 18 + mouseY * -12);
+    rotateX.set(mouseY * -10);
+    rotateY.set(mouseX * 12);
+    scale.set(1.02 + Math.hypot(mouseX, mouseY) * 0.03);
+    tiltZ.set(mouseX * -2);
+    depthZ.set(mouseX * 8 + mouseY * -6);
   }, [mouseX, mouseY, rotateX, rotateY, scale, tiltZ, depthZ]);
 
   useEffect(() => {
@@ -312,8 +312,8 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
         className="character-shine"
         style={{ translateZ: 24 }}
         animate={{
-          x: mouseX * 40,
-          y: mouseY * 30,
+          x: mouseX * 15,
+          y: mouseY * 10,
           opacity: [0.35, 0.65, 0.35],
         }}
         transition={{ opacity: { duration: 3, repeat: Infinity } }}
