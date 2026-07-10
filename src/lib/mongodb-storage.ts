@@ -105,11 +105,10 @@ export async function uploadImageToMongo(
   buffer: Buffer,
   filename: string,
   contentType: string
-): Promise<{ url: string; storage: 'blob' | 'local' }> {
-  // For now, we'll still use Vercel Blob or local storage for images
-  // MongoDB is not ideal for storing large binary files
-  const { uploadImage } = await import('./storage');
-  return uploadImage(buffer, filename, contentType);
+): Promise<{ url: string; storage: 'mongo' }> {
+  const base64 = buffer.toString('base64');
+  const dataUrl = `data:${contentType};base64,${base64}`;
+  return { url: dataUrl, storage: 'mongo' };
 }
 
 export function mongoStorageHint() {
