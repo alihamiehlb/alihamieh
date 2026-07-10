@@ -64,6 +64,7 @@ export type CvOverrides = {
   skillGroups?: Array<{ label: string; items: string[] }>;
   selectedProjects?: Array<{ name: string; role: string; url: string }>;
   certifications?: string[];
+  achievements?: Array<{ title: string; subtitle: string; summary: string }>;
   learningSources?: Array<{ name: string; focus: string }>;
   name?: string;
   title?: string;

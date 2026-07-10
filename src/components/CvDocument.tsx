@@ -19,6 +19,8 @@ export type CvDocumentData = {
   skillGroups?: { label: string; items: string[] }[];
   selectedProjects?: { name: string; role: string; url?: string }[];
   certifications?: string[];
+  achievements?: { title: string; subtitle?: string; summary: string }[];
+  interviews?: { title: string; url: string }[];
   lastUpdated?: string;
   documentFileName?: string;
 };
@@ -111,6 +113,21 @@ export default function CvDocument({ cv, showToolbar = true }: CvDocumentProps) 
               </section>
             )}
 
+            {cv.achievements && cv.achievements.length > 0 && (
+              <section className="cv-section">
+                <h2>Achievements</h2>
+                {cv.achievements.map((ach) => (
+                  <div key={ach.title} className="cv-entry">
+                    <div className="cv-entry-head">
+                      <strong>{ach.title}</strong>
+                      {ach.subtitle && <em>{ach.subtitle}</em>}
+                    </div>
+                    <p>{ach.summary}</p>
+                  </div>
+                ))}
+              </section>
+            )}
+
             <section className="cv-section">
               <h2>Experience</h2>
               {cv.experience.map((exp) => (
@@ -157,6 +174,22 @@ export default function CvDocument({ cv, showToolbar = true }: CvDocumentProps) 
                 </div>
               ))}
             </section>
+
+            {cv.interviews && cv.interviews.length > 0 && (
+              <section className="cv-section">
+                <h2>Media & Interviews</h2>
+                {cv.interviews.map((interview) => (
+                  <div key={interview.title} className="cv-project-row">
+                    <span>
+                      <strong>{interview.title}</strong>
+                    </span>
+                    <a href={interview.url} target="_blank" rel="noreferrer">
+                      View ↗
+                    </a>
+                  </div>
+                ))}
+              </section>
+            )}
           </main>
         </div>
 

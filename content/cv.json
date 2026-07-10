@@ -136,6 +136,33 @@
     }
   ],
   "skills": [],
+  "achievements": [
+    {
+      "title": "3rd Place — Google AI Hackathon Lebanon",
+      "subtitle": "2026",
+      "summary": "Awarded 3rd place at the Google AI Hackathon held in Lebanon, organized by Google Developer Groups (GDG), DevLeb and Supportful."
+    },
+    {
+      "title": "1st Place — MC2 Robotics Innovation Competition",
+      "subtitle": "Lebanon",
+      "summary": "Won first place with the AlzHelper robotics project."
+    },
+    {
+      "title": "2nd Place — ARC Robotics Competition",
+      "subtitle": "Lebanon",
+      "summary": "National robotics and AI competition."
+    },
+    {
+      "title": "2nd Place — Arabian Olympiad (AI & Python)",
+      "subtitle": "Arab World",
+      "summary": "Runner-up in the AI & Python category."
+    },
+    {
+      "title": "13th Place — Arabian Cybersecurity Olympiad",
+      "subtitle": "Arab World",
+      "summary": "Defensive Cybersecurity category representing Lebanon."
+    }
+  ],
   "selectedProjects": [
     {
       "name": "printsLB",
