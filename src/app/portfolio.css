@@ -746,8 +746,8 @@
   right: 10%;
   bottom: -6%;
   height: 24px;
-  background: radial-gradient(ellipse, rgba(42, 154, 173, 0.35), transparent 70%);
-  filter: blur(8px);
+  background: radial-gradient(ellipse, rgba(42, 154, 173, 0.25), transparent 70%);
+  filter: blur(4px);
   pointer-events: none;
 }
 
@@ -1101,23 +1101,32 @@ code {
   margin-top: 0.25rem;
 }
 
-.modal-close {
-  flex-shrink: 0;
-  width: 2.5rem;
-  height: 2.5rem;
+.project-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
+  background: var(--ice);
   border: 1px solid var(--glass-border);
-  background: white;
-  font-size: 1.5rem;
+  color: var(--text-muted);
+  font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
-  color: var(--text-muted);
   transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.modal-close:hover {
-  background: var(--ice);
-  color: var(--text);
+.project-modal-close:hover {
+  background: #fff;
+  color: var(--aqua-dark);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(42, 154, 173, 0.15);
 }
 
 .modal-tags {

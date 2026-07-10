@@ -161,17 +161,17 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
   }, []);
 
   useEffect(() => {
-    rotateX.set(mouseY * -10);
-    rotateY.set(mouseX * 12);
-    scale.set(1.02 + Math.hypot(mouseX, mouseY) * 0.03);
-    tiltZ.set(mouseX * -2);
-    depthZ.set(mouseX * 8 + mouseY * -6);
+    rotateX.set(mouseY * -4);
+    rotateY.set(mouseX * 5);
+    scale.set(1.01 + Math.hypot(mouseX, mouseY) * 0.02);
+    tiltZ.set(mouseX * -1);
+    depthZ.set(mouseX * 4 + mouseY * -3);
   }, [mouseX, mouseY, rotateX, rotateY, scale, tiltZ, depthZ]);
 
   useEffect(() => {
     let raf = 0;
     const pulse = () => {
-      floatY.set(Math.sin(Date.now() / 1400) * 5);
+      floatY.set(Math.sin(Date.now() / 1400) * 2);
       raf = requestAnimationFrame(pulse);
     };
     raf = requestAnimationFrame(pulse);
@@ -303,7 +303,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
       <motion.div
         className="character-plate character-plate--front"
         style={{ translateZ: -8 }}
-        animate={{ opacity: [0.2, 0.35, 0.2] }}
+        animate={{ opacity: [0.25, 0.35, 0.25] }}
         transition={{ duration: 4.5, repeat: Infinity, delay: 0.5 }}
       />
       <motion.div className="character-ring" style={{ translateZ: depthZ }} />
@@ -312,9 +312,9 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
         className="character-shine"
         style={{ translateZ: 24 }}
         animate={{
-          x: mouseX * 15,
-          y: mouseY * 10,
-          opacity: [0.35, 0.65, 0.35],
+          x: mouseX * 5,
+          y: mouseY * 5,
+          opacity: [0.45, 0.65, 0.45],
         }}
         transition={{ opacity: { duration: 3, repeat: Infinity } }}
       />
@@ -323,7 +323,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
         className="character-frame"
         style={{ translateZ: 20 }}
         animate={{
-          boxShadow: `0 42px 100px rgba(42,154,173,${0.28 + Math.abs(mouseX) * 0.14}), 0 12px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.55) inset`,
+          boxShadow: `0 24px 60px rgba(42,154,173,0.15), 0 8px 20px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.4) inset`,
         }}
       >
         <PortraitVideo
@@ -338,8 +338,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
       <motion.div
         className="character-shadow-3d"
         style={{ translateZ: -72 }}
-        animate={{ scaleX: 1 + Math.abs(mouseX) * 0.2, opacity: [0.5, 0.75, 0.5] }}
-        transition={{ opacity: { duration: 4, repeat: Infinity } }}
+        animate={{ scaleX: 1 + Math.abs(mouseX) * 0.05, opacity: 0.6 }}
       />
     </motion.div>
   );
