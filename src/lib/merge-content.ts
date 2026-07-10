@@ -33,11 +33,19 @@ export function buildSiteContent(overrides: SiteOverrides | null): SiteContent {
       : projectsData.projects;
   const projects = rawProjects.filter((p) => p.id !== "final_project");
 
+  const interviews = overrides?.interviews !== undefined ? overrides.interviews : [];
+
   const cv = {
     ...cvData,
     title: profile.title || cvData.title,
     skills: overrides?.cv?.skills ?? cvData.skills,
     summary: overrides?.cv?.summary ?? cvData.summary,
+    experience: overrides?.cv?.experience ?? cvData.experience,
+    education: overrides?.cv?.education ?? cvData.education,
+    skillGroups: overrides?.cv?.skillGroups ?? (cvData as any).skillGroups,
+    selectedProjects: overrides?.cv?.selectedProjects ?? (cvData as any).selectedProjects,
+    certifications: overrides?.cv?.certifications ?? (cvData as any).certifications,
+    learningSources: overrides?.cv?.learningSources ?? (cvData as any).learningSources,
   };
 
   return {
@@ -45,6 +53,7 @@ export function buildSiteContent(overrides: SiteOverrides | null): SiteContent {
     projects,
     achievements,
     deployed,
+    interviews,
     profile,
     instagramUrl:
       achievementsData.instagram ||
