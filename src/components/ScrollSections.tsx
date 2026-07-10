@@ -31,6 +31,7 @@ type ScrollSectionsProps = {
   projects: Project[];
   achievements: Achievement[];
   deployed: DeployedProject[];
+  interviews: any[];
   profile: ProfileData;
   instagramUrl: string;
   mouseX: number;
@@ -96,6 +97,7 @@ export default function ScrollSections({
   projects,
   achievements,
   deployed,
+  interviews,
   profile,
   instagramUrl,
   mouseX,
@@ -211,6 +213,9 @@ export default function ScrollSections({
             )}
             {active === "projects" && (
               <p>{projects.length} builds · tap a card for the full story</p>
+            )}
+            {active === "interviews" && (
+              <p>{interviews.length} TV appearances & Interviews</p>
             )}
             {active === "contact" && (
               <ul className="contact-mini">
@@ -459,6 +464,52 @@ export default function ScrollSections({
           </>
         )}
       </SectionPanel>
+
+      {interviews && interviews.length > 0 && (
+        <SectionPanel id="interviews">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Interviews
+          </motion.h2>
+          <motion.p
+            className="section-sub"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Media appearances, TV segments, and interviews.
+          </motion.p>
+          <div className="project-grid mt-4">
+            {interviews.map((int: any, i: number) => (
+              <motion.a
+                key={int.id}
+                href={int.url}
+                target="_blank"
+                rel="noreferrer"
+                className="project-card glass"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={lite ? undefined : { y: -8, boxShadow: "0 32px 64px rgba(42,154,173,0.2)" }}
+              >
+                <div className="project-meta">
+                  <h3>{int.title}</h3>
+                  <span className="badge">{int.channel}</span>
+                </div>
+                <p className="project-desc">{int.description}</p>
+                <div className="tags">
+                  <span>{int.date}</span>
+                </div>
+                <span className="project-cta">Watch Video →</span>
+              </motion.a>
+            ))}
+          </div>
+        </SectionPanel>
+      )}
 
       <ProjectDetailModal
         project={selectedProject}

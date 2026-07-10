@@ -4,18 +4,20 @@ import Deployed from './models/Deployed';
 import Project from './models/Project';
 import Profile from './models/Profile';
 import Cv from './models/Cv';
+import Interview from './models/Interview';
 import type { SiteOverrides, AdminContentPayload } from './types/site';
 
 export async function readOverridesFromMongo(): Promise<SiteOverrides | null> {
   try {
     await connectDB();
     
-    const [achievements, deployed, projects, profile, cv] = await Promise.all([
+    const [achievements, deployed, projects, profile, cv, interviews] = await Promise.all([
       Achievement.find({}).sort({ createdAt: -1 }),
       Deployed.find({}).sort({ createdAt: -1 }),
       Project.find({}).sort({ createdAt: -1 }),
       Profile.findOne({}),
       Cv.findOne({}),
+      Interview.find({}).sort({ createdAt: -1 }),
     ]);
 
     return {
@@ -23,6 +25,7 @@ export async function readOverridesFromMongo(): Promise<SiteOverrides | null> {
       achievements: achievements.map(a => a.toObject()),
       deployed: deployed.map(d => d.toObject()),
       projects: projects.map(p => p.toObject()),
+      interviews: interviews.map(i => i.toObject()),
       profile: profile ? profile.toObject() : undefined,
       cv: cv ? { 
         skills: cv.skills, 
@@ -58,6 +61,7 @@ export async function writeOverridesToMongo(data: AdminContentPayload): Promise<
       Achievement.deleteMany({}),
       Deployed.deleteMany({}),
       Project.deleteMany({}),
+      Interview.deleteMany({}),
     ]);
 
     // Insert new data
@@ -65,6 +69,7 @@ export async function writeOverridesToMongo(data: AdminContentPayload): Promise<
       Achievement.insertMany(data.achievements),
       Deployed.insertMany(data.deployed),
       Project.insertMany(data.projects),
+      Interview.insertMany(data.interviews || []),
     ]);
 
     // Update or create profile

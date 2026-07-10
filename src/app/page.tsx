@@ -14,6 +14,7 @@ export default async function Home() {
       projects={site.projects as Project[]}
       achievements={site.achievements as Achievement[]}
       deployed={site.deployed as DeployedProject[]}
+      interviews={site.interviews as any[]}
       profile={site.profile as ProfileData}
       instagramUrl={site.instagramUrl}
     />

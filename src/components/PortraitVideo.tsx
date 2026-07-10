@@ -101,7 +101,7 @@ export default function PortraitVideo({
           muted
           playsInline
           loop={mode === "loop"}
-          preload="none"
+          preload={needsTap ? "none" : "auto"}
           poster={poster}
           aria-hidden={!ready}
           aria-label="Portrait video"

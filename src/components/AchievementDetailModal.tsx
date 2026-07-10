@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
+import LightboxImage from "./LightboxImage";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import type { Achievement } from "@/lib/content";
@@ -85,14 +85,10 @@ export default function AchievementDetailModal({
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <Image
+              <LightboxImage
                 src={achievement.image}
                 alt={achievement.title}
-                width={640}
-                height={480}
-                className="achievement-image"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
+                className="achievement-image w-full h-auto object-cover"
               />
               <span className="achievement-category">{achievement.category}</span>
             </motion.div>

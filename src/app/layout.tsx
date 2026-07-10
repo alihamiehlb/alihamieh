@@ -97,8 +97,38 @@ export default function RootLayout({
           type="image/webp"
           fetchPriority="high"
         />
+        <link
+          rel="preload"
+          href="/character.mp4"
+          as="video"
+          type="video/mp4"
+          fetchPriority="high"
+        />
       </head>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Ali Hamieh",
+              "url": siteUrl,
+              "jobTitle": "Full Stack Developer & Maker",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "printsLB"
+              },
+              "sameAs": [
+                "https://github.com/alihamiehlb",
+                "https://www.linkedin.com/in/ali-hamieh-85617a232/",
+                "https://www.instagram.com/alihamiehlb/"
+              ]
+            })
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

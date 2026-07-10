@@ -45,6 +45,7 @@ export async function GET() {
       achievements: overrides?.achievements || content.achievements,
       deployed: overrides?.deployed || content.deployed,
       projects: overrides?.projects || content.projects,
+      interviews: overrides?.interviews || content.interviews || [],
       profile: overrides?.profile || content.profile,
       cv: {
         skills: overrides?.cv?.skills || content.cv.skills,
@@ -78,6 +79,7 @@ export async function PUT(req: Request) {
     !body?.achievements ||
     !body?.deployed ||
     !body?.projects ||
+    !body?.interviews ||
     !body?.profile ||
     !body?.cv?.skills
   ) {
@@ -103,6 +105,7 @@ export async function PUT(req: Request) {
         achievements: body.achievements,
         deployed: body.deployed,
         projects: body.projects,
+        interviews: body.interviews,
         profile: body.profile,
         cv: {
           skills: body.cv.skills,

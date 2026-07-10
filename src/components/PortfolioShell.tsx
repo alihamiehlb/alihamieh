@@ -23,6 +23,7 @@ type PortfolioShellProps = {
   projects: Project[];
   achievements: Achievement[];
   deployed: DeployedProject[];
+  interviews: any[];
   profile: ProfileData;
   instagramUrl: string;
 };
@@ -39,6 +40,7 @@ export default function PortfolioShell({
   projects,
   achievements,
   deployed,
+  interviews,
   profile,
   instagramUrl,
 }: PortfolioShellProps) {
@@ -65,6 +67,7 @@ export default function PortfolioShell({
         projects={projects}
         achievements={achievements}
         deployed={deployed}
+        interviews={interviews}
         profile={profile}
         instagramUrl={instagramUrl}
         mouseX={mouse.x}

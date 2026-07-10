@@ -32,6 +32,16 @@ export type ProjectRecord = {
   [key: string]: unknown;
 };
 
+export type InterviewRecord = {
+  id: string;
+  title: string;
+  channel: string;
+  date: string;
+  description: string;
+  url: string;
+  thumbnail?: string;
+};
+
 export type ProfileRecord = {
   github: string;
   instagram: string;
@@ -69,6 +79,7 @@ export type SiteOverrides = {
   achievements?: AchievementRecord[];
   deployed?: DeployedRecord[];
   projects?: ProjectRecord[];
+  interviews?: InterviewRecord[];
   profile?: Partial<ProfileRecord>;
   cv?: CvOverrides;
 };
@@ -88,6 +99,7 @@ export type SiteContent = {
   projects: ProjectRecord[];
   achievements: AchievementRecord[];
   deployed: DeployedRecord[];
+  interviews: InterviewRecord[];
   profile: ProfileRecord;
   instagramUrl: string;
 };
@@ -96,6 +108,7 @@ export type AdminContentPayload = {
   achievements: AchievementRecord[];
   deployed: DeployedRecord[];
   projects: ProjectRecord[];
+  interviews: InterviewRecord[];
   profile: ProfileRecord;
   cv: CvOverrides & { skills: string[] };
 };
