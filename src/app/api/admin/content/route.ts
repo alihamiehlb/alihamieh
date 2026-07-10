@@ -18,17 +18,25 @@ export async function GET() {
   
   if (process.env.MONGODB_URI) {
     try {
+      console.log('Attempting to read from MongoDB...');
       overrides = await readOverridesFromMongo();
+      console.log('MongoDB read result:', overrides ? 'Success' : 'No data');
       if (overrides) {
         storageHintText = mongoStorageHint();
+        console.log('Using MongoDB storage');
+      } else {
+        console.log('MongoDB returned null, falling back to local storage');
       }
     } catch (e) {
       console.error('MongoDB read error, falling back to local storage:', e);
     }
+  } else {
+    console.log('MONGODB_URI not set, using local storage');
   }
   
   if (!overrides) {
     overrides = await readOverrides();
+    console.log('Using local storage overrides');
   }
 
   return NextResponse.json({
