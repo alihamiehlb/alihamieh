@@ -286,15 +286,11 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
     >
       <motion.div
         className="character-grid-floor"
-        style={{ translateZ: -72, rotateX: 78 }}
-        animate={{ opacity: [0.25, 0.45, 0.25] }}
-        transition={{ duration: 6, repeat: Infinity }}
+        style={{ translateZ: -72, rotateX: 78, opacity: 0.3 }}
       />
       <motion.div
         className="character-plate character-plate--back"
-        style={{ translateZ: -56 }}
-        animate={{ opacity: [0.35, 0.55, 0.35] }}
-        transition={{ duration: 5, repeat: Infinity }}
+        style={{ translateZ: -56, opacity: 0.45 }}
       />
       <motion.div
         className="character-plate character-plate--mid"
@@ -302,29 +298,19 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
       />
       <motion.div
         className="character-plate character-plate--front"
-        style={{ translateZ: -8 }}
-        animate={{ opacity: [0.25, 0.35, 0.25] }}
-        transition={{ duration: 4.5, repeat: Infinity, delay: 0.5 }}
+        style={{ translateZ: -8, opacity: 0.3 }}
       />
       <motion.div className="character-ring" style={{ translateZ: depthZ }} />
 
       <motion.div
         className="character-shine"
         style={{ translateZ: 24 }}
-        animate={{
-          x: mouseX * 5,
-          y: mouseY * 5,
-          opacity: [0.45, 0.65, 0.45],
-        }}
-        transition={{ opacity: { duration: 3, repeat: Infinity } }}
+        animate={{ x: mouseX * 5, y: mouseY * 5 }}
       />
 
       <motion.div
         className="character-frame"
         style={{ translateZ: 20 }}
-        animate={{
-          boxShadow: `0 24px 60px rgba(42,154,173,0.15), 0 8px 20px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.4) inset`,
-        }}
       >
         <PortraitVideo
           mode="scrub"

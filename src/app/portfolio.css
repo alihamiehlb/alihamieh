@@ -1563,19 +1563,30 @@ html.portfolio-lite .character-video {
 }
 
 .lightbox-close {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
   z-index: 10000;
-  padding: 0.75rem;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(0, 0, 0, 0.3);
-  border: none;
+  width: 3rem;
+  height: 3rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-  display: grid;
-  place-items: center;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 .lightbox-close:hover {
