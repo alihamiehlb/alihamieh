@@ -27,7 +27,7 @@ function emptyAchievement(): AchievementRecord {
     detail: "",
     instagramHighlight: "",
     category: "Academy",
-    image: "/achievements/wro.jpeg",
+    image: "",
     source: "certificate",
   };
 }
@@ -164,8 +164,9 @@ export default function AdminPanel() {
       return;
     }
     setStorageHint(data.storageHint);
-    setStatus(`Saved (${data.storage}). Refresh the homepage to see changes.`);
+    setStatus(`Saved successfully (${data.storage}). Refresh the homepage to see changes.`);
     setError(false);
+    setTimeout(() => setStatus(""), 4000);
   }
 
   async function uploadFile(file: File, onUrl: (url: string) => void) {
@@ -183,27 +184,41 @@ export default function AdminPanel() {
     onUrl(data.url);
     setStatus(`Uploaded → ${data.url}`);
     setError(false);
+    setTimeout(() => setStatus(""), 4000);
   }
+
+  const moveItem = (arr: any[], index: number, direction: 'up' | 'down', setter: (val: any[]) => void) => {
+    const newArr = [...arr];
+    if (direction === 'up' && index > 0) {
+      [newArr[index - 1], newArr[index]] = [newArr[index], newArr[index - 1]];
+      setter(newArr);
+    } else if (direction === 'down' && index < newArr.length - 1) {
+      [newArr[index + 1], newArr[index]] = [newArr[index], newArr[index + 1]];
+      setter(newArr);
+    }
+  };
 
   if (loading) {
     return (
-      <div className="admin-root">
-        <p>Loading admin…</p>
+      <div className="admin-loading">
+        <div className="spinner"></div>
+        <p>Loading Dashboard…</p>
       </div>
     );
   }
 
   if (!authed) {
     return (
-      <div className="admin-root">
+      <div className="admin-login-wrapper">
         <form className="admin-login" onSubmit={login}>
-          <h1>Portfolio admin</h1>
-          <p>Private panel — not visible to visitors. Sign in with your admin password.</p>
+          <div className="admin-login-icon">🔒</div>
+          <h1>Admin Dashboard</h1>
+          <p>Access the private portfolio content manager.</p>
           <div className="admin-field">
-            <label htmlFor="admin-pw">Password</label>
             <input
               id="admin-pw"
               type="password"
+              placeholder="Enter admin password"
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -213,399 +228,368 @@ export default function AdminPanel() {
             <p className="admin-status error">{loginError}</p>
           )}
           <button type="submit" className="admin-btn admin-btn--primary">
-            Sign in
+            Authenticate
           </button>
         </form>
         <a href="/" className="admin-back">
-          ← Back to site
+          ← Back to Portfolio
         </a>
       </div>
     );
   }
 
   return (
-    <div className="admin-root">
-      <a href="/" className="admin-back">
-        ← View site
-      </a>
-      <header className="admin-header">
-        <h1>Portfolio admin</h1>
-        <p className="admin-storage">{storageHint}</p>
-        <button
-          type="button"
-          className="admin-btn admin-btn--ghost"
-          onClick={logout}
-        >
-          Sign out
-        </button>
-      </header>
-
-      <nav className="admin-tabs" aria-label="Admin sections">
-        {(
-          [
-            ["achievements", "Achievements"],
-            ["deployed", "Live projects"],
-            ["projects", "Showcase"],
-            ["profile", "Profile & links"],
-            ["skills", "Skills & about"],
-          ] as const
-        ).map(([id, label]) => (
-          <button
-            key={id}
-            type="button"
-            className={`admin-tab${tab === id ? " active" : ""}`}
-            onClick={() => setTab(id)}
-          >
-            {label}
-          </button>
-        ))}
-      </nav>
-
-      {tab === "achievements" && (
-        <section className="admin-panel">
-          <h2>Achievements</h2>
-          <p className="admin-guide">{GUIDES.achievements}</p>
-          <label className="admin-field">
-            <span>Upload image</span>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const f = e.target.files?.[0];
-                if (f) uploadFile(f, () => {});
-              }}
-            />
-            <small>Use upload URL in the image field below</small>
-          </label>
-          <div className="admin-list">
-            {achievements.map((a, i) => (
-              <div key={a.id} className="admin-item">
-                <div className="admin-item-head">
-                  <strong>{a.title || a.id}</strong>
-                  <button
-                    type="button"
-                    className="admin-btn admin-btn--danger"
-                    onClick={() =>
-                      setAchievements(achievements.filter((_, j) => j !== i))
-                    }
-                  >
-                    Remove
-                  </button>
-                </div>
-                {(
-                  [
-                    ["id", "id", "Unique slug"],
-                    ["title", "title", "Card title"],
-                    ["category", "category", "Robotics, Academy, …"],
-                    ["image", "image", "Path or uploaded URL"],
-                    ["description", "description", "Short card text"],
-                    ["detail", "detail", "Modal long text"],
-                    ["instagramHighlight", "instagramHighlight", "IG highlight note"],
-                    ["sourceUrl", "sourceUrl", "Optional IG post URL"],
-                  ] as const
-                ).map(([key, field, hint]) => (
-                  <div key={key} className="admin-field">
-                    <label>{field}</label>
-                    <input
-                      value={String(a[key as keyof AchievementRecord] ?? "")}
-                      onChange={(e) => {
-                        const next = [...achievements];
-                        next[i] = { ...a, [key]: e.target.value };
-                        setAchievements(next);
-                      }}
-                    />
-                    <small>{hint}</small>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-          <button
-            type="button"
-            className="admin-btn admin-btn--ghost"
-            onClick={() => setAchievements([...achievements, emptyAchievement()])}
-          >
-            + Add achievement
-          </button>
-        </section>
-      )}
-
-      {tab === "deployed" && (
-        <section className="admin-panel">
-          <h2>Live projects (GitHub)</h2>
-          <p className="admin-guide">{GUIDES.deployed}</p>
-          <div className="admin-list">
-            {deployed.map((p, i) => (
-              <div key={p.id} className="admin-item">
-                <div className="admin-item-head">
-                  <strong>{p.name || p.id}</strong>
-                  <button
-                    type="button"
-                    className="admin-btn admin-btn--danger"
-                    onClick={() => setDeployed(deployed.filter((_, j) => j !== i))}
-                  >
-                    Remove
-                  </button>
-                </div>
-                {(
-                  [
-                    ["id", "id"],
-                    ["name", "name"],
-                    ["description", "description"],
-                    ["homepage", "homepage"],
-                    ["github", "github"],
-                    ["language", "language"],
-                  ] as const
-                ).map(([key, label]) => (
-                  <div key={key} className="admin-field">
-                    <label>{label}</label>
-                    <input
-                      value={String(p[key] ?? "")}
-                      onChange={(e) => {
-                        const next = [...deployed];
-                        next[i] = { ...p, [key]: e.target.value };
-                        setDeployed(next);
-                      }}
-                    />
-                  </div>
-                ))}
-                <label className="admin-field">
-                  <span>featured</span>
-                  <select
-                    value={p.featured ? "yes" : "no"}
-                    onChange={(e) => {
-                      const next = [...deployed];
-                      next[i] = { ...p, featured: e.target.value === "yes" };
-                      setDeployed(next);
-                    }}
-                  >
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </select>
-                </label>
-                <label className="admin-field">
-                  <span>isFounder (printsLB only)</span>
-                  <select
-                    value={p.isFounder ? "yes" : "no"}
-                    onChange={(e) => {
-                      const next = [...deployed];
-                      next[i] = { ...p, isFounder: e.target.value === "yes" };
-                      setDeployed(next);
-                    }}
-                  >
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
-                  </select>
-                </label>
-              </div>
-            ))}
-          </div>
-          <button
-            type="button"
-            className="admin-btn admin-btn--ghost"
-            onClick={() => setDeployed([...deployed, emptyDeployed()])}
-          >
-            + Add live project
-          </button>
-        </section>
-      )}
-
-      {tab === "projects" && (
-        <section className="admin-panel">
-          <h2>Showcase projects</h2>
-          <p className="admin-guide">{GUIDES.projects}</p>
-          <div className="admin-list">
-            {projects.map((p, i) => (
-              <div key={p.id} className="admin-item">
-                <div className="admin-item-head">
-                  <strong>{p.title || p.id}</strong>
-                  <button
-                    type="button"
-                    className="admin-btn admin-btn--danger"
-                    onClick={() => setProjects(projects.filter((_, j) => j !== i))}
-                  >
-                    Remove
-                  </button>
-                </div>
-                <div className="admin-field">
-                  <label>id</label>
-                  <input
-                    value={p.id}
-                    onChange={(e) => {
-                      const next = [...projects];
-                      next[i] = { ...p, id: e.target.value };
-                      setProjects(next);
-                    }}
-                  />
-                </div>
-                <div className="admin-field">
-                  <label>title</label>
-                  <input
-                    value={p.title}
-                    onChange={(e) => {
-                      const next = [...projects];
-                      next[i] = { ...p, title: e.target.value };
-                      setProjects(next);
-                    }}
-                  />
-                </div>
-                <div className="admin-field">
-                  <label>description</label>
-                  <textarea
-                    value={p.description}
-                    onChange={(e) => {
-                      const next = [...projects];
-                      next[i] = { ...p, description: e.target.value };
-                      setProjects(next);
-                    }}
-                  />
-                </div>
-                <div className="admin-field">
-                  <label>tags (comma-separated)</label>
-                  <input
-                    value={Array.isArray(p.tags) ? p.tags.join(", ") : ""}
-                    onChange={(e) => {
-                      const next = [...projects];
-                      next[i] = {
-                        ...p,
-                        tags: e.target.value.split(",").map((t) => t.trim()),
-                      };
-                      setProjects(next);
-                    }}
-                  />
-                </div>
-                <label className="admin-field">
-                  <span>featured</span>
-                  <select
-                    value={p.featured ? "yes" : "no"}
-                    onChange={(e) => {
-                      const next = [...projects];
-                      next[i] = { ...p, featured: e.target.value === "yes" };
-                      setProjects(next);
-                    }}
-                  >
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
-                  </select>
-                </label>
-              </div>
-            ))}
-          </div>
-          <button
-            type="button"
-            className="admin-btn admin-btn--ghost"
-            onClick={() => setProjects([...projects, emptyProject()])}
-          >
-            + Add showcase project
-          </button>
-        </section>
-      )}
-
-      {tab === "skills" && (
-        <section className="admin-panel">
-          <h2>Skills & summary</h2>
-          <p className="admin-guide">{GUIDES.skills}</p>
-          <div className="admin-field">
-            <label>About summary (optional)</label>
-            <textarea
-              value={summaryText}
-              onChange={(e) => setSummaryText(e.target.value)}
-              rows={4}
-            />
-            <small>Shown in the About section on the homepage.</small>
-          </div>
-          <div className="admin-field">
-            <label>Skills (one per line)</label>
-            <textarea
-              value={skillsText}
-              onChange={(e) => setSkillsText(e.target.value)}
-              rows={16}
-              spellCheck={false}
-            />
-            <small>
-              Linux distros, programming languages, cybersecurity, soft skills, etc.
-            </small>
-          </div>
-        </section>
-      )}
-
-      {tab === "profile" && profile && (
-        <section className="admin-panel">
-          <h2>Profile & social links</h2>
-          <p className="admin-guide">{GUIDES.profile}</p>
+    <div className="admin-layout">
+      {/* Sidebar */}
+      <aside className="admin-sidebar">
+        <div className="admin-sidebar-header">
+          <h2>Dashboard</h2>
+          <a href="/" className="admin-btn admin-btn--ghost admin-btn--small">View Site</a>
+        </div>
+        <nav className="admin-nav">
           {(
             [
-              ["title", "Hero title"],
-              ["headline", "Hero subtitle"],
-              ["aiDiploma", "AI diploma line"],
-              ["github", "GitHub URL"],
-              ["linkedin", "LinkedIn URL"],
-              ["instagram", "Instagram URL"],
-              ["linktree", "Linktree URL"],
+              ["achievements", "🏆 Achievements"],
+              ["deployed", "🌐 Live Projects"],
+              ["projects", "💼 Showcase"],
+              ["profile", "👤 Profile & Links"],
+              ["skills", "⚡ Skills & About"],
             ] as const
-          ).map(([key, label]) => (
-            <div key={key} className="admin-field">
-              <label>{label}</label>
-              <input
-                value={String(profile[key] ?? "")}
-                onChange={(e) =>
-                  setProfile({ ...profile, [key]: e.target.value })
-                }
-              />
-            </div>
+          ).map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              className={`admin-nav-item${tab === id ? " active" : ""}`}
+              onClick={() => setTab(id)}
+            >
+              {label}
+            </button>
           ))}
-          <h3 style={{ marginTop: "1rem", fontSize: "0.95rem" }}>printsLB</h3>
-          <div className="admin-field">
-            <label>Business name</label>
-            <input
-              value={profile.printsLb.name}
-              onChange={(e) =>
-                setProfile({
-                  ...profile,
-                  printsLb: { ...profile.printsLb, name: e.target.value },
-                })
-              }
-            />
-          </div>
-          <div className="admin-field">
-            <label>Website (printslb.com)</label>
-            <input
-              value={profile.printsLb.url}
-              onChange={(e) =>
-                setProfile({
-                  ...profile,
-                  printsLb: { ...profile.printsLb, url: e.target.value },
-                })
-              }
-            />
-          </div>
-          <div className="admin-field">
-            <label>Tagline</label>
-            <input
-              value={profile.printsLb.tagline}
-              onChange={(e) =>
-                setProfile({
-                  ...profile,
-                  printsLb: { ...profile.printsLb, tagline: e.target.value },
-                })
-              }
-            />
-          </div>
-        </section>
-      )}
+        </nav>
+        <div className="admin-sidebar-footer">
+          <p className="admin-storage-hint">{storageHint}</p>
+          <button type="button" className="admin-btn admin-btn--danger admin-btn--block" onClick={logout}>
+            Sign Out
+          </button>
+        </div>
+      </aside>
 
-      <div className="admin-toolbar">
-        <button
-          type="button"
-          className="admin-btn admin-btn--primary"
-          onClick={saveAll}
-        >
-          Save all changes
-        </button>
-      </div>
-      {status && (
-        <p className={`admin-status${error ? " error" : ""}`}>{status}</p>
-      )}
+      {/* Main Content */}
+      <main className="admin-main">
+        <header className="admin-topbar">
+          <div className="admin-topbar-title">
+            <h1>{tab.charAt(0).toUpperCase() + tab.slice(1)} Management</h1>
+            <p className="admin-guide">{GUIDES[tab]}</p>
+          </div>
+          <div className="admin-topbar-actions">
+            {status && (
+              <span className={`admin-status-badge ${error ? 'error' : 'success'}`}>
+                {status}
+              </span>
+            )}
+            <button
+              type="button"
+              className="admin-btn admin-btn--primary"
+              onClick={saveAll}
+            >
+              💾 Save All Changes
+            </button>
+          </div>
+        </header>
+
+        <div className="admin-content-area">
+          {tab === "achievements" && (
+            <section className="admin-section">
+              <div className="admin-section-header">
+                <button
+                  type="button"
+                  className="admin-btn admin-btn--primary"
+                  onClick={() => setAchievements([emptyAchievement(), ...achievements])}
+                >
+                  + Create New Achievement
+                </button>
+              </div>
+              <div className="admin-list">
+                {achievements.map((a, i) => (
+                  <div key={a.id} className="admin-card">
+                    <div className="admin-card-header">
+                      <h3>{a.title || 'Untitled Achievement'}</h3>
+                      <div className="admin-card-actions">
+                        <button type="button" className="icon-btn" onClick={() => moveItem(achievements, i, 'up', setAchievements)} disabled={i === 0}>↑</button>
+                        <button type="button" className="icon-btn" onClick={() => moveItem(achievements, i, 'down', setAchievements)} disabled={i === achievements.length - 1}>↓</button>
+                        <button
+                          type="button"
+                          className="admin-btn admin-btn--danger admin-btn--small"
+                          onClick={() => setAchievements(achievements.filter((_, j) => j !== i))}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    <div className="admin-card-body grid-2">
+                      <div className="admin-field">
+                        <label>Unique ID (Slug)</label>
+                        <input value={a.id} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, id: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Title</label>
+                        <input value={a.title} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, title: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Category</label>
+                        <input value={a.category} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, category: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Image Path or URL</label>
+                        <div className="image-input-group">
+                          <input value={a.image} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, image: e.target.value } : item))} />
+                          <label className="admin-btn admin-btn--ghost upload-btn">
+                            Upload
+                            <input type="file" accept="image/*" hidden onChange={(e) => {
+                              const f = e.target.files?.[0];
+                              if (f) uploadFile(f, (url) => setAchievements(achievements.map((item, j) => j === i ? { ...item, image: url } : item)));
+                            }} />
+                          </label>
+                        </div>
+                        {a.image && <img src={a.image} alt="Preview" className="admin-image-preview" />}
+                      </div>
+                      <div className="admin-field col-span-2">
+                        <label>Short Description (Card)</label>
+                        <textarea rows={2} value={a.description} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, description: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field col-span-2">
+                        <label>Detailed Description (Modal)</label>
+                        <textarea rows={4} value={a.detail || ""} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, detail: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Instagram Highlight (Optional)</label>
+                        <input value={a.instagramHighlight || ""} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, instagramHighlight: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Source/Post URL (Optional)</label>
+                        <input value={a.sourceUrl || ""} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, sourceUrl: e.target.value } : item))} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {tab === "deployed" && (
+            <section className="admin-section">
+               <div className="admin-section-header">
+                <button
+                  type="button"
+                  className="admin-btn admin-btn--primary"
+                  onClick={() => setDeployed([emptyDeployed(), ...deployed])}
+                >
+                  + Add Live Project
+                </button>
+              </div>
+              <div className="admin-list">
+                {deployed.map((p, i) => (
+                  <div key={p.id} className="admin-card">
+                    <div className="admin-card-header">
+                      <h3>{p.name || 'Untitled Project'}</h3>
+                      <div className="admin-card-actions">
+                        <button type="button" className="icon-btn" onClick={() => moveItem(deployed, i, 'up', setDeployed)} disabled={i === 0}>↑</button>
+                        <button type="button" className="icon-btn" onClick={() => moveItem(deployed, i, 'down', setDeployed)} disabled={i === deployed.length - 1}>↓</button>
+                        <button
+                          type="button"
+                          className="admin-btn admin-btn--danger admin-btn--small"
+                          onClick={() => setDeployed(deployed.filter((_, j) => j !== i))}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    <div className="admin-card-body grid-2">
+                      <div className="admin-field">
+                        <label>Unique ID</label>
+                        <input value={p.id} onChange={(e) => setDeployed(deployed.map((item, j) => j === i ? { ...item, id: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Name</label>
+                        <input value={p.name} onChange={(e) => setDeployed(deployed.map((item, j) => j === i ? { ...item, name: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field col-span-2">
+                        <label>Description</label>
+                        <textarea rows={2} value={p.description} onChange={(e) => setDeployed(deployed.map((item, j) => j === i ? { ...item, description: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Live URL (Homepage)</label>
+                        <input value={p.homepage || ""} onChange={(e) => setDeployed(deployed.map((item, j) => j === i ? { ...item, homepage: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>GitHub URL</label>
+                        <input value={p.github} onChange={(e) => setDeployed(deployed.map((item, j) => j === i ? { ...item, github: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Language</label>
+                        <input value={p.language || ""} onChange={(e) => setDeployed(deployed.map((item, j) => j === i ? { ...item, language: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field switch-group">
+                         <label className="toggle-switch">
+                            <input type="checkbox" checked={p.featured} onChange={(e) => setDeployed(deployed.map((item, j) => j === i ? { ...item, featured: e.target.checked } : item))} />
+                            <span className="slider"></span>
+                            Featured on Homepage
+                         </label>
+                         <label className="toggle-switch">
+                            <input type="checkbox" checked={p.isFounder || false} onChange={(e) => setDeployed(deployed.map((item, j) => j === i ? { ...item, isFounder: e.target.checked } : item))} />
+                            <span className="slider"></span>
+                            Is Founder (printsLB)
+                         </label>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {tab === "projects" && (
+            <section className="admin-section">
+               <div className="admin-section-header">
+                <button
+                  type="button"
+                  className="admin-btn admin-btn--primary"
+                  onClick={() => setProjects([emptyProject(), ...projects])}
+                >
+                  + Add Showcase Project
+                </button>
+              </div>
+              <div className="admin-list">
+                {projects.map((p, i) => (
+                  <div key={p.id} className="admin-card">
+                    <div className="admin-card-header">
+                      <h3>{p.title || 'Untitled Project'}</h3>
+                      <div className="admin-card-actions">
+                        <button type="button" className="icon-btn" onClick={() => moveItem(projects, i, 'up', setProjects)} disabled={i === 0}>↑</button>
+                        <button type="button" className="icon-btn" onClick={() => moveItem(projects, i, 'down', setProjects)} disabled={i === projects.length - 1}>↓</button>
+                        <button
+                          type="button"
+                          className="admin-btn admin-btn--danger admin-btn--small"
+                          onClick={() => setProjects(projects.filter((_, j) => j !== i))}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    <div className="admin-card-body grid-2">
+                      <div className="admin-field">
+                        <label>Unique ID</label>
+                        <input value={p.id} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, id: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field">
+                        <label>Title</label>
+                        <input value={p.title} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, title: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field col-span-2">
+                        <label>Description</label>
+                        <textarea rows={3} value={p.description} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, description: e.target.value } : item))} />
+                      </div>
+                      <div className="admin-field col-span-2">
+                        <label>Tags (Comma Separated)</label>
+                        <input value={Array.isArray(p.tags) ? p.tags.join(", ") : p.tags} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, tags: e.target.value.split(",").map(t => t.trim()) } : item))} />
+                      </div>
+                      <div className="admin-field col-span-2">
+                         <label className="toggle-switch">
+                            <input type="checkbox" checked={p.featured} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, featured: e.target.checked } : item))} />
+                            <span className="slider"></span>
+                            Featured Showcase
+                         </label>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {tab === "skills" && (
+            <section className="admin-section">
+               <div className="admin-card">
+                 <div className="admin-card-body">
+                    <div className="admin-field">
+                      <label>About Summary (Optional)</label>
+                      <textarea
+                        value={summaryText}
+                        onChange={(e) => setSummaryText(e.target.value)}
+                        rows={5}
+                        placeholder="Write a brief introduction shown on the homepage..."
+                      />
+                    </div>
+                    <div className="admin-field mt-4">
+                      <label>Skills List (One per line)</label>
+                      <textarea
+                        value={skillsText}
+                        onChange={(e) => setSkillsText(e.target.value)}
+                        rows={16}
+                        spellCheck={false}
+                        className="font-mono"
+                        placeholder="React&#10;Next.js&#10;TypeScript"
+                      />
+                    </div>
+                 </div>
+               </div>
+            </section>
+          )}
+
+          {tab === "profile" && profile && (
+            <section className="admin-section">
+              <div className="admin-card">
+                 <div className="admin-card-body grid-2">
+                    <div className="admin-field col-span-2">
+                      <label>Hero Title</label>
+                      <input value={profile.title} onChange={(e) => setProfile({ ...profile, title: e.target.value })} />
+                    </div>
+                    <div className="admin-field col-span-2">
+                      <label>Hero Subtitle (Headline)</label>
+                      <input value={profile.headline} onChange={(e) => setProfile({ ...profile, headline: e.target.value })} />
+                    </div>
+                    <div className="admin-field col-span-2">
+                      <label>AI Diploma Line</label>
+                      <input value={profile.aiDiploma} onChange={(e) => setProfile({ ...profile, aiDiploma: e.target.value })} />
+                    </div>
+                    
+                    <h3 className="col-span-2 mt-4 form-section-title">Social Links</h3>
+                    <div className="admin-field">
+                      <label>GitHub URL</label>
+                      <input value={profile.github} onChange={(e) => setProfile({ ...profile, github: e.target.value })} />
+                    </div>
+                    <div className="admin-field">
+                      <label>LinkedIn URL</label>
+                      <input value={profile.linkedin} onChange={(e) => setProfile({ ...profile, linkedin: e.target.value })} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Instagram URL</label>
+                      <input value={profile.instagram} onChange={(e) => setProfile({ ...profile, instagram: e.target.value })} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Linktree URL</label>
+                      <input value={profile.linktree} onChange={(e) => setProfile({ ...profile, linktree: e.target.value })} />
+                    </div>
+
+                    <h3 className="col-span-2 mt-4 form-section-title">printsLB Config</h3>
+                    <div className="admin-field">
+                      <label>Business Name</label>
+                      <input value={profile.printsLb.name} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, name: e.target.value } })} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Website URL</label>
+                      <input value={profile.printsLb.url} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, url: e.target.value } })} />
+                    </div>
+                    <div className="admin-field col-span-2">
+                      <label>Tagline</label>
+                      <input value={profile.printsLb.tagline} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, tagline: e.target.value } })} />
+                    </div>
+                 </div>
+              </div>
+            </section>
+          )}
+        </div>
+      </main>
     </div>
   );
 }

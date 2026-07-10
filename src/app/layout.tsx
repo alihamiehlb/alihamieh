@@ -26,17 +26,59 @@ const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Ali Hamieh — Portfolio",
+  title: "Ali Hamieh | Developer, Maker & Student",
   description:
-    "Portfolio of Ali Hamieh — developer, maker, and student building web, mobile, and hardware projects.",
+    "Portfolio of Ali Hamieh — full-stack developer, maker, and student building web, mobile, and hardware projects.",
+  keywords: [
+    "Ali Hamieh",
+    "Portfolio",
+    "Web Developer",
+    "Software Engineer",
+    "Lebanon",
+    "Full Stack",
+    "React",
+    "Next.js",
+    "Hardware",
+    "Embedded",
+    "printsLB",
+  ],
+  authors: [{ name: "Ali Hamieh", url: siteUrl }],
+  creator: "Ali Hamieh",
   openGraph: {
-    title: "Ali Hamieh — Portfolio",
+    type: "website",
+    locale: "en_US",
+    title: "Ali Hamieh | Developer, Maker & Student",
+    description: "Portfolio of Ali Hamieh — full-stack developer, maker, and student building web, mobile, and hardware projects.",
     url: siteUrl,
-    siteName: "printsLB",
+    siteName: "Ali Hamieh Portfolio",
+    images: [
+      {
+        url: "/portrait-poster.webp",
+        width: 1200,
+        height: 630,
+        alt: "Ali Hamieh Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ali Hamieh | Developer, Maker & Student",
+    description: "Portfolio of Ali Hamieh — full-stack developer, maker, and student building web, mobile, and hardware projects.",
     images: ["/portrait-poster.webp"],
   },
   alternates: {
     canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
