@@ -1512,3 +1512,66 @@ html.portfolio-lite .character-video {
     justify-content: flex-end;
   }
 }
+
+/* Lightbox Styles */
+.lightbox-trigger {
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox-trigger:hover {
+  opacity: 0.9;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1.5rem;
+}
+
+.lightbox-content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+  padding: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox-close:hover {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  transform: scale(1.05);
+}
+
+.lightbox-image-full {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}

@@ -1,42 +1,73 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { createPortal } from "react-dom";
 
 export default function LightboxImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setIsOpen(false);
+      };
+      window.addEventListener("keydown", onKey);
+      return () => window.removeEventListener("keydown", onKey);
+    }
+  }, [isOpen]);
 
   return (
     <>
       <img
         src={src}
         alt={alt}
-        className={`${className} cursor-pointer hover:opacity-90 transition-opacity duration-300`}
+        className={`${className || ""} lightbox-trigger`}
         onClick={() => setIsOpen(true)}
       />
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{ backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
-          onClick={() => setIsOpen(false)}
-        >
-          <div className="relative max-w-5xl max-h-[90vh] w-full h-full flex items-center justify-center">
-            <button
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-50 p-2"
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="lightbox-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setIsOpen(false)}
             >
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-            <img
-              src={src}
-              alt={alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </div>
-        </div>
+              <div className="lightbox-content-wrapper">
+                <button
+                  type="button"
+                  className="lightbox-close"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close image"
+                >
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+                <motion.img
+                  src={src}
+                  alt={alt}
+                  className="lightbox-image-full"
+                  initial={{ scale: 0.9, y: 20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  exit={{ scale: 0.9, y: 20 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
       )}
     </>
   );
