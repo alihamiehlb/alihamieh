@@ -63,15 +63,6 @@ export async function uploadImage(
   const safe = filename.replace(/[^a-zA-Z0-9._-]/g, "-").slice(0, 80);
   const name = `${Date.now()}-${safe}`;
 
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    const { put } = await import("@vercel/blob");
-    const blob = await put(`portfolio/uploads/${name}`, buffer, {
-      access: "public",
-      contentType,
-    });
-    return { url: blob.url, storage: "blob" };
-  }
-
   const dir = path.join(process.cwd(), "public", "uploads");
   await mkdir(dir, { recursive: true });
   const filePath = path.join(dir, name);
@@ -80,9 +71,6 @@ export async function uploadImage(
 }
 
 export function storageHint() {
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    return "Content is saved to Vercel Blob (live on your site immediately).";
-  }
   if (process.env.VERCEL) {
     return "Set BLOB_READ_WRITE_TOKEN in Vercel env to save edits in production.";
   }

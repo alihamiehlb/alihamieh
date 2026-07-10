@@ -24,7 +24,22 @@ export async function readOverridesFromMongo(): Promise<SiteOverrides | null> {
       deployed: deployed.map(d => d.toObject()),
       projects: projects.map(p => p.toObject()),
       profile: profile ? profile.toObject() : undefined,
-      cv: cv ? { skills: cv.skills, summary: cv.summary } : undefined,
+      cv: cv ? { 
+        skills: cv.skills, 
+        summary: cv.summary,
+        experience: cv.experience,
+        education: cv.education,
+        skillGroups: cv.skillGroups,
+        selectedProjects: cv.selectedProjects,
+        certifications: cv.certifications,
+        learningSources: cv.learningSources,
+        name: cv.name,
+        title: cv.title,
+        email: cv.email,
+        phone: cv.phone,
+        location: cv.location,
+        birthDate: cv.birthDate
+      } : undefined,
     };
   } catch (error) {
     console.error('Error reading from MongoDB:', error);
@@ -62,6 +77,18 @@ export async function writeOverridesToMongo(data: AdminContentPayload): Promise<
         $set: { 
           skills: data.cv.skills,
           summary: data.cv.summary,
+          experience: data.cv.experience,
+          education: data.cv.education,
+          skillGroups: data.cv.skillGroups,
+          selectedProjects: data.cv.selectedProjects,
+          certifications: data.cv.certifications,
+          learningSources: data.cv.learningSources,
+          name: data.cv.name || 'Ali Hamieh',
+          title: data.cv.title || 'Full-Stack Developer',
+          email: data.cv.email,
+          phone: data.cv.phone,
+          location: data.cv.location,
+          birthDate: data.cv.birthDate
         } 
       },
       { upsert: true, new: true }

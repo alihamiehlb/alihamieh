@@ -49,6 +49,18 @@ export type ProfileRecord = {
 export type CvOverrides = {
   skills?: string[];
   summary?: string;
+  experience?: Array<{ title: string; period: string; summary: string }>;
+  education?: Array<{ school: string; detail: string }>;
+  skillGroups?: Array<{ label: string; items: string[] }>;
+  selectedProjects?: Array<{ name: string; role: string; url: string }>;
+  certifications?: string[];
+  learningSources?: Array<{ name: string; focus: string }>;
+  name?: string;
+  title?: string;
+  email?: string;
+  phone?: string;
+  location?: string;
+  birthDate?: string;
 };
 
 export type SiteOverrides = {

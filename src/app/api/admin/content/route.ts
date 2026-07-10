@@ -4,6 +4,7 @@ import { getSiteContent } from "@/lib/get-site-content";
 import { readOverrides, storageHint, writeOverrides } from "@/lib/storage";
 import { readOverridesFromMongo, writeOverridesToMongo, mongoStorageHint } from "@/lib/mongodb-storage";
 import type { AdminContentPayload } from "@/lib/types/site";
+import { revalidatePath } from "next/cache";
 
 export async function GET() {
   if (!(await isAdminSession())) {
@@ -48,6 +49,18 @@ export async function GET() {
       cv: {
         skills: overrides?.cv?.skills || content.cv.skills,
         summary: overrides?.cv?.summary || content.cv.summary,
+        experience: overrides?.cv?.experience || content.cv.experience,
+        education: overrides?.cv?.education || content.cv.education,
+        skillGroups: overrides?.cv?.skillGroups || content.cv.skillGroups,
+        selectedProjects: overrides?.cv?.selectedProjects || content.cv.selectedProjects,
+        certifications: overrides?.cv?.certifications || content.cv.certifications,
+        learningSources: overrides?.cv?.learningSources || content.cv.learningSources,
+        name: overrides?.cv?.name || content.cv.name,
+        title: overrides?.cv?.title || content.cv.title,
+        email: overrides?.cv?.email || content.cv.email,
+        phone: overrides?.cv?.phone || content.cv.phone,
+        location: overrides?.cv?.location || content.cv.location,
+        birthDate: overrides?.cv?.birthDate || content.cv.birthDate,
       },
     },
     hasOverrides: Boolean(overrides),
@@ -77,6 +90,8 @@ export async function PUT(req: Request) {
     // Use MongoDB if configured, otherwise fall back to local/blob storage
     if (process.env.MONGODB_URI) {
       result = await writeOverridesToMongo(body);
+      revalidatePath("/");
+      revalidatePath("/cv");
       return NextResponse.json({
         ok: true,
         storage: result.storage,
@@ -92,8 +107,22 @@ export async function PUT(req: Request) {
         cv: {
           skills: body.cv.skills,
           summary: body.cv.summary,
+          experience: body.cv.experience,
+          education: body.cv.education,
+          skillGroups: body.cv.skillGroups,
+          selectedProjects: body.cv.selectedProjects,
+          certifications: body.cv.certifications,
+          learningSources: body.cv.learningSources,
+          name: body.cv.name,
+          title: body.cv.title,
+          email: body.cv.email,
+          phone: body.cv.phone,
+          location: body.cv.location,
+          birthDate: body.cv.birthDate,
         },
       });
+      revalidatePath("/");
+      revalidatePath("/cv");
       return NextResponse.json({
         ok: true,
         storage: result.storage,

@@ -7,6 +7,7 @@ import type {
   DeployedRecord,
   ProfileRecord,
   ProjectRecord,
+  CvOverrides
 } from "@/lib/types/site";
 
 const GUIDES = {
@@ -14,10 +15,10 @@ const GUIDES = {
   deployed: `Live GitHub projects. Required: id, name, description, github URL. Optional: homepage (live site), language, featured, isFounder (only for printsLB).`,
   projects: `Portfolio showcase projects (local work). Required: id, title, description, tags (comma-separated). Optional: featured (true/false). Descriptions are shown on the main site cards.`,
   profile: `Site-wide links and hero text. printsLB url should be https://printslb.com for your domain.`,
-  skills: `Skills shown on the site (Skills section). One skill per line — tech (Python, Linux, embedded/ESP32/Arduino), soft skills, tools. If you already saved overrides here, this list replaces the auto CV skills on the live site.`,
+  cv: `Manage your CV details including skills, summary, work experience, and education.`,
 };
 
-type Tab = "achievements" | "deployed" | "projects" | "profile" | "skills";
+type Tab = "achievements" | "deployed" | "projects" | "profile" | "cv";
 
 function emptyAchievement(): AchievementRecord {
   return {
@@ -69,8 +70,12 @@ export default function AdminPanel() {
   const [deployed, setDeployed] = useState<DeployedRecord[]>([]);
   const [projects, setProjects] = useState<ProjectRecord[]>([]);
   const [profile, setProfile] = useState<ProfileRecord | null>(null);
+  
+  // CV Data
   const [skillsText, setSkillsText] = useState("");
   const [summaryText, setSummaryText] = useState("");
+  const [experience, setExperience] = useState<Array<{ title: string; period: string; summary: string }>>([]);
+  const [education, setEducation] = useState<Array<{ school: string; detail: string }>>([]);
 
   const loadContent = useCallback(async () => {
     const res = await fetch("/api/admin/content");
@@ -81,17 +86,22 @@ export default function AdminPanel() {
     }
     if (!res.ok) throw new Error("Failed to load");
     const data = await res.json();
-    setAchievements(data.content.achievements);
+    setAchievements(data.content.achievements || []);
     setDeployed(
-      data.content.deployed.map((p: DeployedRecord) => ({
+      (data.content.deployed || []).map((p: DeployedRecord) => ({
         ...p,
         homepage: p.homepage || "",
       }))
     );
-    setProjects(data.content.projects);
-    setProfile(data.content.profile);
+    setProjects(data.content.projects || []);
+    setProfile(data.content.profile || null);
+    
+    // CV Fields
     setSkillsText((data.content.cv?.skills || []).join("\n"));
     setSummaryText(data.content.cv?.summary || "");
+    setExperience(data.content.cv?.experience || []);
+    setEducation(data.content.cv?.education || []);
+    
     setStorageHint(data.storageHint);
     setAuthed(true);
     setLoading(false);
@@ -150,6 +160,8 @@ export default function AdminPanel() {
           .map((s) => s.trim())
           .filter(Boolean),
         summary: summaryText.trim() || undefined,
+        experience,
+        education
       },
     };
     const res = await fetch("/api/admin/content", {
@@ -164,7 +176,7 @@ export default function AdminPanel() {
       return;
     }
     setStorageHint(data.storageHint);
-    setStatus(`Saved successfully (${data.storage}). Refresh the homepage to see changes.`);
+    setStatus(`Saved successfully (${data.storage}). Cache cleared.`);
     setError(false);
     setTimeout(() => setStatus(""), 4000);
   }
@@ -211,7 +223,9 @@ export default function AdminPanel() {
     return (
       <div className="admin-login-wrapper">
         <form className="admin-login" onSubmit={login}>
-          <div className="admin-login-icon">🔒</div>
+          <div className="admin-login-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
           <h1>Admin Dashboard</h1>
           <p>Access the private portfolio content manager.</p>
           <div className="admin-field">
@@ -227,7 +241,7 @@ export default function AdminPanel() {
           {loginError && (
             <p className="admin-status error">{loginError}</p>
           )}
-          <button type="submit" className="admin-btn admin-btn--primary">
+          <button type="submit" className="admin-btn admin-btn--primary admin-btn--block">
             Authenticate
           </button>
         </form>
@@ -247,24 +261,26 @@ export default function AdminPanel() {
           <a href="/" className="admin-btn admin-btn--ghost admin-btn--small">View Site</a>
         </div>
         <nav className="admin-nav">
-          {(
-            [
-              ["achievements", "🏆 Achievements"],
-              ["deployed", "🌐 Live Projects"],
-              ["projects", "💼 Showcase"],
-              ["profile", "👤 Profile & Links"],
-              ["skills", "⚡ Skills & About"],
-            ] as const
-          ).map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              className={`admin-nav-item${tab === id ? " active" : ""}`}
-              onClick={() => setTab(id)}
-            >
-              {label}
-            </button>
-          ))}
+          <button type="button" className={`admin-nav-item${tab === "achievements" ? " active" : ""}`} onClick={() => setTab("achievements")}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+            Achievements
+          </button>
+          <button type="button" className={`admin-nav-item${tab === "deployed" ? " active" : ""}`} onClick={() => setTab("deployed")}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            Live Projects
+          </button>
+          <button type="button" className={`admin-nav-item${tab === "projects" ? " active" : ""}`} onClick={() => setTab("projects")}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            Showcase
+          </button>
+          <button type="button" className={`admin-nav-item${tab === "profile" ? " active" : ""}`} onClick={() => setTab("profile")}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            Profile & Links
+          </button>
+          <button type="button" className={`admin-nav-item${tab === "cv" ? " active" : ""}`} onClick={() => setTab("cv")}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            CV Editor
+          </button>
         </nav>
         <div className="admin-sidebar-footer">
           <p className="admin-storage-hint">{storageHint}</p>
@@ -292,7 +308,8 @@ export default function AdminPanel() {
               className="admin-btn admin-btn--primary"
               onClick={saveAll}
             >
-              💾 Save All Changes
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{marginRight: '6px'}}><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              Save All Changes
             </button>
           </div>
         </header>
@@ -507,9 +524,12 @@ export default function AdminPanel() {
             </section>
           )}
 
-          {tab === "skills" && (
+          {tab === "cv" && (
             <section className="admin-section">
-               <div className="admin-card">
+               <div className="admin-card mb-4">
+                 <div className="admin-card-header">
+                   <h3>Summary & Skills</h3>
+                 </div>
                  <div className="admin-card-body">
                     <div className="admin-field">
                       <label>About Summary (Optional)</label>
@@ -532,6 +552,80 @@ export default function AdminPanel() {
                       />
                     </div>
                  </div>
+               </div>
+
+               <div className="admin-section-header mt-8">
+                  <h2 style={{color: '#fff', fontSize: '1.25rem', margin: 0}}>Work Experience</h2>
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--primary admin-btn--small"
+                    onClick={() => setExperience([{ title: "", period: "", summary: "" }, ...experience])}
+                  >
+                    + Add Experience
+                  </button>
+               </div>
+               <div className="admin-list mt-4">
+                  {experience.map((exp, i) => (
+                    <div key={i} className="admin-card">
+                       <div className="admin-card-header">
+                          <h3>{exp.title || 'New Experience'}</h3>
+                          <div className="admin-card-actions">
+                            <button type="button" className="icon-btn" onClick={() => moveItem(experience, i, 'up', setExperience)} disabled={i === 0}>↑</button>
+                            <button type="button" className="icon-btn" onClick={() => moveItem(experience, i, 'down', setExperience)} disabled={i === experience.length - 1}>↓</button>
+                            <button type="button" className="admin-btn admin-btn--danger admin-btn--small" onClick={() => setExperience(experience.filter((_, j) => j !== i))}>Delete</button>
+                          </div>
+                       </div>
+                       <div className="admin-card-body grid-2">
+                          <div className="admin-field">
+                            <label>Title / Role</label>
+                            <input value={exp.title} onChange={(e) => setExperience(experience.map((item, j) => j === i ? { ...item, title: e.target.value } : item))} />
+                          </div>
+                          <div className="admin-field">
+                            <label>Period (e.g. 2021 - Present)</label>
+                            <input value={exp.period} onChange={(e) => setExperience(experience.map((item, j) => j === i ? { ...item, period: e.target.value } : item))} />
+                          </div>
+                          <div className="admin-field col-span-2">
+                            <label>Summary / Details</label>
+                            <textarea rows={3} value={exp.summary} onChange={(e) => setExperience(experience.map((item, j) => j === i ? { ...item, summary: e.target.value } : item))} />
+                          </div>
+                       </div>
+                    </div>
+                  ))}
+               </div>
+
+               <div className="admin-section-header mt-8">
+                  <h2 style={{color: '#fff', fontSize: '1.25rem', margin: 0}}>Education</h2>
+                  <button
+                    type="button"
+                    className="admin-btn admin-btn--primary admin-btn--small"
+                    onClick={() => setEducation([{ school: "", detail: "" }, ...education])}
+                  >
+                    + Add Education
+                  </button>
+               </div>
+               <div className="admin-list mt-4">
+                  {education.map((edu, i) => (
+                    <div key={i} className="admin-card">
+                       <div className="admin-card-header">
+                          <h3>{edu.school || 'New Education'}</h3>
+                          <div className="admin-card-actions">
+                            <button type="button" className="icon-btn" onClick={() => moveItem(education, i, 'up', setEducation)} disabled={i === 0}>↑</button>
+                            <button type="button" className="icon-btn" onClick={() => moveItem(education, i, 'down', setEducation)} disabled={i === education.length - 1}>↓</button>
+                            <button type="button" className="admin-btn admin-btn--danger admin-btn--small" onClick={() => setEducation(education.filter((_, j) => j !== i))}>Delete</button>
+                          </div>
+                       </div>
+                       <div className="admin-card-body grid-2">
+                          <div className="admin-field col-span-2">
+                            <label>School / Institution</label>
+                            <input value={edu.school} onChange={(e) => setEducation(education.map((item, j) => j === i ? { ...item, school: e.target.value } : item))} />
+                          </div>
+                          <div className="admin-field col-span-2">
+                            <label>Detail (Degree, Year, etc.)</label>
+                            <textarea rows={2} value={edu.detail} onChange={(e) => setEducation(education.map((item, j) => j === i ? { ...item, detail: e.target.value } : item))} />
+                          </div>
+                       </div>
+                    </div>
+                  ))}
                </div>
             </section>
           )}
@@ -574,15 +668,15 @@ export default function AdminPanel() {
                     <h3 className="col-span-2 mt-4 form-section-title">printsLB Config</h3>
                     <div className="admin-field">
                       <label>Business Name</label>
-                      <input value={profile.printsLb.name} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, name: e.target.value } })} />
+                      <input value={profile.printsLb?.name || ''} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, name: e.target.value } })} />
                     </div>
                     <div className="admin-field">
                       <label>Website URL</label>
-                      <input value={profile.printsLb.url} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, url: e.target.value } })} />
+                      <input value={profile.printsLb?.url || ''} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, url: e.target.value } })} />
                     </div>
                     <div className="admin-field col-span-2">
                       <label>Tagline</label>
-                      <input value={profile.printsLb.tagline} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, tagline: e.target.value } })} />
+                      <input value={profile.printsLb?.tagline || ''} onChange={(e) => setProfile({ ...profile, printsLb: { ...profile.printsLb, tagline: e.target.value } })} />
                     </div>
                  </div>
               </div>
