@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdminSession } from "@/lib/admin-auth";
 import { getSiteContent } from "@/lib/get-site-content";
 import { readOverrides, storageHint, writeOverrides } from "@/lib/storage";
+import { readOverridesFromMongo, writeOverridesToMongo, mongoStorageHint } from "@/lib/mongodb-storage";
 import type { AdminContentPayload } from "@/lib/types/site";
 
 export async function GET() {
@@ -10,21 +11,39 @@ export async function GET() {
   }
 
   const content = await getSiteContent();
-  const overrides = await readOverrides();
+  
+  // Try MongoDB first, fall back to local/blob storage
+  let overrides = null;
+  let storageHintText = storageHint();
+  
+  if (process.env.MONGODB_URI) {
+    try {
+      overrides = await readOverridesFromMongo();
+      if (overrides) {
+        storageHintText = mongoStorageHint();
+      }
+    } catch (e) {
+      console.error('MongoDB read error, falling back to local storage:', e);
+    }
+  }
+  
+  if (!overrides) {
+    overrides = await readOverrides();
+  }
 
   return NextResponse.json({
     content: {
-      achievements: content.achievements,
-      deployed: content.deployed,
-      projects: content.projects,
-      profile: content.profile,
+      achievements: overrides?.achievements || content.achievements,
+      deployed: overrides?.deployed || content.deployed,
+      projects: overrides?.projects || content.projects,
+      profile: overrides?.profile || content.profile,
       cv: {
-        skills: content.cv.skills,
-        summary: content.cv.summary,
+        skills: overrides?.cv?.skills || content.cv.skills,
+        summary: overrides?.cv?.summary || content.cv.summary,
       },
     },
     hasOverrides: Boolean(overrides),
-    storageHint: storageHint(),
+    storageHint: storageHintText,
   });
 }
 
@@ -45,23 +64,35 @@ export async function PUT(req: Request) {
   }
 
   try {
-    const result = await writeOverrides({
-      version: 1,
-      achievements: body.achievements,
-      deployed: body.deployed,
-      projects: body.projects,
-      profile: body.profile,
-      cv: {
-        skills: body.cv.skills,
-        summary: body.cv.summary,
-      },
-    });
-    return NextResponse.json({
-      ok: true,
-      storage: result.storage,
-      blobUrl: result.blobUrl,
-      storageHint: storageHint(),
-    });
+    let result;
+    
+    // Use MongoDB if configured, otherwise fall back to local/blob storage
+    if (process.env.MONGODB_URI) {
+      result = await writeOverridesToMongo(body);
+      return NextResponse.json({
+        ok: true,
+        storage: result.storage,
+        storageHint: mongoStorageHint(),
+      });
+    } else {
+      result = await writeOverrides({
+        version: 1,
+        achievements: body.achievements,
+        deployed: body.deployed,
+        projects: body.projects,
+        profile: body.profile,
+        cv: {
+          skills: body.cv.skills,
+          summary: body.cv.summary,
+        },
+      });
+      return NextResponse.json({
+        ok: true,
+        storage: result.storage,
+        blobUrl: result.blobUrl,
+        storageHint: storageHint(),
+      });
+    }
   } catch (e) {
     const message = e instanceof Error ? e.message : "Save failed";
     return NextResponse.json({ error: message }, { status: 500 });

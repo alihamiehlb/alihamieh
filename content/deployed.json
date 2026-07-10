@@ -1,6 +1,6 @@
 {
   "username": "alihamiehlb",
-  "updatedAt": "2026-05-28",
+  "updatedAt": "2026-07-10",
   "projects": [
     {
       "id": "PrintsLB",
@@ -14,11 +14,11 @@
       "isFounder": true
     },
     {
-      "id": "ssa-shoot-score-academy",
-      "name": "ssa shoot score academy",
-      "description": "its a site for khali that is for his academy for admin control and invoice and player managment and stats with great desgin",
-      "homepage": "https://ssa-shoot-score-academy.vercel.app",
-      "github": "https://github.com/alihamiehlb/ssa-shoot-score-academy",
+      "id": "ekconstructions",
+      "name": "ekconstructions",
+      "description": "client site",
+      "homepage": "https://ekconstructions.vercel.app",
+      "github": "https://github.com/alihamiehlb/ekconstructions",
       "language": "TypeScript",
       "stars": 1,
       "featured": true,
@@ -30,6 +30,17 @@
       "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
       "homepage": "https://alihamieh.vercel.app",
       "github": "https://github.com/alihamiehlb/alihamieh",
+      "language": "TypeScript",
+      "stars": 2,
+      "featured": true,
+      "isFounder": false
+    },
+    {
+      "id": "ssa-shoot-score-academy",
+      "name": "ssa shoot score academy",
+      "description": "its a site for khali that is for his academy for admin control and invoice and player managment and stats with great desgin",
+      "homepage": "https://ssa-shoot-score-academy.vercel.app",
+      "github": "https://github.com/alihamiehlb/ssa-shoot-score-academy",
       "language": "TypeScript",
       "stars": 1,
       "featured": true,
@@ -55,6 +66,17 @@
       "language": "TypeScript",
       "stars": 1,
       "featured": true,
+      "isFounder": false
+    },
+    {
+      "id": "othersidemen",
+      "name": "othersidemen",
+      "description": "e-commerse site for otherside men",
+      "homepage": null,
+      "github": "https://github.com/alihamiehlb/othersidemen",
+      "language": "TypeScript",
+      "stars": 0,
+      "featured": false,
       "isFounder": false
     },
     {

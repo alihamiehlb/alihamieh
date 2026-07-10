@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAdminSession } from "@/lib/admin-auth";
 import { uploadImage } from "@/lib/storage";
+import { uploadImageToMongo } from "@/lib/mongodb-storage";
 
 export async function POST(req: Request) {
   if (!(await isAdminSession())) {
@@ -22,6 +23,8 @@ export async function POST(req: Request) {
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
-  const result = await uploadImage(buffer, file.name, file.type);
+  
+  // Use MongoDB storage function (which falls back to Blob/local for images)
+  const result = await uploadImageToMongo(buffer, file.name, file.type);
   return NextResponse.json(result);
 }
