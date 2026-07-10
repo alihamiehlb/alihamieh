@@ -21,7 +21,7 @@ function fixEnvFile() {
   // Fix NEXT_PUBLIC_SITE_URL - add https:// if missing
   content = content.replace(
     /^NEXT_PUBLIC_SITE_URL=alihamieh\.com$/m,
-    'NEXT_PUBLIC_SITE_URL=https://printslb.com'
+    'NEXT_PUBLIC_SITE_URL=https://alihamieh.com'
   );
   if (content !== fs.readFileSync(envPath, 'utf8')) {
     fixed = true;
@@ -41,7 +41,7 @@ function fixEnvFile() {
   // Fix any other alihamieh.com URLs without https
   content = content.replace(
     /NEXT_PUBLIC_SITE_URL=alihamieh\.com/g,
-    'NEXT_PUBLIC_SITE_URL=https://printslb.com'
+    'NEXT_PUBLIC_SITE_URL=https://alihamieh.com'
   );
 
   if (fixed) {

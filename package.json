@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "scripts": {
     "predev": "node scripts/extract-cv.mjs && node scripts/scan-projects.mjs && node scripts/sync-github.mjs && node scripts/sync-achievements.mjs && node scripts/generate-cv-html.mjs && node scripts/optimize-assets.mjs",

@@ -9,6 +9,19 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const contentDir = path.join(__dirname, '..', 'content');
 
+// Load .env file manually
+const envPath = path.join(__dirname, '..', '.env');
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, 'utf8');
+  envContent.split('\n').forEach(line => {
+    const [key, ...valueParts] = line.split('=');
+    if (key && !key.startsWith('#') && valueParts.length > 0) {
+      const value = valueParts.join('=').trim();
+      process.env[key.trim()] = value;
+    }
+  });
+}
+
 async function main() {
   console.log('Seeding MongoDB with existing content...');
 
@@ -60,15 +73,18 @@ async function main() {
 
   // Seed Projects
   console.log('Seeding Projects...');
-  await Project.insertMany(projectsData);
+  const projectsArray = projectsData.projects || [];
+  await Project.insertMany(projectsArray);
 
   // Seed Achievements
   console.log('Seeding Achievements...');
-  await Achievement.insertMany(achievementsData);
+  const achievementsArray = achievementsData.achievements || [];
+  await Achievement.insertMany(achievementsArray);
 
   // Seed Deployed
   console.log('Seeding Deployed projects...');
-  await Deployed.insertMany(deployedData);
+  const deployedArray = deployedData.projects || [];
+  await Deployed.insertMany(deployedArray);
 
   console.log('MongoDB seeding completed successfully!');
   await mongoose.disconnect();

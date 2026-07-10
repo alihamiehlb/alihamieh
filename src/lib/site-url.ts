@@ -1,4 +1,4 @@
-/** Public site URL — portfolio uses printslb.com in production, not *.vercel.app */
+/** Public site URL — portfolio uses alihamieh.com in production, not *.vercel.app */
 export function getSiteUrl(): string {
   const fromEnv =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -9,5 +9,5 @@ export function getSiteUrl(): string {
     return "http://localhost:3000";
   }
 
-  return "https://printslb.com";
+  return "https://alihamieh.com";
 }

@@ -1,38 +1,38 @@
-# alihamieh
+# Ali Hamieh Portfolio
 
-Personal portfolio for **Ali Hamieh** — projects, certificates, CV, and contact.
+This is my personal portfolio website showcasing my journey as a developer, maker, and student. I built this to document my projects in web development, cybersecurity, embedded systems, and AI while providing a central hub for my work and achievements.
 
-## Tech stack
+## About Me
 
-- **Next.js 15** (App Router) + **React 19** + **TypeScript**
-- **Framer Motion** — scroll sections and UI motion
-- **React Three Fiber** + **Three.js** — background 3D scene
-- **Node scripts** — sync CV PDFs, GitHub repos, certificates into `content/`
-- **Vercel** — hosting; optional **Vercel Blob** for admin content saves
+I'm a 17-year-old student at Al Mahdi School in Tyre, South Lebanon, with a passion for technology and building things. I started programming at a young age and have since explored various fields including full-stack web development, ethical hacking, embedded systems with ESP32/Arduino, and machine learning. I'm also the founder of printsLB, a 3D printing service platform.
 
-## Commands
+## What This Portfolio Showcases
 
-```bash
-npm install
-npm run dev          # local http://localhost:3000
-npm run dev:lan      # same Wi‑Fi: http://YOUR_PC_IP:3000
-npm run build        # production build
-```
+- **Projects**: Full-stack web applications, mobile apps, automation tools, and hardware projects
+- **Achievements**: Certifications, competition participation, and learning milestones
+- **Skills**: Technical skills spanning development, security, AI, and embedded systems
+- **CV**: Professional resume with education, experience, and certifications
+- **Contact**: Easy ways to reach me through social media and direct contact
 
-## Environment (optional)
+## Technical Approach
 
-Copy `.env.example` → `.env.local` for `/admin` only. Never commit real passwords.
+I built this portfolio using modern web technologies to create an engaging, performant, and maintainable platform:
 
-| Variable | Purpose |
-|----------|---------|
-| `ADMIN_PASSWORD` | Admin login |
-| `ADMIN_SESSION_SECRET` | Session cookie signing |
-| `BLOB_READ_WRITE_TOKEN` | Persist admin edits on Vercel |
+- **Next.js 15** with App Router for fast, SEO-friendly pages
+- **React 19** and TypeScript for type-safe, component-based development
+- **Framer Motion** for smooth animations and scroll interactions
+- **React Three Fiber** for an immersive 3D background experience
+- **MongoDB Atlas** for robust content management through the admin panel
+- **Image optimization** with WebP format for faster loading
 
-## Domain
+## Admin Panel
 
-Production canonical URL is **https://printslb.com** (set `NEXT_PUBLIC_SITE_URL` in Vercel). In Vercel → Project → **Domains**, add `printslb.com` and point DNS as instructed so the live site is not only `*.vercel.app`.
+The portfolio includes a secure admin panel that allows me to easily update content without touching code. I can edit my CV, manage projects, update achievements, and modify profile information directly through a web interface. All changes are stored in MongoDB Atlas and immediately reflected on the live site.
 
-## Deploy
+## Why I Built This
 
-Connect this repo on [Vercel](https://vercel.com), framework **Next.js**, add env vars above for admin + Blob + `NEXT_PUBLIC_SITE_URL`.
+I wanted a portfolio that not only showcases my work but also demonstrates my technical abilities through its implementation. The site serves as both a presentation of my projects and a testament to my skills in modern web development. The admin panel feature was particularly important to me as it allows for easy content updates as I continue to grow and take on new projects.
+
+## Current Focus
+
+I'm currently pursuing an AI diploma at MUC University (started at age 15) and continuously expanding my knowledge in cybersecurity, embedded systems, and full-stack development. This portfolio evolves alongside my journey, regularly updated with new projects and achievements.
