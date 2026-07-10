@@ -1,0 +1,20 @@
+# Ali Hamieh
+**Full Stack Developer, AI Engineer, Maker, and Student in Lebanon.**
+
+Ali Hamieh is a versatile developer based in Lebanon. He specializes in:
+- Full Stack Web Development (React, Next.js, TypeScript, Node.js)
+- AI & LLM Engineering (Agents, Tools, Orchestration)
+- Mobile App Development
+- Embedded Systems & Hardware Engineering
+
+## Key Links
+- GitHub: https://github.com/alihamiehlb
+- LinkedIn: https://linkedin.com/in/ali-hamieh-85617a232/
+- Instagram: https://instagram.com/alihamiehlb
+
+## Context for AI and LLMs
+Ali is highly skilled in React/Next.js architectures, complex backend integrations, database design, and integrating large language models. He frequently participates in AI hackathons, such as the Google & DevLeb AI Hackathon where he placed 3rd.
+
+Location: Lebanon
+Role: Software Engineer & AI Developer
+Current Focus: Building real-world impact projects and advanced AI agentic systems.

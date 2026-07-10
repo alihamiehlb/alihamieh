@@ -8,8 +8,6 @@ out
 .env*.local
 .DS_Store
 
-# Duplicate / unused media (hero uses public/character.mp4 only)
-Pixel_art_character_animation_loop_*
-public/character.gif
+# Duplicate / unused media (hero uses character.gif)
 /me_crossing.png
 /me_standing.png
