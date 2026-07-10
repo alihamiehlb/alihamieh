@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useSpring } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import PortraitVideo from "./PortraitVideo";
+import { useEffect, useRef } from "react";
 
 type CharacterAvatarProps = {
   mouseX: number;
@@ -67,17 +66,7 @@ function seekVideo(video: HTMLVideoElement, t: number) {
 
 export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps) {
   const stageRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const pointerRef = useRef({ x: 0, y: 0 });
-  const timeRef = useRef(0);
-  const durationRef = useRef(0);
-  const modeRef = useRef<VideoMode>("paused");
-  const readyRef = useRef(false);
-  const visibleRef = useRef(true);
-  const lastInteractRef = useRef(0);
-  const lastFrameRef = useRef(0);
-  const [ready, setReady] = useState(false);
-  const [attachVideo, setAttachVideo] = useState(false);
 
   const rotateX = useSpring(0, { stiffness: 60, damping: 30 });
   const rotateY = useSpring(0, { stiffness: 60, damping: 30 });
@@ -139,28 +128,6 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
   }, []);
 
   useEffect(() => {
-    const el = stageRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        visibleRef.current = entry.isIntersecting;
-        if (entry.isIntersecting) setAttachVideo(true);
-        const video = videoRef.current;
-        if (!video || !readyRef.current) return;
-        if (!entry.isIntersecting) {
-          video.pause();
-          modeRef.current = "paused";
-        } else if (isIdle()) {
-          startNativePlay(video);
-        }
-      },
-      { threshold: 0.1, rootMargin: "80px 0px -8% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
     rotateX.set(mouseY * -4);
     rotateY.set(mouseX * 5);
     scale.set(1.01 + Math.hypot(mouseX, mouseY) * 0.02);
@@ -177,98 +144,6 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
     raf = requestAnimationFrame(pulse);
     return () => cancelAnimationFrame(raf);
   }, [floatY]);
-
-  useEffect(() => {
-    if (!attachVideo) return;
-    const video = videoRef.current;
-    if (!video) return;
-
-    let raf = 0;
-    let cancelled = false;
-
-    const applyTime = (t: number, force = false) => {
-      const duration = durationRef.current;
-      if (duration <= 0) return;
-      const clamped = Math.max(0.02, Math.min(duration - 0.03, t));
-      timeRef.current = clamped;
-      const delta = Math.abs(video.currentTime - clamped);
-      if (force || delta > 0.003) {
-        try {
-          seekVideo(video, clamped);
-        } catch {
-          /* not ready */
-        }
-      }
-    };
-
-    const syncMode = () => {
-      if (!readyRef.current || !visibleRef.current) {
-        if (!video.paused) video.pause();
-        modeRef.current = "paused";
-        return;
-      }
-
-      if (isIdle()) {
-        if (modeRef.current !== "play") startNativePlay(video);
-        return;
-      }
-
-      startScrub(video);
-    };
-
-    const tick = (now: number) => {
-      if (cancelled) return;
-      const last = lastFrameRef.current || now;
-      const dt = Math.min(0.032, (now - last) / 1000);
-      lastFrameRef.current = now;
-
-      syncMode();
-
-      const duration = durationRef.current;
-      if (
-        duration > 0 &&
-        readyRef.current &&
-        visibleRef.current &&
-        modeRef.current === "scrub"
-      ) {
-        const { x, y } = pointerRef.current;
-        const target = mapMouseToTime(x, y, duration);
-        const err = target - timeRef.current;
-        const absErr = Math.abs(err);
-        const next =
-          absErr > duration * 0.12
-            ? easeToward(timeRef.current, target, dt, 0.022)
-            : easeToward(timeRef.current, target, dt, 0.038);
-        applyTime(next, absErr > 0.08);
-      }
-
-      raf = requestAnimationFrame(tick);
-    };
-
-    const onReady = () => {
-      durationRef.current = video.duration || 5;
-      video.pause();
-      const start = durationRef.current * 0.42;
-      applyTime(start, true);
-      lastInteractRef.current = 0;
-      readyRef.current = true;
-      setReady(true);
-      lastFrameRef.current = performance.now();
-      syncMode();
-      raf = requestAnimationFrame(tick);
-    };
-
-    video.addEventListener("loadedmetadata", onReady);
-    video.addEventListener("loadeddata", onReady);
-    if (video.readyState >= 1) onReady();
-
-    return () => {
-      cancelled = true;
-      video.removeEventListener("loadedmetadata", onReady);
-      video.removeEventListener("loadeddata", onReady);
-      cancelAnimationFrame(raf);
-    };
-  }, [attachVideo]);
 
   return (
     <motion.div
@@ -312,12 +187,11 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
         className="character-frame"
         style={{ translateZ: 20 }}
       >
-        <PortraitVideo
-          mode="scrub"
-          ready={ready}
-          videoRef={videoRef}
-          attachSrc={attachVideo}
-          onReady={() => setReady(true)}
+        <img
+          src="/character.gif"
+          alt="Ali Hamieh Avatar"
+          className="character-video ready"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </motion.div>
 

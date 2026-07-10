@@ -329,6 +329,9 @@
   display: grid;
   gap: 1.25rem;
   max-width: min(920px, 96vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  padding-bottom: 1rem;
 }
 
 @media (min-width: 720px) {
@@ -342,6 +345,7 @@
   position: relative;
   border-radius: 16px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .achievement-modal-body h2 {

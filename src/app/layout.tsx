@@ -35,7 +35,9 @@ export const metadata: Metadata = {
     "Web Developer",
     "Software Engineer",
     "Lebanon",
+    "Ali Hamieh Lebanon",
     "Full Stack",
+    "AI Engineer",
     "React",
     "Next.js",
     "Hardware",
@@ -99,9 +101,9 @@ export default function RootLayout({
         />
         <link
           rel="preload"
-          href="/character.mp4"
-          as="video"
-          type="video/mp4"
+          href="/character.gif"
+          as="image"
+          type="image/gif"
           fetchPriority="high"
         />
       </head>
@@ -114,7 +116,11 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Ali Hamieh",
               "url": siteUrl,
-              "jobTitle": "Full Stack Developer & Maker",
+              "jobTitle": "Full Stack Developer & AI Engineer",
+              "homeLocation": {
+                "@type": "Place",
+                "name": "Lebanon"
+              },
               "worksFor": {
                 "@type": "Organization",
                 "name": "printsLB"
