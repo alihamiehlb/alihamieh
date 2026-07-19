@@ -40,7 +40,7 @@ function AquaOrb({
 
   return (
     <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.6}>
-      <Sphere ref={ref} args={[scale, 48, 48]} position={position}>
+      <Sphere ref={ref} args={[scale, 32, 32]} position={position}>
         <MeshDistortMaterial
           color={color}
           attach="material"
@@ -95,8 +95,8 @@ export default function Scene3D({ mouseX, mouseY }: Scene3DProps) {
     <div className="scene3d" aria-hidden>
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
-        dpr={[1, 1.5]}
-        gl={{ alpha: true, antialias: true }}
+        dpr={[1, 1.2]}
+        gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
       >
         <SceneInner mouseX={mouseX} mouseY={mouseY} />
       </Canvas>

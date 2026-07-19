@@ -22,9 +22,12 @@ import CharacterAvatar from "./CharacterAvatar";
 import CharacterAvatarLite from "./CharacterAvatarLite";
 import AchievementsSection from "./AchievementsSection";
 import DeployedProjects from "./DeployedProjects";
-import ProjectDetailModal from "./ProjectDetailModal";
 import SocialLinks from "./SocialLinks";
+import AmbientMotion from "./AmbientMotion";
+import Link from "next/link";
 import CvOpenButton from "./CvOpenButton";
+
+const MotionLink = motion.create(Link);
 
 type ScrollSectionsProps = {
   cv: CvData;
@@ -106,7 +109,6 @@ export default function ScrollSections({
 }: ScrollSectionsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<SectionId>("hero");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const fade = lite ? fadeUpLite : fadeUp;
 
   const { scrollYProgress } = useScroll({
@@ -119,6 +121,8 @@ export default function ScrollSections({
 
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
+  const imageProjects = projects.filter((p) => p.images && p.images.length > 0);
+  const textProjects = projects.filter((p) => !p.images || p.images.length === 0);
   const age = getAge();
   const agePhrase = getAgePhrase();
   const birthday = getBirthdayLabel();
@@ -299,6 +303,84 @@ export default function ScrollSections({
         </motion.div>
       </SectionPanel>
 
+      <SectionPanel id="projects">
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          Selected Work
+        </motion.h2>
+        <motion.p
+          className="section-sub"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          Hardware builds, apps, and more — swipe through to explore.
+        </motion.p>
+
+        <ProjectsCarousel projects={imageProjects} lite={lite} />
+
+        {textProjects.length > 0 && (
+          <>
+            <motion.h3
+              className="projects-more-title"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              More Projects
+            </motion.h3>
+            <motion.div
+              className="project-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                visible: {
+                  transition: { staggerChildren: lite ? 0.03 : 0.06 },
+                },
+              }}
+            >
+              {textProjects.map((p, i) => (
+                <motion.div key={p.id} variants={fade} custom={i}>
+                  <MotionLink
+                    href={`/project/${p.slug}`}
+                    className={`project-card glass${p.featured ? " featured" : ""}`}
+                    style={{ textDecoration: "none", display: "block" }}
+                    whileHover={
+                      lite
+                        ? undefined
+                        : { y: -6, boxShadow: "0 24px 48px rgba(42,154,173,0.15)" }
+                    }
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="project-meta">
+                      <h3>{p.title}</h3>
+                      {p.featured && <span className="badge">Featured</span>}
+                    </div>
+                    <p className="project-desc">{p.description}</p>
+                    <div className="tags">
+                      {p.tags.slice(0, 4).map((t) => (
+                        <span key={t}>{t}</span>
+                      ))}
+                    </div>
+                    <span className="project-cta">View project →</span>
+                  </MotionLink>
+                </motion.div>
+              ))}
+            </motion.div>
+          </>
+        )}
+
+        <DeployedProjects
+          projects={deployed}
+          githubUrl={profile.github}
+          lite={lite}
+        />
+      </SectionPanel>
+
       <SectionPanel id="about">
         <motion.h2
           initial={{ opacity: 0, x: -16 }}
@@ -399,72 +481,6 @@ export default function ScrollSections({
         lite={lite}
       />
 
-      <SectionPanel id="projects">
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          Selected work
-        </motion.h2>
-        <motion.p
-          className="section-sub"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          Apps, sites, automation, and hardware — tap a card for the full
-          breakdown.
-        </motion.p>
-
-        <DeployedProjects
-          projects={deployed}
-          githubUrl={profile.github}
-          lite={lite}
-        />
-
-        <motion.div
-          className="project-grid"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{
-            visible: {
-              transition: { staggerChildren: lite ? 0.03 : 0.06 },
-            },
-          }}
-        >
-          {featured.map((p, i) => (
-            <ProjectCard
-              key={p.id}
-              project={p}
-              index={i}
-              featured
-              lite={lite}
-              fade={fade}
-              onOpen={() => setSelectedProject(p)}
-            />
-          ))}
-        </motion.div>
-        {rest.length > 0 && (
-          <>
-            <h3 className="projects-more-title">More projects</h3>
-            <div className="project-grid secondary">
-              {rest.map((p, i) => (
-                <ProjectCard
-                  key={p.id}
-                  project={p}
-                  index={i}
-                  lite={lite}
-                  fade={fade}
-                  onOpen={() => setSelectedProject(p)}
-                />
-              ))}
-            </div>
-          </>
-        )}
-      </SectionPanel>
-
       {interviews && interviews.length > 0 && (
         <SectionPanel id="interviews">
           <motion.h2
@@ -484,12 +500,11 @@ export default function ScrollSections({
           </motion.p>
           <div className="project-grid mt-4">
             {interviews.map((int: any, i: number) => (
-              <motion.a
+              <MotionLink
                 key={int.id}
-                href={int.url}
-                target="_blank"
-                rel="noreferrer"
+                href={`/interview/${int.id}`}
                 className="project-card glass"
+                style={{ textDecoration: 'none', display: 'block' }}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -504,17 +519,12 @@ export default function ScrollSections({
                 <div className="tags">
                   <span>{int.date}</span>
                 </div>
-                <span className="project-cta">Watch Video →</span>
-              </motion.a>
+                <span className="project-cta">View Interview →</span>
+              </MotionLink>
             ))}
           </div>
         </SectionPanel>
       )}
-
-      <ProjectDetailModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
 
       <SectionPanel id="contact">
         <motion.h2
@@ -584,50 +594,130 @@ export default function ScrollSections({
   );
 }
 
-function ProjectCard({
-  project,
-  index,
-  featured,
-  lite,
-  fade,
-  onOpen,
-}: {
-  project: Project;
-  index: number;
-  featured?: boolean;
-  lite?: boolean;
-  fade: typeof fadeUp;
-  onOpen: () => void;
-}) {
+function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boolean }) {
+  const [current, setCurrent] = useState(0);
+  const [imgIdx, setImgIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const total = projects.length;
+  const p = projects[current];
+
+  // Auto-advance project slides
+  useEffect(() => {
+    if (paused || total <= 1) return;
+    const t = setInterval(() => setCurrent((c) => (c + 1) % total), 6000);
+    return () => clearInterval(t);
+  }, [paused, total]);
+
+  // Auto-advance images within a project
+  useEffect(() => {
+    setImgIdx(0);
+  }, [current]);
+
+  useEffect(() => {
+    const imgs = p?.images;
+    if (!imgs || imgs.length <= 1) return;
+    const t = setInterval(() => setImgIdx((c) => (c + 1) % imgs.length), 3000);
+    return () => clearInterval(t);
+  }, [current, p]);
+
+  if (!p) return null;
+
+  const prev = () => setCurrent((c) => (c - 1 + total) % total);
+  const next = () => setCurrent((c) => (c + 1) % total);
+
   return (
-    <motion.button
-      type="button"
-      className={`project-card glass${featured ? " featured" : ""}`}
-      variants={fade}
-      custom={index}
-      whileHover={
-        lite
-          ? undefined
-          : { y: -8, boxShadow: "0 32px 64px rgba(42,154,173,0.2)" }
-      }
-      whileTap={{ scale: lite ? 0.99 : 0.98 }}
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onOpen();
-      }}
+    <div
+      className="projects-carousel"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
     >
-      <motion.div className="project-meta">
-        <h3>{project.title}</h3>
-        {featured && <span className="badge">Featured</span>}
-      </motion.div>
-      <p className="project-desc">{project.description}</p>
-      <div className="tags">
-        {project.tags.slice(0, 4).map((t) => (
-          <span key={t}>{t}</span>
-        ))}
-      </div>
-      <span className="project-cta">Open project →</span>
-    </motion.button>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={p.id}
+          className="carousel-slide glass"
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -60 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Image area */}
+          <div className="carousel-img-area">
+            {p.images && p.images.length > 0 ? (
+              <AnimatePresence mode="popLayout">
+                <motion.img
+                  key={`${p.id}-${imgIdx}`}
+                  src={p.images[imgIdx]}
+                  alt={p.title}
+                  className="carousel-img"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5 }}
+                />
+              </AnimatePresence>
+            ) : (
+              <div className="carousel-img-placeholder">
+                <span>🚀</span>
+              </div>
+            )}
+            {p.images && p.images.length > 1 && (
+              <div className="carousel-img-dots">
+                {p.images.map((_: string, i: number) => (
+                  <button
+                    key={i}
+                    className={`carousel-img-dot${i === imgIdx ? " active" : ""}`}
+                    onClick={(e) => { e.preventDefault(); setImgIdx(i); }}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Info area */}
+          <div className="carousel-info">
+            <div className="carousel-info-top">
+              {p.featured && <span className="badge">Featured</span>}
+              <h3 className="carousel-title">{p.title}</h3>
+              <p className="carousel-desc">{p.description}</p>
+              <div className="tags">
+                {p.tags.slice(0, 6).map((t) => (
+                  <span key={t}>{t}</span>
+                ))}
+              </div>
+            </div>
+            <Link href={`/project/${p.slug}`} className="carousel-cta" style={{ position: 'relative', zIndex: 10, cursor: 'pointer' }} onClick={(e) => e.stopPropagation()}>
+              View full project →
+            </Link>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Arrows */}
+      {total > 1 && (
+        <>
+          <button className="carousel-arrow carousel-arrow-left" onClick={prev} aria-label="Previous project">
+            ‹
+          </button>
+          <button className="carousel-arrow carousel-arrow-right" onClick={next} aria-label="Next project">
+            ›
+          </button>
+        </>
+      )}
+
+      {/* Dots */}
+      {total > 1 && (
+        <div className="carousel-dots">
+          {projects.map((pr, i) => (
+            <button
+              key={pr.id}
+              className={`carousel-dot${i === current ? " active" : ""}`}
+              onClick={() => setCurrent(i)}
+              aria-label={`Go to ${pr.title}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
+

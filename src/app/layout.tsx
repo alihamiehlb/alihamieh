@@ -82,6 +82,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: "/icon.gif",
+  },
 };
 
 export default function RootLayout({

@@ -46,6 +46,13 @@ export default function PortfolioShell({
 }: PortfolioShellProps) {
   const lite = useMobileLite();
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [sceneMounted, setSceneMounted] = useState(false);
+
+  useEffect(() => {
+    // Delay 3D scene slightly so main content loads first on bad internet
+    const timer = setTimeout(() => setSceneMounted(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const onMove = useCallback((clientX: number, clientY: number) => {
     setMouse(normPointer(clientX, clientY));
@@ -60,7 +67,7 @@ export default function PortfolioShell({
 
   return (
     <main className={`portfolio-shell${lite ? " portfolio-shell--lite" : ""}`}>
-      {!lite && <Scene3D mouseX={mouse.x} mouseY={mouse.y} />}
+      {!lite && sceneMounted && <Scene3D mouseX={mouse.x} mouseY={mouse.y} />}
       <AmbientMotion lite={lite} />
       <ScrollSections
         cv={cv}

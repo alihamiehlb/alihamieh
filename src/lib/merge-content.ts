@@ -3,6 +3,7 @@ import projectsData from "../../content/projects.json";
 import achievementsData from "../../content/achievements.json";
 import profileData from "../../content/profile.json";
 import deployedData from "../../content/deployed.json";
+import interviewsData from "../../content/interviews.json";
 import type { SiteContent, SiteOverrides } from "@/lib/types/site";
 
 function mergeProfile(
@@ -33,7 +34,7 @@ export function buildSiteContent(overrides: SiteOverrides | null): SiteContent {
       : projectsData.projects;
   const projects = rawProjects.filter((p) => p.id !== "final_project");
 
-  const interviews = overrides?.interviews !== undefined ? overrides.interviews : [];
+  const interviews = overrides?.interviews !== undefined ? overrides.interviews : (interviewsData.interviews || []);
 
   const cv = {
     ...cvData,

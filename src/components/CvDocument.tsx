@@ -19,7 +19,7 @@ export type CvDocumentData = {
   skillGroups?: { label: string; items: string[] }[];
   selectedProjects?: { name: string; role: string; url?: string }[];
   certifications?: string[];
-  achievements?: { title: string; subtitle?: string; summary: string }[];
+  achievements?: { title: string; subtitle?: string; summary: string; implementation?: string }[];
   interviews?: { title: string; url: string }[];
   lastUpdated?: string;
   documentFileName?: string;
@@ -123,6 +123,13 @@ export default function CvDocument({ cv, showToolbar = true }: CvDocumentProps) 
                       {ach.subtitle && <em>{ach.subtitle}</em>}
                     </div>
                     <p>{ach.summary}</p>
+                    {ach.implementation && (
+                      <div className="cv-implementation" style={{ marginTop: "0.5rem", paddingLeft: "1rem", borderLeft: "2px solid #2a9aad" }}>
+                        <p style={{ fontSize: "0.9em", color: "#8b949e", margin: 0 }}>
+                          <strong>Project Detail:</strong> {ach.implementation}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 ))}
               </section>

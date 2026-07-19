@@ -1,6 +1,6 @@
 {
   "username": "alihamiehlb",
-  "updatedAt": "2026-07-10",
+  "updatedAt": "2026-07-19",
   "projects": [
     {
       "id": "PrintsLB",
@@ -14,17 +14,6 @@
       "isFounder": true
     },
     {
-      "id": "alihamieh",
-      "name": "alihamieh",
-      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
-      "homepage": "https://alihamieh.vercel.app",
-      "github": "https://github.com/alihamiehlb/alihamieh",
-      "language": "TypeScript",
-      "stars": 2,
-      "featured": true,
-      "isFounder": false
-    },
-    {
       "id": "ekconstructions",
       "name": "ekconstructions",
       "description": "client site",
@@ -32,6 +21,17 @@
       "github": "https://github.com/alihamiehlb/ekconstructions",
       "language": "TypeScript",
       "stars": 1,
+      "featured": true,
+      "isFounder": false
+    },
+    {
+      "id": "alihamieh",
+      "name": "alihamieh",
+      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
+      "homepage": "https://alihamieh.vercel.app",
+      "github": "https://github.com/alihamiehlb/alihamieh",
+      "language": "TypeScript",
+      "stars": 2,
       "featured": true,
       "isFounder": false
     },

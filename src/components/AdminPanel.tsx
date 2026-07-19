@@ -11,6 +11,11 @@ import type {
   CvOverrides
 } from "@/lib/types/site";
 
+import dynamic from "next/dynamic";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
+
 const GUIDES = {
   achievements: `Add a certificate or award. Required: unique id (slug), title, short description, category, image path or URL.`,
   deployed: `Live GitHub projects. Required: id, name, description, github URL. Optional: homepage (live site), language, featured, isFounder.`,
@@ -23,16 +28,16 @@ const GUIDES = {
 type Tab = "achievements" | "deployed" | "projects" | "interviews" | "profile" | "cv";
 
 function emptyAchievement(): AchievementRecord {
-  return { id: `item-${Date.now()}`, title: "", description: "", detail: "", instagramHighlight: "", category: "Academy", image: "", source: "certificate" };
+  return { id: `item-${Date.now()}`, title: "", description: "", detail: "", instagramHighlight: "", category: "Academy", image: "", source: "certificate", implementation: "" };
 }
 function emptyDeployed(): DeployedRecord {
   return { id: `repo-${Date.now()}`, name: "my-project", description: "", homepage: "", github: "https://github.com/alihamiehlb/", language: "TypeScript", featured: true, isFounder: false };
 }
 function emptyProject(): ProjectRecord {
-  return { id: `project-${Date.now()}`, title: "", description: "", tags: [], featured: false };
+  return { id: `project-${Date.now()}`, title: "", description: "", tags: [], featured: false, images: [], content: "" };
 }
 function emptyInterview(): InterviewRecord {
-  return { id: `interview-${Date.now()}`, title: "", channel: "", date: "", description: "", url: "" };
+  return { id: `interview-${Date.now()}`, title: "", channel: "", date: "", description: "", url: "", image: "" };
 }
 
 function AccordionItem({ title, isOpen, onToggle, children, onMoveUp, onMoveDown, onDelete, isFirst, isLast }: any) {
@@ -170,6 +175,7 @@ export default function AdminPanel() {
       projects: projects.map((p) => ({
         ...p,
         tags: Array.isArray(p.tags) ? p.tags : String(p.tags || "").split(",").map((t) => t.trim()).filter(Boolean),
+        images: Array.isArray(p.images) ? p.images : String(p.images || "").split(",").map((t) => t.trim()).filter(Boolean),
       })),
       profile,
       cv: {
@@ -376,6 +382,10 @@ export default function AdminPanel() {
                       <label>Detailed Description (Modal)</label>
                       <textarea rows={4} value={a.detail || ""} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, detail: e.target.value } : item))} />
                     </div>
+                    <div className="admin-field col-span-2">
+                      <label>Implementation Details (CV)</label>
+                      <textarea rows={4} value={a.implementation || ""} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, implementation: e.target.value } : item))} />
+                    </div>
                     <div className="admin-field">
                       <label>Instagram Highlight URL</label>
                       <input value={a.instagramHighlight || ""} onChange={(e) => setAchievements(achievements.map((item, j) => j === i ? { ...item, instagramHighlight: e.target.value } : item))} />
@@ -491,6 +501,14 @@ export default function AdminPanel() {
                       <input value={Array.isArray(p.tags) ? p.tags.join(", ") : p.tags} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, tags: e.target.value.split(",").map(t => t.trim()) } : item))} />
                     </div>
                     <div className="admin-field col-span-2">
+                      <label>Images (Comma Separated URLs)</label>
+                      <textarea rows={2} value={Array.isArray(p.images) ? p.images.join(", ") : p.images} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, images: e.target.value.split(",").map(t => t.trim()).filter(Boolean) } : item))} />
+                    </div>
+                    <div className="admin-field col-span-2" data-color-mode="dark">
+                      <label>Project Content (Markdown)</label>
+                      <MDEditor value={(p.content as string) || ""} onChange={(val) => setProjects(projects.map((item, j) => j === i ? { ...item, content: val || "" } : item))} />
+                    </div>
+                    <div className="admin-field col-span-2">
                        <label className="toggle-switch">
                           <input type="checkbox" checked={p.featured} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, featured: e.target.checked } : item))} />
                           <span className="slider"></span> Featured Showcase
@@ -543,6 +561,20 @@ export default function AdminPanel() {
                     <div className="admin-field col-span-2">
                       <label>Description</label>
                       <textarea rows={2} value={int.description} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, description: e.target.value } : item))} />
+                    </div>
+                    <div className="admin-field col-span-2">
+                      <label>Image URL</label>
+                      <div className="image-input-group">
+                        <input value={int.image || int.thumbnail || ""} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, image: e.target.value } : item))} placeholder="Upload or paste URL" />
+                        <label className="admin-btn admin-btn--ghost upload-btn">
+                          Upload
+                          <input type="file" accept="image/*" hidden onChange={(e) => {
+                            const f = e.target.files?.[0];
+                            if (f) uploadFile(f, (url) => setInterviews(interviews.map((item, j) => j === i ? { ...item, image: url } : item)));
+                          }} />
+                        </label>
+                      </div>
+                      {(int.image || int.thumbnail) && <img src={int.image || int.thumbnail} alt="Preview" className="admin-image-preview mt-2" />}
                     </div>
                   </AccordionItem>
                 ))}

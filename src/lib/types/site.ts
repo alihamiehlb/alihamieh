@@ -8,6 +8,7 @@ export type AchievementRecord = {
   image: string;
   source?: string;
   sourceUrl?: string;
+  implementation?: string;
 };
 
 export type DeployedRecord = {
@@ -29,6 +30,8 @@ export type ProjectRecord = {
   tags: string[];
   featured?: boolean;
   path?: string;
+  images?: string[];
+  content?: string;
   [key: string]: unknown;
 };
 
@@ -40,6 +43,7 @@ export type InterviewRecord = {
   description: string;
   url: string;
   thumbnail?: string;
+  image?: string;
 };
 
 export type ProfileRecord = {
@@ -64,7 +68,7 @@ export type CvOverrides = {
   skillGroups?: Array<{ label: string; items: string[] }>;
   selectedProjects?: Array<{ name: string; role: string; url: string }>;
   certifications?: string[];
-  achievements?: Array<{ title: string; subtitle: string; summary: string }>;
+  achievements?: Array<{ title: string; subtitle: string; summary: string; implementation?: string }>;
   learningSources?: Array<{ name: string; focus: string }>;
   name?: string;
   title?: string;
