@@ -121,8 +121,8 @@ export default function ScrollSections({
 
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
-  const imageProjects = projects.filter((p) => p.images && p.images.length > 0);
-  const textProjects = projects.filter((p) => !p.images || p.images.length === 0);
+  const imageProjects = projects.filter((p: any) => p.images && p.images.length > 0);
+  const textProjects = projects.filter((p: any) => !p.images || p.images.length === 0);
   const age = getAge();
   const agePhrase = getAgePhrase();
   const birthday = getBirthdayLabel();
@@ -614,7 +614,7 @@ function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boole
   }, [current]);
 
   useEffect(() => {
-    const imgs = p?.images;
+    const imgs = (p as any)?.images;
     if (!imgs || imgs.length <= 1) return;
     const t = setInterval(() => setImgIdx((c) => (c + 1) % imgs.length), 3000);
     return () => clearInterval(t);
@@ -642,11 +642,11 @@ function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boole
         >
           {/* Image area */}
           <div className="carousel-img-area">
-            {p.images && p.images.length > 0 ? (
+            {(p as any).images && (p as any).images.length > 0 ? (
               <AnimatePresence mode="popLayout">
                 <motion.img
                   key={`${p.id}-${imgIdx}`}
-                  src={p.images[imgIdx]}
+                  src={(p as any).images[imgIdx]}
                   alt={p.title}
                   className="carousel-img"
                   initial={{ opacity: 0, scale: 1.05 }}
@@ -660,9 +660,9 @@ function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boole
                 <span>🚀</span>
               </div>
             )}
-            {p.images && p.images.length > 1 && (
+            {(p as any).images && (p as any).images.length > 1 && (
               <div className="carousel-img-dots">
-                {p.images.map((_: string, i: number) => (
+                {(p as any).images.map((_: string, i: number) => (
                   <button
                     key={i}
                     className={`carousel-img-dot${i === imgIdx ? " active" : ""}`}
