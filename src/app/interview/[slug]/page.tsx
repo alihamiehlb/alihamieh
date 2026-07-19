@@ -1,6 +1,7 @@
 import { getSiteContent } from "@/lib/get-site-content";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Markdown from "react-markdown";
 import type { Metadata } from "next";
 
@@ -16,6 +17,11 @@ export async function generateMetadata({
   return {
     title: `${interview.title} | Ali Hamieh`,
     description: interview.description,
+    openGraph: {
+      title: `${interview.title} | Ali Hamieh`,
+      description: interview.description,
+      images: interview.image ? [{ url: interview.image }] : [],
+    }
   };
 }
 
@@ -33,71 +39,78 @@ export default async function InterviewPage({
   }
 
   return (
-    <main className="portfolio-shell">
-      <div className="scroll-panel" style={{ height: "auto", minHeight: "100vh", paddingTop: "5rem" }}>
-        <div className="scroll-panel-inner" style={{ maxWidth: "800px", margin: "0 auto", padding: "0 1rem" }}>
-          <Link href="/#interviews" className="btn-ghost" style={{ display: "inline-block", marginBottom: "2rem" }}>
-            ← Back to Portfolio
+    <main className="project-detail-page">
+      <section className="pd-hero">
+        {interview.image && (
+          <div className="pd-hero-bg">
+            <Image
+              src={interview.image}
+              alt={interview.title}
+              fill
+              sizes="100vw"
+              priority
+              quality={90}
+            />
+            <div className="pd-hero-overlay" />
+          </div>
+        )}
+        <div className="pd-hero-content">
+          <Link href="/#interviews" className="pd-back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+            Back to Portfolio
           </Link>
           
-          <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>{interview.title}</h1>
-          
-          <div className="tags" style={{ marginBottom: "2rem" }}>
-            <span className="badge">{interview.channel}</span>
-            <span>{interview.date}</span>
+          <div className="pd-tech-row" style={{ marginTop: 0 }}>
+            <span className="pd-tech-chip">{interview.channel}</span>
+            <span className="pd-tech-chip" style={{ borderColor: 'transparent', background: 'transparent', paddingLeft: 0 }}>{interview.date}</span>
           </div>
 
-          {interview.image && (
-            <div className="interview-image" style={{ marginBottom: "2rem" }}>
-              <img
-                src={interview.image}
-                alt={interview.title}
-                loading="lazy"
-                style={{
-                  width: "100%",
-                  maxHeight: "500px",
-                  objectFit: "cover",
-                  borderRadius: "16px",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
-                }}
-              />
-            </div>
-          )}
-
-          <div className="project-content glass" style={{ padding: "2rem", borderRadius: "16px", marginBottom: "3rem" }}>
-            {interview.description ? (
-              <Markdown>{interview.description}</Markdown>
-            ) : (
-              <p>More details coming soon.</p>
-            )}
-          </div>
-
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Event",
-                name: interview.title,
-                description: interview.description,
-                startDate: interview.date,
-                location: {
-                  "@type": "Place",
-                  name: interview.channel,
-                },
-                performer: {
-                  "@type": "Person",
-                  name: "Ali Hamieh",
-                },
-              }),
-            }}
-          />
-
-          <a href={interview.url} target="_blank" rel="noreferrer" className="btn-primary" style={{ display: "inline-flex" }}>
-            Watch Full Interview
-          </a>
+          <h1 className="pd-title" style={{ marginTop: "0.5rem" }}>{interview.title}</h1>
         </div>
-      </div>
+      </section>
+
+      <section className="pd-body-section" style={{ paddingTop: "3rem" }}>
+        <div className="pd-container">
+          <div className="pd-body-card">
+            <h2 className="pd-section-heading">Overview</h2>
+            <div className="pd-prose">
+              {interview.description ? (
+                <Markdown>{interview.description}</Markdown>
+              ) : (
+                <p className="pd-empty">More details coming soon.</p>
+              )}
+            </div>
+
+            <div style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+              <a href={interview.url} target="_blank" rel="noreferrer" className="btn-primary">
+                Watch Full Interview →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Event",
+            name: interview.title,
+            description: interview.description,
+            startDate: interview.date,
+            image: interview.image,
+            location: {
+              "@type": "Place",
+              name: interview.channel,
+            },
+            performer: {
+              "@type": "Person",
+              name: "Ali Hamieh",
+            },
+          }),
+        }}
+      />
     </main>
   );
 }
