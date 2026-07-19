@@ -19,6 +19,11 @@ export async function generateMetadata({
   return {
     title: `${achievement.title} | Ali Hamieh`,
     description: achievement.description,
+    openGraph: {
+      title: `${achievement.title} | Ali Hamieh`,
+      description: achievement.description,
+      images: achievement.image ? [{ url: achievement.image }] : [],
+    },
   };
 }
 
@@ -36,83 +41,87 @@ export default async function AchievementPage({
   }
 
   return (
-    <main className="portfolio-shell">
-      <div className="scroll-panel" style={{ height: "auto", minHeight: "100vh" }}>
-        <div className="detail-page-container">
-          <div className="detail-hero">
-            <div className="detail-header-content">
-              <Link href="/#achievements" className="detail-back-btn">
-                ← Back to Achievements
-              </Link>
-              
-              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                <span className="badge">{achievement.category}</span>
-                {achievement.source === "award" && <span className="badge" style={{ background: "var(--aqua)", color: "#fff" }}>Award</span>}
-              </div>
-
-              <h1 className="detail-title" style={{ marginTop: "0.5rem" }}>{achievement.title}</h1>
-              <p className="detail-lead">{achievement.description}</p>
-            </div>
-
-            {achievement.image && (
-              <div className="detail-gallery">
-                <div className="detail-image-wrapper">
-                  <Image
-                    src={achievement.image}
-                    alt={achievement.title}
-                    fill
-                    sizes="(max-width: 900px) 100vw, 50vw"
-                    priority
-                    quality={85}
-                  />
-                </div>
-              </div>
+    <main className="project-detail-page">
+      {/* ── Full-width hero banner ── */}
+      <section className="pd-hero">
+        {achievement.image && (
+          <div className="pd-hero-bg">
+            <Image
+              src={achievement.image}
+              alt={achievement.title}
+              fill
+              sizes="100vw"
+              priority
+              quality={90}
+            />
+            <div className="pd-hero-overlay" />
+          </div>
+        )}
+        <div className="pd-hero-content">
+          <Link href="/#achievements" className="pd-back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+            Back to Achievements
+          </Link>
+          <div className="pd-tech-row" style={{ marginTop: 0 }}>
+            <span className="pd-tech-chip">{achievement.category}</span>
+            {achievement.source === "award" && (
+              <span className="pd-featured-badge">🏆 Award</span>
             )}
           </div>
+          <h1 className="pd-title">{achievement.title}</h1>
+          <p className="pd-subtitle">{achievement.description}</p>
+        </div>
+      </section>
 
-          <div className="detail-content-area glass">
-            {achievement.detail ? (
-              <Markdown>{achievement.detail}</Markdown>
-            ) : (
-              <p style={{ fontStyle: "italic", opacity: 0.8 }}>No additional details provided.</p>
-            )}
+      {/* ── Content body ── */}
+      <section className="pd-body-section" style={{ paddingTop: "3rem" }}>
+        <div className="pd-container">
+          <div className="pd-body-card">
+            <h2 className="pd-section-heading">Details</h2>
+            <div className="pd-prose">
+              {achievement.detail ? (
+                <Markdown>{achievement.detail}</Markdown>
+              ) : (
+                <p className="pd-empty">No additional details provided.</p>
+              )}
+            </div>
 
             {achievement.instagramHighlight && (
-              <div style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                <p style={{ color: "var(--aqua-dark)", fontWeight: 600 }}>
-                  📸 As seen on Instagram: <span style={{ color: "var(--text)" }}>{achievement.instagramHighlight}</span>
+              <div style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <p style={{ color: "var(--aqua)", fontWeight: 600, fontSize: "0.95rem" }}>
+                  📸 As seen on Instagram: <span style={{ color: "rgba(255,255,255,0.7)" }}>{achievement.instagramHighlight}</span>
                 </p>
                 <a 
                   href={site.instagramUrl} 
                   target="_blank" 
                   rel="noreferrer" 
                   className="btn-primary" 
-                  style={{ display: "inline-block", marginTop: "1rem" }}
+                  style={{ marginTop: "1rem" }}
                 >
-                  View on Instagram
+                  View on Instagram →
                 </a>
               </div>
             )}
           </div>
         </div>
+      </section>
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "CreativeWork",
-              name: achievement.title,
-              description: achievement.description,
-              image: achievement.image,
-              author: {
-                "@type": "Person",
-                name: "Ali Hamieh",
-              },
-            }),
-          }}
-        />
-      </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            name: achievement.title,
+            description: achievement.description,
+            image: achievement.image,
+            author: {
+              "@type": "Person",
+              name: "Ali Hamieh",
+            },
+          }),
+        }}
+      />
     </main>
   );
 }
