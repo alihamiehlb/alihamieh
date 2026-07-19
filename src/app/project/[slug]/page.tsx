@@ -60,9 +60,9 @@ export default async function ProjectPage({
             </div>
           )}
 
-          {project.url && (
+          {(project as any).url && (
             <div className="split-primary-action">
-              <a href={project.url} target="_blank" rel="noreferrer" className="btn-primary">
+              <a href={(project as any).url} target="_blank" rel="noreferrer" className="btn-primary">
                 View Live Project →
               </a>
             </div>
@@ -96,7 +96,7 @@ export default async function ProjectPage({
             name: project.title,
             description: project.description,
             applicationCategory: "WebApplication",
-            url: project.url,
+            url: (project as any).url,
             author: {
               "@type": "Person",
               name: "Ali Hamieh",
