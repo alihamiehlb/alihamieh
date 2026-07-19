@@ -2065,8 +2065,8 @@ html.portfolio-lite .character-video {
   padding: 5rem 4rem;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(42, 154, 173, 0.15);
-  background: linear-gradient(to right, var(--bg), rgba(10, 10, 14, 0.95));
+  border-right: 1px solid rgba(42, 154, 173, 0.2);
+  background: #050505; /* Solid dark background for maximum contrast */
   z-index: 10;
 }
 
@@ -2081,7 +2081,7 @@ html.portfolio-lite .character-video {
   width: 55%;
   min-height: 100vh;
   padding: 6rem 4rem;
-  background: rgba(10, 10, 14, 0.4);
+  background: #000; /* Solid black for right side */
 }
 
 /* Back Link */
@@ -2089,10 +2089,10 @@ html.portfolio-lite .character-video {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #fff;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
   transition: all 0.2s ease;
   margin-bottom: 2rem;
@@ -2115,9 +2115,9 @@ html.portfolio-lite .character-video {
 }
 
 .split-description {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.75);
+  color: #e0e0e0; /* High contrast text */
   margin-bottom: 2rem;
 }
 
@@ -2145,48 +2145,118 @@ html.portfolio-lite .character-video {
 }
 
 /* Gallery inside Right Pane */
-.split-gallery {
+.split-gallery-interactive {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1.5rem;
   margin-bottom: 4rem;
 }
 
-.split-gallery-image {
+.split-gallery-main {
   position: relative;
   width: 100%;
   aspect-ratio: 16/10;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(42, 154, 173, 0.15);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(42, 154, 173, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
   background: #000;
 }
 
-.split-gallery-image img {
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+.split-gallery-image-wrapper {
+  position: absolute;
+  inset: 0;
 }
 
-.split-gallery-image:hover img {
-  transform: scale(1.05);
+.split-gallery-image-wrapper img {
+  object-fit: contain; /* Changed from cover to contain so full images are visible */
+}
+
+.split-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s ease;
+}
+
+.split-gallery-nav:hover {
+  background: rgba(42, 154, 173, 0.8);
+  border-color: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.split-gallery-nav.prev { left: 1rem; }
+.split-gallery-nav.next { right: 1rem; }
+
+.split-gallery-thumbnails {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.split-gallery-thumbnails::-webkit-scrollbar {
+  height: 6px;
+}
+.split-gallery-thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(42, 154, 173, 0.4);
+  border-radius: 3px;
+}
+
+.split-gallery-thumb {
+  position: relative;
+  width: 120px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #000;
+  opacity: 0.6;
+}
+
+.split-gallery-thumb img {
+  object-fit: cover;
+}
+
+.split-gallery-thumb:hover {
+  opacity: 0.9;
+}
+
+.split-gallery-thumb.active {
+  opacity: 1;
+  border-color: var(--aqua);
+  box-shadow: 0 0 12px rgba(42, 154, 173, 0.5);
 }
 
 /* Content inside Right Pane */
 .split-content {
-  background: rgba(20, 20, 25, 0.6);
-  border: 1px solid rgba(42, 154, 173, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #08080a; /* Solid very dark grey/black */
+  border: 1px solid rgba(42, 154, 173, 0.25);
   border-radius: 20px;
   padding: 3rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .split-prose {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.85);
+  color: #fff; /* Pure white for best contrast */
 }
 
 .split-prose h2 {

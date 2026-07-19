@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import type { Metadata } from "next";
+import ProjectImageGallery from "@/components/ProjectImageGallery";
 
 export async function generateMetadata({
   params,
@@ -72,20 +73,7 @@ export default async function ProjectPage({
       {/* ── Right Scrolling Column ── */}
       <section className="split-right">
         {project.images && project.images.length > 0 && (
-          <div className="split-gallery">
-            {project.images.map((img: string, i: number) => (
-              <div key={i} className="split-gallery-image">
-                <Image
-                  src={img}
-                  alt={`${project.title} screenshot ${i + 1}`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 55vw"
-                  quality={85}
-                  priority={i === 0}
-                />
-              </div>
-            ))}
-          </div>
+          <ProjectImageGallery images={project.images} title={project.title} />
         )}
 
         <div className="split-content">

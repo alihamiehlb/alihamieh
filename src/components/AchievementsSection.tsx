@@ -72,9 +72,11 @@ export default function AchievementsSection({
 
         {awards.length > 0 && (
           <div style={{ marginTop: "3rem" }}>
-            <motion.h3 variants={fade} custom={2} style={{ marginBottom: "1.5rem", fontSize: "1.8rem" }}>
-              Awards & Competitions
-            </motion.h3>
+            <motion.div variants={fade} custom={2} style={{ marginBottom: "2rem" }}>
+              <h3 style={{ fontSize: "2rem", color: "#fff", display: "inline-block", borderBottom: "2px solid var(--aqua)", paddingBottom: "0.5rem" }}>
+                🏆 Awards & Competitions
+              </h3>
+            </motion.div>
             <motion.div className="achievements-grid">
               {awards.map((item, i) => (
                 <MotionLink
@@ -120,10 +122,12 @@ export default function AchievementsSection({
         )}
 
         {certs.length > 0 && (
-          <div style={{ marginTop: "4rem" }}>
-            <motion.h3 variants={fade} custom={5} style={{ marginBottom: "1.5rem", fontSize: "1.8rem" }}>
-              Certifications & Training
-            </motion.h3>
+          <div style={{ marginTop: "6rem", paddingTop: "4rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+            <motion.div variants={fade} custom={5} style={{ marginBottom: "2rem" }}>
+              <h3 style={{ fontSize: "2rem", color: "#fff", display: "inline-block", borderBottom: "2px solid var(--aqua)", paddingBottom: "0.5rem" }}>
+                📜 Certifications & Training
+              </h3>
+            </motion.div>
             <motion.div className="achievements-grid">
               {certs.map((item, i) => (
                 <MotionLink
