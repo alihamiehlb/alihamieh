@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import type { Metadata } from "next";
+import { Trophy } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -56,7 +57,9 @@ export default async function AchievementPage({
           <div className="split-tags">
             <span className="split-tag">{achievement.category}</span>
             {achievement.source === "award" && (
-              <span className="split-tag" style={{ background: "rgba(255, 184, 0, 0.1)", borderColor: "rgba(255, 184, 0, 0.3)", color: "#ffb800" }}>🏆 Award</span>
+              <span className="split-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', background: "rgba(255, 184, 0, 0.1)", borderColor: "rgba(255, 184, 0, 0.3)", color: "#ffb800" }}>
+                <Trophy size={14} /> Award
+              </span>
             )}
           </div>
 

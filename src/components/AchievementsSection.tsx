@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import LoadingLink from "./LoadingLink";
 import type { Achievement } from "@/lib/content";
-import { Trophy, Award, FileBadge, Code, Cpu, Shield, GraduationCap, Wrench, Bot } from "lucide-react";
+import { Trophy, Award, FileBadge, Code, Cpu, Shield, GraduationCap, Wrench, Bot, Scroll } from "lucide-react";
 
 type AchievementsSectionProps = {
   achievements: Achievement[];
@@ -87,7 +87,7 @@ export default function AchievementsSection({
         {awards.length > 0 && (
           <div className="ach-group">
             <motion.div variants={fade} custom={2} className="ach-group-header">
-              <span className="ach-group-icon">🏆</span>
+              <Trophy className="ach-group-icon-svg" size={32} style={{ color: 'var(--aqua-dark)' }} />
               <div>
                 <h3 className="ach-group-title">Awards & Competitions</h3>
                 <p className="ach-group-count">{awards.length} wins & placements</p>
@@ -126,7 +126,7 @@ export default function AchievementsSection({
         {certs.length > 0 && (
           <div className="ach-group ach-group--certs">
             <motion.div variants={fade} custom={5} className="ach-group-header">
-              <span className="ach-group-icon">📜</span>
+              <Scroll className="ach-group-icon-svg" size={32} style={{ color: 'var(--text-muted)' }} />
               <div>
                 <h3 className="ach-group-title">Certifications & Training</h3>
                 <p className="ach-group-count">{certs.length} certifications</p>
