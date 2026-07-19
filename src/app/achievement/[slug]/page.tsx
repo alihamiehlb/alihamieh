@@ -1,6 +1,7 @@
 import { getSiteContent } from "@/lib/get-site-content";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Markdown from "react-markdown";
 import type { Metadata } from "next";
 
@@ -36,50 +37,48 @@ export default async function AchievementPage({
 
   return (
     <main className="portfolio-shell">
-      <div className="scroll-panel" style={{ height: "auto", minHeight: "100vh", paddingTop: "5rem" }}>
-        <div className="scroll-panel-inner" style={{ maxWidth: "800px", margin: "0 auto", padding: "0 1rem" }}>
-          <Link href="/#achievements" className="btn-ghost" style={{ display: "inline-block", marginBottom: "2rem" }}>
-            ← Back to Achievements
-          </Link>
-          
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem" }}>
-            <span className="badge">{achievement.category}</span>
-            {achievement.source === "award" && <span className="badge" style={{ background: "var(--aqua)", color: "#fff" }}>Award</span>}
+      <div className="scroll-panel" style={{ height: "auto", minHeight: "100vh" }}>
+        <div className="detail-page-container">
+          <div className="detail-hero">
+            <div className="detail-header-content">
+              <Link href="/#achievements" className="detail-back-btn">
+                ← Back to Achievements
+              </Link>
+              
+              <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                <span className="badge">{achievement.category}</span>
+                {achievement.source === "award" && <span className="badge" style={{ background: "var(--aqua)", color: "#fff" }}>Award</span>}
+              </div>
+
+              <h1 className="detail-title" style={{ marginTop: "0.5rem" }}>{achievement.title}</h1>
+              <p className="detail-lead">{achievement.description}</p>
+            </div>
+
+            {achievement.image && (
+              <div className="detail-gallery">
+                <div className="detail-image-wrapper">
+                  <Image
+                    src={achievement.image}
+                    alt={achievement.title}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    priority
+                    quality={85}
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
-          <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>{achievement.title}</h1>
-          
-          <p className="lead" style={{ marginBottom: "3rem", color: "rgba(255, 255, 255, 0.8)" }}>
-            {achievement.description}
-          </p>
-
-          {achievement.image && (
-            <div className="project-gallery" style={{ marginBottom: "3rem" }}>
-              <img
-                src={achievement.image}
-                alt={achievement.title}
-                loading="lazy"
-                style={{
-                  width: "100%",
-                  maxHeight: "500px",
-                  borderRadius: "16px",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  objectFit: "cover",
-                  boxShadow: "0 24px 64px rgba(0, 0, 0, 0.3)"
-                }}
-              />
-            </div>
-          )}
-
-          <div className="project-content glass" style={{ padding: "2rem", borderRadius: "16px" }}>
+          <div className="detail-content-area glass">
             {achievement.detail ? (
               <Markdown>{achievement.detail}</Markdown>
             ) : (
-              <p>No additional details provided.</p>
+              <p style={{ fontStyle: "italic", opacity: 0.8 }}>No additional details provided.</p>
             )}
 
             {achievement.instagramHighlight && (
-              <div style={{ marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+              <div style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
                 <p style={{ color: "var(--aqua-dark)", fontWeight: 600 }}>
                   📸 As seen on Instagram: <span style={{ color: "var(--text)" }}>{achievement.instagramHighlight}</span>
                 </p>
@@ -95,24 +94,24 @@ export default async function AchievementPage({
               </div>
             )}
           </div>
-
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "CreativeWork",
-                name: achievement.title,
-                description: achievement.description,
-                image: achievement.image,
-                author: {
-                  "@type": "Person",
-                  name: "Ali Hamieh",
-                },
-              }),
-            }}
-          />
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "CreativeWork",
+              name: achievement.title,
+              description: achievement.description,
+              image: achievement.image,
+              author: {
+                "@type": "Person",
+                name: "Ali Hamieh",
+              },
+            }),
+          }}
+        />
       </div>
     </main>
   );

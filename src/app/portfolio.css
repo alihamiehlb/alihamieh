@@ -1852,3 +1852,126 @@ html.portfolio-lite .character-video {
     font-size: 0.85rem;
   }
 }
+
+/* DETAIL PAGE LAYOUTS (Projects & Achievements) */
+.detail-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  padding-bottom: 6rem;
+}
+
+.detail-hero {
+  padding: 6rem 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .detail-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.detail-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff, rgba(255, 255, 255, 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.detail-lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.detail-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.detail-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--aqua);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.detail-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.detail-image-wrapper img {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.detail-image-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+.detail-content-area {
+  margin-top: 3rem;
+  padding: 3rem;
+  border-radius: 24px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+  .detail-content-area {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.detail-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+.detail-back-btn:hover {
+  color: var(--aqua);
+}

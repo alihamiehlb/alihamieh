@@ -38,6 +38,9 @@ export default function AchievementsSection({
 }: AchievementsSectionProps) {
   const fade = lite ? fadeUpLite : fadeUp;
 
+  const awards = achievements.filter((a) => a.source === "award");
+  const certs = achievements.filter((a) => a.source !== "award");
+
   return (
     <section id="achievements" className="scroll-panel" data-section="achievements">
       <motion.div
@@ -67,47 +70,103 @@ export default function AchievementsSection({
           </a>
         </motion.p>
 
-        <motion.div className="achievements-grid">
-          {achievements.map((item, i) => (
-            <MotionLink
-              href={`/achievement/${item.id}`}
-              key={item.id}
-              className="achievement-card glass achievement-card--clickable"
-              style={{ textDecoration: 'none', display: 'block' }}
-              variants={fade}
-              custom={i + 2}
-              whileHover={
-                lite ? undefined : { y: -6, scale: 1.02, rotateX: 4 }
-              }
-              whileTap={{ scale: lite ? 0.99 : 0.98 }}
-            >
-              <motion.div
-                className="achievement-image-wrap"
-                style={lite ? undefined : { translateZ: 8 }}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={400}
-                  height={300}
-                  className="achievement-image"
-                  sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 320px"
-                  quality={72}
-                  loading="lazy"
-                />
-                <span className="achievement-category">{item.category}</span>
-              </motion.div>
-              <motion.div
-                className="achievement-body"
-                style={lite ? undefined : { translateZ: 12 }}
-              >
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <span className="achievement-tap-hint">View details →</span>
-              </motion.div>
-            </MotionLink>
-          ))}
-        </motion.div>
+        {awards.length > 0 && (
+          <div style={{ marginTop: "3rem" }}>
+            <motion.h3 variants={fade} custom={2} style={{ marginBottom: "1.5rem", fontSize: "1.8rem" }}>
+              Awards & Competitions
+            </motion.h3>
+            <motion.div className="achievements-grid">
+              {awards.map((item, i) => (
+                <MotionLink
+                  href={`/achievement/${item.id}`}
+                  key={item.id}
+                  className="achievement-card glass achievement-card--clickable"
+                  style={{ textDecoration: 'none', display: 'block' }}
+                  variants={fade}
+                  custom={i + 3}
+                  whileHover={
+                    lite ? undefined : { y: -6, scale: 1.02, rotateX: 4 }
+                  }
+                  whileTap={{ scale: lite ? 0.99 : 0.98 }}
+                >
+                  <motion.div
+                    className="achievement-image-wrap"
+                    style={lite ? undefined : { translateZ: 8 }}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={400}
+                      height={300}
+                      className="achievement-image"
+                      sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 320px"
+                      quality={75}
+                      loading="lazy"
+                    />
+                    <span className="achievement-category">{item.category}</span>
+                  </motion.div>
+                  <motion.div
+                    className="achievement-body"
+                    style={lite ? undefined : { translateZ: 12 }}
+                  >
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <span className="achievement-tap-hint">View details →</span>
+                  </motion.div>
+                </MotionLink>
+              ))}
+            </motion.div>
+          </div>
+        )}
+
+        {certs.length > 0 && (
+          <div style={{ marginTop: "4rem" }}>
+            <motion.h3 variants={fade} custom={5} style={{ marginBottom: "1.5rem", fontSize: "1.8rem" }}>
+              Certifications & Training
+            </motion.h3>
+            <motion.div className="achievements-grid">
+              {certs.map((item, i) => (
+                <MotionLink
+                  href={`/achievement/${item.id}`}
+                  key={item.id}
+                  className="achievement-card glass achievement-card--clickable"
+                  style={{ textDecoration: 'none', display: 'block' }}
+                  variants={fade}
+                  custom={i + 6}
+                  whileHover={
+                    lite ? undefined : { y: -6, scale: 1.02, rotateX: 4 }
+                  }
+                  whileTap={{ scale: lite ? 0.99 : 0.98 }}
+                >
+                  <motion.div
+                    className="achievement-image-wrap"
+                    style={lite ? undefined : { translateZ: 8 }}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={400}
+                      height={300}
+                      className="achievement-image"
+                      sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 320px"
+                      quality={75}
+                      loading="lazy"
+                    />
+                    <span className="achievement-category">{item.category}</span>
+                  </motion.div>
+                  <motion.div
+                    className="achievement-body"
+                    style={lite ? undefined : { translateZ: 12 }}
+                  >
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <span className="achievement-tap-hint">View details →</span>
+                  </motion.div>
+                </MotionLink>
+              ))}
+            </motion.div>
+          </div>
+        )}
       </motion.div>
     </section>
   );
