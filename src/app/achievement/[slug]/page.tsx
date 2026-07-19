@@ -73,8 +73,17 @@ export default async function AchievementPage({
       {/* ── Right Scrolling Column ── */}
       <section className="split-right">
         {achievement.image && (
-          <div className="split-gallery">
-            <div className="split-gallery-image">
+          <div style={{ marginBottom: '3rem' }}>
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              aspectRatio: '16/10',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              border: '1px solid var(--glass-border)',
+              boxShadow: 'var(--shadow)',
+              background: 'var(--ice)',
+            }}>
               <Image
                 src={achievement.image}
                 alt={achievement.title}
@@ -82,6 +91,7 @@ export default async function AchievementPage({
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 quality={85}
                 priority
+                style={{ objectFit: 'contain' }}
               />
             </div>
           </div>

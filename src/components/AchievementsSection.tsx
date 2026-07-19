@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import LoadingLink from "./LoadingLink";
 import type { Achievement } from "@/lib/content";
+import { Trophy, Award, FileBadge, Code, Cpu, Shield, GraduationCap, Wrench, Bot } from "lucide-react";
 
 type AchievementsSectionProps = {
   achievements: Achievement[];
@@ -30,6 +30,19 @@ const fadeUpLite = {
 };
 
 const MotionLink = motion.create(LoadingLink);
+
+function getIconForCategory(category: string, isAward: boolean) {
+  const cat = category.toLowerCase();
+  if (cat.includes("robotics")) return <Bot size={40} strokeWidth={1.5} />;
+  if (cat.includes("cybersecurity")) return <Shield size={40} strokeWidth={1.5} />;
+  if (cat.includes("hackathon")) return <Code size={40} strokeWidth={1.5} />;
+  if (cat.includes("ai") || cat.includes("python")) return <Cpu size={40} strokeWidth={1.5} />;
+  if (cat.includes("hardware")) return <Wrench size={40} strokeWidth={1.5} />;
+  if (cat.includes("academy") || cat.includes("academic")) return <GraduationCap size={40} strokeWidth={1.5} />;
+  if (cat.includes("certification")) return <FileBadge size={40} strokeWidth={1.5} />;
+  if (isAward) return <Trophy size={40} strokeWidth={1.5} />;
+  return <Award size={40} strokeWidth={1.5} />;
+}
 
 export default function AchievementsSection({
   achievements,
@@ -70,102 +83,78 @@ export default function AchievementsSection({
           </a>
         </motion.p>
 
+        {/* ────── Awards & Competitions ────── */}
         {awards.length > 0 && (
-          <div style={{ marginTop: "3rem" }}>
-            <motion.div variants={fade} custom={2} style={{ marginBottom: "2rem" }}>
-              <h3 style={{ fontSize: "2rem", color: "#fff", display: "inline-block", borderBottom: "2px solid var(--aqua)", paddingBottom: "0.5rem" }}>
-                🏆 Awards & Competitions
-              </h3>
+          <div className="ach-group">
+            <motion.div variants={fade} custom={2} className="ach-group-header">
+              <span className="ach-group-icon">🏆</span>
+              <div>
+                <h3 className="ach-group-title">Awards & Competitions</h3>
+                <p className="ach-group-count">{awards.length} wins & placements</p>
+              </div>
             </motion.div>
             <motion.div className="achievements-grid">
               {awards.map((item, i) => (
                 <MotionLink
                   href={`/achievement/${item.id}`}
                   key={item.id}
-                  className="achievement-card glass achievement-card--clickable"
+                  className="ach-card glass"
                   style={{ textDecoration: 'none', display: 'block' }}
                   variants={fade}
                   custom={i + 3}
                   whileHover={
-                    lite ? undefined : { y: -6, scale: 1.02, rotateX: 4 }
+                    lite ? undefined : { y: -8, boxShadow: "0 24px 48px rgba(42, 154, 173, 0.18)" }
                   }
-                  whileTap={{ scale: lite ? 0.99 : 0.98 }}
+                  whileTap={{ scale: lite ? 0.99 : 0.97 }}
                 >
-                  <motion.div
-                    className="achievement-image-wrap"
-                    style={lite ? undefined : { translateZ: 8 }}
-                  >
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={400}
-                      height={300}
-                      className="achievement-image"
-                      sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 320px"
-                      quality={75}
-                      loading="lazy"
-                    />
-                    <span className="achievement-category">{item.category}</span>
-                  </motion.div>
-                  <motion.div
-                    className="achievement-body"
-                    style={lite ? undefined : { translateZ: 12 }}
-                  >
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <span className="achievement-tap-hint">View details →</span>
-                  </motion.div>
+                  <div className="ach-card-icon ach-card-icon--award">
+                    {getIconForCategory(item.category, true)}
+                  </div>
+                  <div className="ach-card-body">
+                    <span className="ach-card-category">{item.category}</span>
+                    <h3 className="ach-card-title">{item.title}</h3>
+                    <p className="ach-card-desc">{item.description}</p>
+                    <span className="ach-card-cta">View details →</span>
+                  </div>
                 </MotionLink>
               ))}
             </motion.div>
           </div>
         )}
 
+        {/* ────── Certifications & Training ────── */}
         {certs.length > 0 && (
-          <div style={{ marginTop: "6rem", paddingTop: "4rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-            <motion.div variants={fade} custom={5} style={{ marginBottom: "2rem" }}>
-              <h3 style={{ fontSize: "2rem", color: "#fff", display: "inline-block", borderBottom: "2px solid var(--aqua)", paddingBottom: "0.5rem" }}>
-                📜 Certifications & Training
-              </h3>
+          <div className="ach-group ach-group--certs">
+            <motion.div variants={fade} custom={5} className="ach-group-header">
+              <span className="ach-group-icon">📜</span>
+              <div>
+                <h3 className="ach-group-title">Certifications & Training</h3>
+                <p className="ach-group-count">{certs.length} certifications</p>
+              </div>
             </motion.div>
             <motion.div className="achievements-grid">
               {certs.map((item, i) => (
                 <MotionLink
                   href={`/achievement/${item.id}`}
                   key={item.id}
-                  className="achievement-card glass achievement-card--clickable"
+                  className="ach-card glass"
                   style={{ textDecoration: 'none', display: 'block' }}
                   variants={fade}
                   custom={i + 6}
                   whileHover={
-                    lite ? undefined : { y: -6, scale: 1.02, rotateX: 4 }
+                    lite ? undefined : { y: -8, boxShadow: "0 24px 48px rgba(42, 154, 173, 0.18)" }
                   }
-                  whileTap={{ scale: lite ? 0.99 : 0.98 }}
+                  whileTap={{ scale: lite ? 0.99 : 0.97 }}
                 >
-                  <motion.div
-                    className="achievement-image-wrap"
-                    style={lite ? undefined : { translateZ: 8 }}
-                  >
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={400}
-                      height={300}
-                      className="achievement-image"
-                      sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 320px"
-                      quality={75}
-                      loading="lazy"
-                    />
-                    <span className="achievement-category">{item.category}</span>
-                  </motion.div>
-                  <motion.div
-                    className="achievement-body"
-                    style={lite ? undefined : { translateZ: 12 }}
-                  >
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <span className="achievement-tap-hint">View details →</span>
-                  </motion.div>
+                  <div className="ach-card-icon ach-card-icon--cert">
+                    {getIconForCategory(item.category, false)}
+                  </div>
+                  <div className="ach-card-body">
+                    <span className="ach-card-category">{item.category}</span>
+                    <h3 className="ach-card-title">{item.title}</h3>
+                    <p className="ach-card-desc">{item.description}</p>
+                    <span className="ach-card-cta ach-card-cta--cert">View details →</span>
+                  </div>
                 </MotionLink>
               ))}
             </motion.div>
@@ -175,3 +164,4 @@ export default function AchievementsSection({
     </section>
   );
 }
+
