@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import LoadingLink from "./LoadingLink";
 import type { Achievement } from "@/lib/content";
 
 type AchievementsSectionProps = {
@@ -29,7 +29,7 @@ const fadeUpLite = {
   }),
 };
 
-const MotionLink = motion.create(Link);
+const MotionLink = motion.create(LoadingLink);
 
 export default function AchievementsSection({
   achievements,

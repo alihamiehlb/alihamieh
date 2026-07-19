@@ -24,10 +24,10 @@ import AchievementsSection from "./AchievementsSection";
 import DeployedProjects from "./DeployedProjects";
 import SocialLinks from "./SocialLinks";
 import AmbientMotion from "./AmbientMotion";
-import Link from "next/link";
+import LoadingLink from "./LoadingLink";
 import CvOpenButton from "./CvOpenButton";
 
-const MotionLink = motion.create(Link);
+const MotionLink = motion.create(LoadingLink);
 
 type ScrollSectionsProps = {
   cv: CvData;
@@ -685,9 +685,9 @@ function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boole
                 ))}
               </div>
             </div>
-            <Link href={`/project/${p.slug}`} className="carousel-cta" style={{ position: 'relative', zIndex: 10, cursor: 'pointer' }} onClick={(e) => e.stopPropagation()}>
+            <LoadingLink href={`/project/${p.slug}`} className="carousel-cta" style={{ position: 'relative', zIndex: 10, cursor: 'pointer' }} onClick={(e: any) => e.stopPropagation()}>
               View full project →
-            </Link>
+            </LoadingLink>
           </div>
         </motion.div>
       </AnimatePresence>

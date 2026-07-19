@@ -41,66 +41,58 @@ export default async function AchievementPage({
   }
 
   return (
-    <main className="project-detail-page">
-      {/* ── Full-width hero banner ── */}
-      <section className="pd-hero">
-        {achievement.image && (
-          <div className="pd-hero-bg">
-            <Image
-              src={achievement.image}
-              alt={achievement.title}
-              fill
-              sizes="100vw"
-              priority
-              quality={90}
-            />
-            <div className="pd-hero-overlay" />
-          </div>
-        )}
-        <div className="pd-hero-content">
-          <Link href="/#achievements" className="pd-back-link">
+    <main className="split-layout">
+      {/* ── Left Sticky Column ── */}
+      <aside className="split-left">
+        <div className="split-left-content">
+          <Link href="/#achievements" className="split-back">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
             Back to Achievements
           </Link>
-          <div className="pd-tech-row" style={{ marginTop: 0 }}>
-            <span className="pd-tech-chip">{achievement.category}</span>
+          
+          <h1 className="split-title">{achievement.title}</h1>
+          <p className="split-description">{achievement.description}</p>
+          
+          <div className="split-tags">
+            <span className="split-tag">{achievement.category}</span>
             {achievement.source === "award" && (
-              <span className="pd-featured-badge">🏆 Award</span>
+              <span className="split-tag" style={{ background: "rgba(255, 184, 0, 0.1)", borderColor: "rgba(255, 184, 0, 0.3)", color: "#ffb800" }}>🏆 Award</span>
             )}
           </div>
-          <h1 className="pd-title">{achievement.title}</h1>
-          <p className="pd-subtitle">{achievement.description}</p>
-        </div>
-      </section>
 
-      {/* ── Content body ── */}
-      <section className="pd-body-section" style={{ paddingTop: "3rem" }}>
-        <div className="pd-container">
-          <div className="pd-body-card">
-            <h2 className="pd-section-heading">Details</h2>
-            <div className="pd-prose">
-              {achievement.detail ? (
-                <Markdown>{achievement.detail}</Markdown>
-              ) : (
-                <p className="pd-empty">No additional details provided.</p>
-              )}
+          {achievement.instagramHighlight && (
+            <div className="split-primary-action">
+              <a href={site.instagramUrl} target="_blank" rel="noreferrer" className="btn-primary">
+                View on Instagram →
+              </a>
             </div>
+          )}
+        </div>
+      </aside>
 
-            {achievement.instagramHighlight && (
-              <div style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                <p style={{ color: "var(--aqua)", fontWeight: 600, fontSize: "0.95rem" }}>
-                  📸 As seen on Instagram: <span style={{ color: "rgba(255,255,255,0.7)" }}>{achievement.instagramHighlight}</span>
-                </p>
-                <a 
-                  href={site.instagramUrl} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="btn-primary" 
-                  style={{ marginTop: "1rem" }}
-                >
-                  View on Instagram →
-                </a>
-              </div>
+      {/* ── Right Scrolling Column ── */}
+      <section className="split-right">
+        {achievement.image && (
+          <div className="split-gallery">
+            <div className="split-gallery-image">
+              <Image
+                src={achievement.image}
+                alt={achievement.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                quality={85}
+                priority
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="split-content">
+          <div className="split-prose">
+            {achievement.detail ? (
+              <Markdown>{achievement.detail}</Markdown>
+            ) : (
+              <p className="pd-empty">No additional details provided.</p>
             )}
           </div>
         </div>
