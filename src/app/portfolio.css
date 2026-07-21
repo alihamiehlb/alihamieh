@@ -82,8 +82,10 @@
 .btn-ghost {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.65rem 1.3rem;
+  min-height: 44px;
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -1566,15 +1568,19 @@ html.portfolio-lite .character-video {
   .project-card:active,
   .deployed-card:active,
   .achievement-card--clickable:active,
+  .interview-card:active,
   .social-link:active {
     opacity: 0.92;
+    transform: scale(0.96) !important;
+    transition: transform 0.1s ease, opacity 0.1s ease;
   }
 
   .btn-primary:active,
   .btn-ghost:active {
-    transform: scale(0.98);
+    transform: scale(0.94) !important;
   }
 }
+
 
 @media (max-width: 900px) {
   .achievements-grid {

@@ -355,7 +355,7 @@ export default function ScrollSections({
                         ? undefined
                         : { y: -6, boxShadow: "0 24px 48px rgba(42,154,173,0.15)" }
                     }
-                    whileTap={{ scale: 0.98 }}
+                    whileTap={lite ? undefined : { scale: 0.95 }}
                   >
                     <div className="project-meta">
                       <h3>{p.title}</h3>
@@ -425,6 +425,7 @@ export default function ScrollSections({
                   viewport={{ once: true }}
                   transition={{ delay: lite ? i * 0.03 : i * 0.06 }}
                   whileHover={lite ? undefined : { y: -4 }}
+                  whileTap={lite ? undefined : { scale: 0.96 }}
                 >
                   <h4>{src.name}</h4>
                   <p>{src.focus}</p>
@@ -469,6 +470,7 @@ export default function ScrollSections({
               variants={fade}
               custom={i % 12}
               whileHover={lite ? undefined : { scale: 1.08, y: -3 }}
+              whileTap={lite ? undefined : { scale: 0.94 }}
             >
               {skill}
             </motion.span>
@@ -508,6 +510,7 @@ export default function ScrollSections({
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.07 }}
                 whileHover={lite ? undefined : { y: -6, boxShadow: "0 32px 64px rgba(42,154,173,0.18)" }}
+                whileTap={lite ? undefined : { scale: 0.97 }}
               >
                 <MotionLink
                   href={`/interview/${int.id}`}
