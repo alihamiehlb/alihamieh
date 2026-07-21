@@ -1,94 +1,6 @@
 {
   "projects": [
     {
-      "id": "kalo-academy",
-      "title": "SSA Academy",
-      "slug": "kalo-academy",
-      "tags": [
-        "web",
-        "education"
-      ],
-      "description": "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard.",
-      "overview": "Next.js app with Postgres (Prisma): search players, export CSV/JSON, generate invoices, and run the academy back-office. Live at ssa-shoot-score-academy.vercel.app.",
-      "techStack": [],
-      "dependencies": [],
-      "languages": [
-        {
-          "name": "TypeScript",
-          "count": 17
-        }
-      ],
-      "highlights": [
-        "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard."
-      ],
-      "structure": [],
-      "scripts": [],
-      "fileCount": 0,
-      "featured": true
-    },
-    {
-      "id": "holy-tunnel-operation",
-      "title": "Hash-Sec Tunnel",
-      "slug": "holy-tunnel-operation",
-      "tags": [
-        "mobile",
-        "security",
-        "azure"
-      ],
-      "description": "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone.",
-      "overview": "Flutter client provisions a VM in your Azure subscription, runs the hamieh relay, and uses Android VpnService + tun2socks so browsing goes through the tunnel. Fork of mission-sni-spoofing with on-device login instead of desktop CLI.",
-      "techStack": [],
-      "dependencies": [],
-      "languages": [
-        {
-          "name": "Python",
-          "count": 25
-        },
-        {
-          "name": "Dart",
-          "count": 1
-        }
-      ],
-      "highlights": [
-        "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone."
-      ],
-      "structure": [],
-      "scripts": [],
-      "fileCount": 0,
-      "featured": true
-    },
-    {
-      "id": "advertisment-proj",
-      "title": "Hamieh Ads",
-      "slug": "advertisment-proj",
-      "tags": [
-        "mobile",
-        "flutter",
-        "go"
-      ],
-      "description": "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks.",
-      "overview": "Combines a Dart/Flutter front end with Go binaries (whatsapp.go, native libs) for Windows/Android builds. Built for campaign and messaging automation use cases.",
-      "techStack": [],
-      "dependencies": [],
-      "languages": [
-        {
-          "name": "Dart",
-          "count": 39
-        },
-        {
-          "name": "JavaScript",
-          "count": 1
-        }
-      ],
-      "highlights": [
-        "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks."
-      ],
-      "structure": [],
-      "scripts": [],
-      "fileCount": 0,
-      "featured": true
-    },
-    {
       "id": "hamieh-jammer",
       "title": "Hamieh Jammer",
       "slug": "hamieh-jammer",
@@ -170,6 +82,63 @@
       ],
       "featured": true,
       "manual": true
+    },
+    {
+      "id": "kalo-academy",
+      "title": "SSA Academy",
+      "slug": "kalo-academy",
+      "tags": [
+        "web",
+        "education"
+      ],
+      "description": "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard.",
+      "overview": "Next.js app with Postgres (Prisma): search players, export CSV/JSON, generate invoices, and run the academy back-office. Live at ssa-shoot-score-academy.vercel.app.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "count": 17
+        }
+      ],
+      "highlights": [
+        "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "holy-tunnel-operation",
+      "title": "Hash-Sec Tunnel",
+      "slug": "holy-tunnel-operation",
+      "tags": [
+        "mobile",
+        "security",
+        "azure"
+      ],
+      "description": "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone.",
+      "overview": "Flutter client provisions a VM in your Azure subscription, runs the hamieh relay, and uses Android VpnService + tun2socks so browsing goes through the tunnel. Fork of mission-sni-spoofing with on-device login instead of desktop CLI.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 25
+        },
+        {
+          "name": "Dart",
+          "count": 1
+        }
+      ],
+      "highlights": [
+        "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
     },
     {
       "id": "automation-pentagon",
@@ -275,6 +244,37 @@
       ],
       "highlights": [
         "Data pipeline that turns raw spreadsheets into cleaned JSON and formatted Word reports with stats and loss summaries."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "advertisment-proj",
+      "title": "Hamieh Ads",
+      "slug": "advertisment-proj",
+      "tags": [
+        "mobile",
+        "flutter",
+        "go"
+      ],
+      "description": "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks.",
+      "overview": "Combines a Dart/Flutter front end with Go binaries (whatsapp.go, native libs) for Windows/Android builds. Built for campaign and messaging automation use cases.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Dart",
+          "count": 39
+        },
+        {
+          "name": "JavaScript",
+          "count": 1
+        }
+      ],
+      "highlights": [
+        "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks."
       ],
       "structure": [],
       "scripts": [],

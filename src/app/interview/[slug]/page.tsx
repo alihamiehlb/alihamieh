@@ -2,7 +2,7 @@ import { getSiteContent } from "@/lib/get-site-content";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Tv, Radio, Globe, Share2, ExternalLink, ArrowLeft, Calendar, Mic, Facebook, Youtube, Link as LinkIcon } from "lucide-react";
+import { Tv, Radio, Globe, Share2, ExternalLink, ArrowLeft, Calendar, Mic, MessageCircle, PlayCircle, Link as LinkIcon } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -184,7 +184,7 @@ export default async function InterviewPage({
                   className="interview-media-card glass"
                 >
                   <div className="interview-media-card-icon">
-                    {isFb ? <Facebook size={18} /> : isYt ? <Youtube size={18} /> : <LinkIcon size={18} />}
+                    {isFb ? <MessageCircle size={18} /> : isYt ? <PlayCircle size={18} /> : <LinkIcon size={18} />}
                   </div>
                   <div className="interview-media-card-body">
                     <span className="interview-media-card-label">{link.label}</span>

@@ -7,13 +7,13 @@ const root = path.join(__dirname, "..");
 const FOLDERS_ROOT = process.env.FOLDERS_ROOT || "c:\\folders";
 
 const SHOWCASE_DIRS = [
-  { slug: "kalo-academy", title: "SSA Academy", tags: ["web", "education"], featured: true },
-  { slug: "holy-tunnel-operation", title: "Hash-Sec Tunnel", tags: ["mobile", "security", "azure"], featured: true },
+  { slug: "kalo-academy", title: "SSA Academy", tags: ["web", "education"] },
+  { slug: "holy-tunnel-operation", title: "Hash-Sec Tunnel", tags: ["mobile", "security", "azure"] },
   { slug: "holy_grail", title: "Holy Grail", tags: ["full-stack"] },
   { slug: "automation-pentagon", title: "Khaybar News Bot", tags: ["automation", "python", "ai"] },
   { slug: "automation_secret_mission", title: "Automation Secret Mission", tags: ["automation"] },
   { slug: "web development projects", title: "Web Development Collection", tags: ["web"] },
-  { slug: "flutter  projects folder", title: "Flutter Mobile Suite", tags: ["mobile", "flutter"], featured: true },
+  { slug: "flutter  projects folder", title: "Flutter Mobile Suite", tags: ["mobile", "flutter"] },
   { slug: "cnc-project", title: "CNC & Maker Lab", tags: ["hardware", "cnc"] },
   { slug: "trading_bot", title: "RL Trading Agent", tags: ["python", "ml", "finance"] },
   { slug: "data_cleaning", title: "Data Cleaning Pipeline", tags: ["python", "data"] },
@@ -22,8 +22,7 @@ const SHOWCASE_DIRS = [
     slug: "advertisment-proj",
     title: "Hamieh Ads",
     tags: ["mobile", "flutter", "go"],
-    base: path.join(root, "..", "advertisment-proj"),
-    featured: true,
+    base: path.join(root, "..", "advertisment-proj")
   },
 ];
 
