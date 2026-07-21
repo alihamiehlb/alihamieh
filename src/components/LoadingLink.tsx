@@ -30,9 +30,37 @@ const LoadingLink = forwardRef<HTMLAnchorElement, LoadingLinkProps>(
         href={href.toString()}
         className={`${className || ""} ${isPending ? "is-loading" : ""}`}
         onClick={handleClick}
-        style={rest.style}
+        style={{ ...rest.style, position: "relative" }}
+        aria-busy={isPending}
       >
         {children}
+        {isPending && (
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "rgba(10, 12, 20, 0.45)",
+              backdropFilter: "blur(4px)",
+              borderRadius: "inherit",
+              zIndex: 10,
+            }}
+          >
+            <span
+              style={{
+                width: "1.6rem",
+                height: "1.6rem",
+                border: "2.5px solid rgba(255,255,255,0.2)",
+                borderTopColor: "var(--aqua)",
+                borderRadius: "50%",
+                animation: "spin 0.75s linear infinite",
+              }}
+            />
+          </span>
+        )}
       </a>
     );
   }

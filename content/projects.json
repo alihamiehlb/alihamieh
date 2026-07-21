@@ -1,59 +1,6 @@
 {
   "projects": [
     {
-      "id": "luxe-boutique",
-      "title": "Luxe Boutique",
-      "slug": "luxe-boutique",
-      "tags": [
-        "web",
-        "e-commerce",
-        "node.js",
-        "vite"
-      ],
-      "description": "A full luxury fashion store in the browser — browse dresses and accessories, add to cart, check out, and log in as a customer or admin to manage stock.",
-      "overview": "Built with React and Vite. Shoppers search categories, pick sizes and colors, and use a live cart. Admins edit products, stock, and orders from the same app — it is a complete boutique storefront, not just a landing page.",
-      "techStack": [
-        "Node.js",
-        "Vite"
-      ],
-      "dependencies": [
-        "lucide-react",
-        "react",
-        "react-dom",
-        "@eslint/js",
-        "@tailwindcss/postcss",
-        "@types/react",
-        "@types/react-dom",
-        "@vitejs/plugin-react",
-        "autoprefixer",
-        "eslint",
-        "eslint-plugin-react-hooks",
-        "eslint-plugin-react-refresh",
-        "globals",
-        "postcss",
-        "tailwindcss",
-        "vite"
-      ],
-      "languages": [
-        {
-          "name": "JavaScript",
-          "count": 5
-        }
-      ],
-      "highlights": [
-        "A full luxury fashion store in the browser — browse dresses and accessories, add to cart, check out, and log in as a customer or admin to manage stock."
-      ],
-      "structure": [],
-      "scripts": [
-        "dev",
-        "build",
-        "lint",
-        "preview"
-      ],
-      "fileCount": 0,
-      "featured": true
-    },
-    {
       "id": "kalo-academy",
       "title": "SSA Academy",
       "slug": "kalo-academy",
@@ -73,39 +20,6 @@
       ],
       "highlights": [
         "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard."
-      ],
-      "structure": [],
-      "scripts": [],
-      "fileCount": 0,
-      "featured": true
-    },
-    {
-      "id": "tzeva_adom_blue_dashboard",
-      "title": "Tzeva Adom Dashboard",
-      "slug": "tzeva_adom_blue_dashboard",
-      "tags": [
-        "web",
-        "dashboard",
-        "python"
-      ],
-      "description": "A blue-themed dashboard that maps Tzeva Adom alert history — filter by date, see threat types, and compare activity across cities from spreadsheet data.",
-      "overview": "Flask app loads cities, polygons, and historical alerts from Excel, then charts alerts per day, threat breakdowns, and top affected cities. Built to explore real alert datasets interactively in the browser.",
-      "techStack": [
-        "Python"
-      ],
-      "dependencies": [],
-      "languages": [
-        {
-          "name": "Python",
-          "count": 1
-        },
-        {
-          "name": "JavaScript",
-          "count": 1
-        }
-      ],
-      "highlights": [
-        "A blue-themed dashboard that maps Tzeva Adom alert history — filter by date, see threat types, and compare activity across cities from spreadsheet data."
       ],
       "structure": [],
       "scripts": [],

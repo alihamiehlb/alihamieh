@@ -320,9 +320,9 @@ export default function ScrollSections({
           Hardware builds, apps, and more — swipe through to explore.
         </motion.p>
 
-        <ProjectsCarousel projects={imageProjects} lite={lite} />
+        <ProjectsCarousel projects={featured.length > 0 ? featured : projects} lite={lite} />
 
-        {textProjects.length > 0 && (
+        {rest.length > 0 && (
           <>
             <motion.h3
               className="projects-more-title"
@@ -343,7 +343,7 @@ export default function ScrollSections({
                 },
               }}
             >
-              {textProjects.map((p, i) => (
+              {rest.map((p, i) => (
                 <motion.div key={p.id} variants={fade} custom={i}>
                   <MotionLink
                     href={`/project/${p.slug}`}
@@ -498,29 +498,45 @@ export default function ScrollSections({
           >
             Media appearances, TV segments, and interviews.
           </motion.p>
-          <div className="project-grid mt-4">
+          <div className="interview-grid mt-4">
             {interviews.map((int: any, i: number) => (
-              <MotionLink
+              <motion.div
                 key={int.id}
-                href={`/interview/${int.id}`}
-                className="project-card glass"
-                style={{ textDecoration: 'none', display: 'block' }}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={lite ? undefined : { y: -8, boxShadow: "0 32px 64px rgba(42,154,173,0.2)" }}
+                transition={{ delay: i * 0.07 }}
+                whileHover={lite ? undefined : { y: -6, boxShadow: "0 32px 64px rgba(42,154,173,0.18)" }}
               >
-                <div className="project-meta">
-                  <h3>{int.titleEn || int.title}</h3>
-                  <span className="badge">{int.outletEn || int.outlet}</span>
-                </div>
-                <p className="project-desc">{int.description}</p>
-                <div className="tags">
-                  <span>{int.date}</span>
-                </div>
-                <span className="project-cta">View Interview →</span>
-              </MotionLink>
+                <MotionLink
+                  href={`/interview/${int.id}`}
+                  className="interview-card glass"
+                  style={{ textDecoration: 'none', display: 'block' }}
+                >
+                  {/* Thumbnail */}
+                  <div className="interview-card-thumb">
+                    {int.image ? (
+                      <img src={int.image} alt={int.titleEn || int.title} className="interview-card-img" />
+                    ) : (
+                      <div className="interview-card-thumb-placeholder">
+                        {int.type === "tv" ? "📺" : int.type === "radio" ? "🎙️" : "🌐"}
+                      </div>
+                    )}
+                    <span className={`interview-card-type interview-card-type--${int.type || "online"}`}>
+                      {int.type === "tv" ? "TV" : int.type === "radio" ? "Radio" : int.type === "social" ? "Social" : "Online"}
+                    </span>
+                  </div>
+                  <div className="interview-card-body">
+                    <p className="interview-card-outlet">{int.outletEn || int.outlet}</p>
+                    <h3 className="interview-card-title">{int.titleEn || int.title}</h3>
+                    <p className="interview-card-desc">{int.descriptionEn || int.description}</p>
+                    <div className="interview-card-footer">
+                      <span className="interview-card-date">{int.year || int.date?.slice(0, 4)}</span>
+                      <span className="interview-card-cta">Read more →</span>
+                    </div>
+                  </div>
+                </MotionLink>
+              </motion.div>
             ))}
           </div>
         </SectionPanel>
@@ -657,7 +673,16 @@ function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boole
               </AnimatePresence>
             ) : (
               <div className="carousel-img-placeholder">
-                <span>🚀</span>
+                <div className="carousel-tech-visual">
+                  <div className="carousel-tech-tags">
+                    {p.tags.slice(0, 5).map((t: string) => (
+                      <span key={t} className="carousel-tech-tag">{t}</span>
+                    ))}
+                  </div>
+                  <div className="carousel-tech-lines">
+                    <div /><div /><div /><div />
+                  </div>
+                </div>
               </div>
             )}
             {(p as any).images && (p as any).images.length > 1 && (

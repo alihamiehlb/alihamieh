@@ -20,7 +20,6 @@ export type CvDocumentData = {
   selectedProjects?: { name: string; role: string; url?: string }[];
   certifications?: string[];
   achievements?: { title: string; subtitle?: string; summary: string; implementation?: string }[];
-  interviews?: { title: string; url: string }[];
   lastUpdated?: string;
   documentFileName?: string;
 };
@@ -37,7 +36,7 @@ export default function CvDocument({ cv, showToolbar = true }: CvDocumentProps) 
 
   return (
     <div className="cv-page">
-      {showToolbar && <CvToolbar fileName={fileName} />}
+      {showToolbar && <CvToolbar />}
 
       <article className="cv-sheet" id="cv-document">
         <header className="cv-header">
@@ -181,22 +180,6 @@ export default function CvDocument({ cv, showToolbar = true }: CvDocumentProps) 
                 </div>
               ))}
             </section>
-
-            {cv.interviews && cv.interviews.length > 0 && (
-              <section className="cv-section">
-                <h2>Media & Interviews</h2>
-                {cv.interviews.map((interview) => (
-                  <div key={interview.title} className="cv-project-row">
-                    <span>
-                      <strong>{interview.title}</strong>
-                    </span>
-                    <a href={interview.url} target="_blank" rel="noreferrer">
-                      View ↗
-                    </a>
-                  </div>
-                ))}
-              </section>
-            )}
           </main>
         </div>
 

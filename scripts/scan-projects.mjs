@@ -7,9 +7,7 @@ const root = path.join(__dirname, "..");
 const FOLDERS_ROOT = process.env.FOLDERS_ROOT || "c:\\folders";
 
 const SHOWCASE_DIRS = [
-  { slug: "luxe-boutique", title: "Luxe Boutique", tags: ["web", "e-commerce"], featured: true },
   { slug: "kalo-academy", title: "SSA Academy", tags: ["web", "education"], featured: true },
-  { slug: "tzeva_adom_blue_dashboard", title: "Tzeva Adom Dashboard", tags: ["web", "dashboard"], featured: true },
   { slug: "holy-tunnel-operation", title: "Hash-Sec Tunnel", tags: ["mobile", "security", "azure"], featured: true },
   { slug: "holy_grail", title: "Holy Grail", tags: ["full-stack"] },
   { slug: "automation-pentagon", title: "Khaybar News Bot", tags: ["automation", "python", "ai"] },
@@ -29,7 +27,7 @@ const SHOWCASE_DIRS = [
   },
 ];
 
-const EXCLUDE_SLUGS = new Set(["final_project"]);
+const EXCLUDE_SLUGS = new Set(["final_project", "tzeva_adom_blue_dashboard", "luxe-boutique"]);
 
 const SKIP = new Set([
   "node_modules", ".git", ".next", "dist", "build", ".idea",

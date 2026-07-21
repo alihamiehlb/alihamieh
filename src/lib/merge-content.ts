@@ -32,7 +32,8 @@ export function buildSiteContent(overrides: SiteOverrides | null): SiteContent {
     overrides?.projects !== undefined
       ? overrides.projects
       : projectsData.projects;
-  const projects = rawProjects.filter((p) => p.id !== "final_project");
+  const EXCLUDED = new Set(["final_project", "tzeva_adom_blue_dashboard", "luxe-boutique"]);
+  const projects = rawProjects.filter((p) => !EXCLUDED.has(p.id));
 
   const interviews = overrides?.interviews !== undefined ? overrides.interviews : (interviewsData.interviews || []);
 
