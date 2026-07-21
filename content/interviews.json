@@ -27,7 +27,10 @@
       "descriptionEn": "TV interview on Lebanon TV's national channel upon receiving the AI diploma.",
       "type": "tv",
       "links": [
-        { "label": "Facebook Reel", "url": "https://www.facebook.com/reel/1940248253195041" }
+        {
+          "label": "Facebook Reel",
+          "url": "https://www.facebook.com/reel/1940248253195041"
+        }
       ],
       "image": null,
       "featured": true
@@ -44,7 +47,10 @@
       "descriptionEn": "Video report by Al-Marfaa news site on receiving the university AI diploma.",
       "type": "online",
       "links": [
-        { "label": "Facebook Reel", "url": "https://www.facebook.com/reel/1248820560430711" }
+        {
+          "label": "Facebook Reel",
+          "url": "https://www.facebook.com/reel/1248820560430711"
+        }
       ],
       "image": null,
       "featured": false
@@ -61,10 +67,16 @@
       "descriptionEn": "Ya Sour news site coverage of receiving the university diploma in Artificial Intelligence.",
       "type": "online",
       "links": [
-        { "label": "yasour.org", "url": "https://www.yasour.org/744459" },
-        { "label": "Facebook Post", "url": "https://www.facebook.com/yasour.org/posts/pfbid0baTvdTRiUjXT3GqCuAtTX6pGYCQ7oHycbJzs9Qe1LSP3K1Nb7dk4D2d7eZoY4Wv4l" }
+        {
+          "label": "yasour.org",
+          "url": "https://www.yasour.org/744459"
+        },
+        {
+          "label": "Facebook Post",
+          "url": "https://www.facebook.com/yasour.org/posts/pfbid0baTvdTRiUjXT3GqCuAtTX6pGYCQ7oHycbJzs9Qe1LSP3K1Nb7dk4D2d7eZoY4Wv4l"
+        }
       ],
-      "image": null,
+      "image": "/interviews/yasour-diploma-2026.webp",
       "featured": false
     },
     {
@@ -79,7 +91,10 @@
       "descriptionEn": "Clip from Innovators Academy after completing the Advanced Robotics Course — Ali built a Morse Code game from scratch, bridging hardware and logical thinking.",
       "type": "social",
       "links": [
-        { "label": "Facebook Reel", "url": "https://www.facebook.com/reel/2045564696280320" }
+        {
+          "label": "Facebook Reel",
+          "url": "https://www.facebook.com/reel/2045564696280320"
+        }
       ],
       "image": null,
       "featured": false
@@ -96,8 +111,14 @@
       "descriptionEn": "Live TV interview on LBCI about winning 2nd place in the Arab AI Olympiad, representing Lebanon at the regional level.",
       "type": "tv",
       "links": [
-        { "label": "Facebook Video 1", "url": "https://www.facebook.com/watch/?v=1983497972058220" },
-        { "label": "Facebook Video 2", "url": "https://www.facebook.com/watch/?v=541119318880852" }
+        {
+          "label": "Facebook Video 1",
+          "url": "https://www.facebook.com/watch/?v=1983497972058220"
+        },
+        {
+          "label": "Facebook Video 2",
+          "url": "https://www.facebook.com/watch/?v=541119318880852"
+        }
       ],
       "image": null,
       "featured": true
@@ -114,9 +135,12 @@
       "descriptionEn": "Ali Hamieh from Tyre shines on the Arab stage, gifting Lebanon an achievement in Artificial Intelligence.",
       "type": "online",
       "links": [
-        { "label": "sawtalfarah.com", "url": "https://www.sawtalfarah.com/?p=342325" }
+        {
+          "label": "sawtalfarah.com",
+          "url": "https://www.sawtalfarah.com/?p=342325"
+        }
       ],
-      "image": null,
+      "image": "/interviews/sawtalfarah-olympiad-2025.webp",
       "featured": false
     },
     {
@@ -131,9 +155,12 @@
       "descriptionEn": "Lebanon shines in the Arab AI Olympiad — a new achievement added to the innovation record.",
       "type": "online",
       "links": [
-        { "label": "lebanon24.com", "url": "https://www.lebanon24.com/news/lebanon/1353823/lebanon24-article" }
+        {
+          "label": "lebanon24.com",
+          "url": "https://www.lebanon24.com/news/lebanon/1353823/lebanon24-article"
+        }
       ],
-      "image": null,
+      "image": "/interviews/lebanon24-olympiad-2025.webp",
       "featured": false
     },
     {
@@ -148,9 +175,12 @@
       "descriptionEn": "A remarkable Lebanese achievement at the Arab AI Olympiad 2025.",
       "type": "online",
       "links": [
-        { "label": "alimantv.com.lb", "url": "https://www.alimantv.com.lb/article/17218/AlimanTV-Article" }
+        {
+          "label": "alimantv.com.lb",
+          "url": "https://www.alimantv.com.lb/article/17218/AlimanTV-Article"
+        }
       ],
-      "image": null,
+      "image": "/interviews/alimantv-olympiad-2025.webp",
       "featured": false
     },
     {
@@ -165,7 +195,10 @@
       "descriptionEn": "Lebanon achieved a remarkable milestone in tech and AI — Ali Hamieh, Mohammad Malhem, and Jihad Diab from Innovators Academy secured 2nd place.",
       "type": "tv",
       "links": [
-        { "label": "Facebook Post", "url": "https://www.facebook.com/share/p/1DsA7uX3jk/" }
+        {
+          "label": "Facebook Post",
+          "url": "https://www.facebook.com/share/p/1DsA7uX3jk/"
+        }
       ],
       "image": null,
       "featured": true
@@ -182,9 +215,12 @@
       "descriptionEn": "Students from Innovators Academy win at the Arab AI Olympiad in Jordan — official National News Agency coverage.",
       "type": "online",
       "links": [
-        { "label": "nna-leb.gov.lb", "url": "https://nna-leb.gov.lb/ar/news/346193/%D9%81%D9%88%D8%B2-%D8%B7%D9%84%D8%A7%D8%A8-%D9%85%D9%86-%D9%85%D8%B9%D9%87%D8%AF-innovators-academy-%D9%81%D9%8A-%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D8%A9-%D8%B6%D9%85%D9%86" }
+        {
+          "label": "nna-leb.gov.lb",
+          "url": "https://nna-leb.gov.lb/ar/news/346193/%D9%81%D9%88%D8%B2-%D8%B7%D9%84%D8%A7%D8%A8-%D9%85%D9%86-%D9%85%D8%B9%D9%87%D8%AF-innovators-academy-%D9%81%D9%8A-%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D8%A9-%D8%B6%D9%85%D9%86"
+        }
       ],
-      "image": null,
+      "image": "/interviews/nna-olympiad-2025.webp",
       "featured": false
     },
     {
@@ -199,9 +235,12 @@
       "descriptionEn": "Lebanese students claim 2nd place in technology and artificial intelligence.",
       "type": "online",
       "links": [
-        { "label": "znnlb.com", "url": "https://znnlb.com/?p=586630" }
+        {
+          "label": "znnlb.com",
+          "url": "https://znnlb.com/?p=586630"
+        }
       ],
-      "image": null,
+      "image": "/interviews/znn-olympiad-2025.webp",
       "featured": false
     },
     {
@@ -216,9 +255,12 @@
       "descriptionEn": "The A.S.D project wins 1st place in the Innovation category at the 4th MC2 Technology Competition.",
       "type": "online",
       "links": [
-        { "label": "lebanon24.com", "url": "https://www.lebanon24.com/news/wedding-events/1203209/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-asd-%D9%8A%D9%81%D9%88%D8%B2-%D8%A8%D8%A7%D9%84%D9%85%D8%B1%D8%AA%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89-%D8%B9%D9%86-%D9%81%D8%A6%D8%A9-%D8%A7%D9%84%D8%A5%D8%A8%D8%AA%D9%83%D8%A7%D8%B1%D8%A7%D8%AA-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC" }
+        {
+          "label": "lebanon24.com",
+          "url": "https://www.lebanon24.com/news/wedding-events/1203209/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-asd-%D9%8A%D9%81%D9%88%D8%B2-%D8%A8%D8%A7%D9%84%D9%85%D8%B1%D8%AA%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89-%D8%B9%D9%86-%D9%81%D8%A6%D8%A9-%D8%A7%D9%84%D8%A5%D8%A8%D8%AA%D9%83%D8%A7%D8%B1%D8%A7%D8%AA-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC"
+        }
       ],
-      "image": null,
+      "image": "/interviews/lebanon24-mc2-2024.webp",
       "featured": true
     },
     {
@@ -233,8 +275,14 @@
       "descriptionEn": "Al-Mahdi Secondary School in Tyre secured four placements in the top three spots at the 4th MC2 Technology Competition.",
       "type": "online",
       "links": [
-        { "label": "Facebook Post", "url": "https://www.facebook.com/share/p/1BXzjapSQ1/" },
-        { "label": "baldatee.com", "url": "https://baldatee.com/?p=81725" }
+        {
+          "label": "Facebook Post",
+          "url": "https://www.facebook.com/share/p/1BXzjapSQ1/"
+        },
+        {
+          "label": "baldatee.com",
+          "url": "https://baldatee.com/?p=81725"
+        }
       ],
       "image": null,
       "featured": false
@@ -251,9 +299,12 @@
       "descriptionEn": "Al-Jadeed TV interview — Ali Hamieh's innovative Alzhelper project wins 2nd place at the ARC Robotics Championship.",
       "type": "tv",
       "links": [
-        { "label": "YouTube", "url": "https://www.youtube.com/watch?v=ikI3PcbU91g" }
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/watch?v=ikI3PcbU91g"
+        }
       ],
-      "image": null,
+      "image": "/interviews/jadeed-arc-robotics-2023.webp",
       "featured": true
     },
     {
@@ -268,7 +319,10 @@
       "descriptionEn": "Interview on Noursat TV about the Alzhelper innovative project designed for Alzheimer's patients.",
       "type": "tv",
       "links": [
-        { "label": "Facebook Video", "url": "https://www.facebook.com/share/v/1PUcmQQqSE/" }
+        {
+          "label": "Facebook Video",
+          "url": "https://www.facebook.com/share/v/1PUcmQQqSE/"
+        }
       ],
       "image": null,
       "featured": false
@@ -285,7 +339,10 @@
       "descriptionEn": "Radio Lebanon interview on the Alzheimer's-aid innovation that won 2nd place at the ARC championship among 300 participants from 70 teams across Lebanon and Syria.",
       "type": "radio",
       "links": [
-        { "label": "Facebook Audio", "url": "https://www.facebook.com/share/v/1LXFT2hPjE/" }
+        {
+          "label": "Facebook Audio",
+          "url": "https://www.facebook.com/share/v/1LXFT2hPjE/"
+        }
       ],
       "image": null,
       "featured": false
@@ -302,7 +359,10 @@
       "descriptionEn": "Lebanon TV interview with Ali Hamieh and his team who won 2nd place at the ARC Robotics Championship.",
       "type": "tv",
       "links": [
-        { "label": "Facebook Video", "url": "https://www.facebook.com/share/v/191qVNcjEv/" }
+        {
+          "label": "Facebook Video",
+          "url": "https://www.facebook.com/share/v/191qVNcjEv/"
+        }
       ],
       "image": null,
       "featured": true
@@ -319,11 +379,20 @@
       "descriptionEn": "A world-first innovation — 13-year-old Ali Hamieh's Alzheimer's-aid project wins 2nd place at Lebanon's Robotics Championship.",
       "type": "online",
       "links": [
-        { "label": "bintjbeil.org", "url": "https://bintjbeil.org/post/64256/" },
-        { "label": "Photos 1", "url": "https://www.facebook.com/share/p/1Cmzsz12tW/" },
-        { "label": "Photos 2", "url": "https://www.facebook.com/share/p/1HcKT6qiin/" }
+        {
+          "label": "bintjbeil.org",
+          "url": "https://bintjbeil.org/post/64256/"
+        },
+        {
+          "label": "Photos 1",
+          "url": "https://www.facebook.com/share/p/1Cmzsz12tW/"
+        },
+        {
+          "label": "Photos 2",
+          "url": "https://www.facebook.com/share/p/1HcKT6qiin/"
+        }
       ],
-      "image": null,
+      "image": "/interviews/bintjbeil-alzhelper-2023.webp",
       "featured": false
     },
     {
@@ -338,7 +407,10 @@
       "descriptionEn": "Python course student showcase — 12-year-old Ali Hamieh programs a Ping Pong game. His very first public appearance at age 12.",
       "type": "social",
       "links": [
-        { "label": "Facebook Video", "url": "https://www.facebook.com/share/v/1ELM1Dq7SC/" }
+        {
+          "label": "Facebook Video",
+          "url": "https://www.facebook.com/share/v/1ELM1Dq7SC/"
+        }
       ],
       "image": null,
       "featured": false
