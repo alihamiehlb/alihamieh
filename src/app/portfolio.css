@@ -2399,3 +2399,182 @@ html.portfolio-lite .character-video {
 /* ══════════════════════════════════════════
    GLOBAL BUTTON UX IMPROVEMENTS
    ══════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════
+   INTERVIEW DETAIL PAGE
+   ══════════════════════════════════════════ */
+
+.interview-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.interview-ar-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  direction: rtl;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.interview-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--ice);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+}
+
+.interview-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.interview-meta-item svg {
+  color: var(--aqua-dark);
+  flex-shrink: 0;
+}
+
+.interview-links-section {
+  margin-top: 1rem;
+}
+
+.interview-links-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+}
+
+.interview-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.interview-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--aqua), var(--aqua-dark));
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(42, 154, 173, 0.25);
+}
+
+.interview-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(42, 154, 173, 0.35);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Arabic content block */
+.interview-ar-block {
+  margin-bottom: 2rem;
+  text-align: right;
+}
+
+.interview-ar-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--aqua-dark);
+  margin-bottom: 0.75rem;
+}
+
+.interview-ar-body {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--text);
+  direction: rtl;
+}
+
+/* Media link cards */
+.interview-media-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.interview-media-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.interview-media-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(42, 154, 173, 0.12);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.interview-media-card-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.interview-media-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.interview-media-card-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.interview-media-card-domain {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.interview-media-card-arrow {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.interview-media-card:hover .interview-media-card-arrow {
+  color: var(--aqua-dark);
+}
+

@@ -37,7 +37,7 @@ function emptyProject(): ProjectRecord {
   return { id: `project-${Date.now()}`, title: "", description: "", tags: [], featured: false, images: [], content: "" };
 }
 function emptyInterview(): InterviewRecord {
-  return { id: `interview-${Date.now()}`, title: "", channel: "", date: "", description: "", url: "", image: "" };
+  return { id: `interview-${Date.now()}`, title: "", outlet: "", date: "", year: new Date().getFullYear(), description: "", type: "online", links: [], image: null, featured: false };
 }
 
 function AccordionItem({ title, isOpen, onToggle, children, onMoveUp, onMoveDown, onDelete, isFirst, isLast }: any) {
@@ -547,16 +547,16 @@ export default function AdminPanel() {
                       <input value={int.title} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, title: e.target.value } : item))} />
                     </div>
                     <div className="admin-field">
-                      <label>Channel / Platform</label>
-                      <input value={int.channel} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, channel: e.target.value } : item))} />
+                      <label>Outlet</label>
+                      <input value={int.outlet} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, outlet: e.target.value } : item))} />
                     </div>
                     <div className="admin-field">
                       <label>Date (e.g. Oct 2024)</label>
                       <input value={int.date} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, date: e.target.value } : item))} />
                     </div>
                     <div className="admin-field">
-                      <label>Video URL</label>
-                      <input value={int.url} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, url: e.target.value } : item))} />
+                      <label>First Link URL</label>
+                      <input value={int.links?.[0]?.url || ""} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, links: [{ label: "Link", url: e.target.value }] } : item))} />
                     </div>
                     <div className="admin-field col-span-2">
                       <label>Description</label>
@@ -565,7 +565,7 @@ export default function AdminPanel() {
                     <div className="admin-field col-span-2">
                       <label>Image URL</label>
                       <div className="image-input-group">
-                        <input value={int.image || int.thumbnail || ""} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, image: e.target.value } : item))} placeholder="Upload or paste URL" />
+                        <input value={int.image || ""} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, image: e.target.value } : item))} placeholder="Upload or paste URL" />
                         <label className="admin-btn admin-btn--ghost upload-btn">
                           Upload
                           <input type="file" accept="image/*" hidden onChange={(e) => {
@@ -574,7 +574,7 @@ export default function AdminPanel() {
                           }} />
                         </label>
                       </div>
-                      {(int.image || int.thumbnail) && <img src={int.image || int.thumbnail} alt="Preview" className="admin-image-preview mt-2" />}
+                      {int.image && <img src={int.image} alt="Preview" className="admin-image-preview mt-2" />}
                     </div>
                   </AccordionItem>
                 ))}

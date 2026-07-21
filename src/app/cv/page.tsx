@@ -34,7 +34,7 @@ export default async function CvPage() {
     selectedProjects: (base.selectedProjects as CvDocumentData["selectedProjects"]) || [],
     certifications: (base.certifications as string[]) || [],
     achievements: (base.achievements as CvDocumentData["achievements"]) || [],
-    interviews: (site.interviews || []).map((i) => ({ title: i.title, url: i.url })),
+    interviews: (site.interviews || []).map((i) => ({ title: i.titleEn || i.title, url: i.links?.[0]?.url || "#" })),
     lastUpdated: String(base.lastUpdated || ""),
     documentFileName: String(base.documentFileName || "Ali_Hamieh_CV_2026.html"),
   };

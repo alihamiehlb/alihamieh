@@ -1,3 +1,347 @@
 {
-  "interviews": []
+  "interviews": [
+    {
+      "id": "alimantv-ai-diploma-2026",
+      "title": "مقابلة قناة ALIMANTV — دبلوم الذكاء الاصطناعي",
+      "titleEn": "ALIMANTV Interview — AI Diploma at 16",
+      "date": "2026-02-06",
+      "year": 2026,
+      "outlet": "ALIMANTV",
+      "outletEn": "ALIMANTV (TV Channel)",
+      "description": "مقابلة عبر قناة ALIMANTV مع الزميلة جنان حسين ضمن برنامج Zoomin — علي حسين حمية، ابن الـ ١٦ عامًا ينال دبلومًا في الذكاء الاصطناعي.",
+      "descriptionEn": "Television interview on ALIMANTV's Zoomin programme with journalist Jinan Hussein — 16-year-old Ali Hamieh earns an AI diploma.",
+      "type": "tv",
+      "links": [],
+      "image": null,
+      "featured": true
+    },
+    {
+      "id": "lbci-tv-2026",
+      "title": "مقابلة تلفزيون لبنان — دبلوم الذكاء الاصطناعي",
+      "titleEn": "Lebanon TV — AI Diploma Coverage",
+      "date": "2026-02-06",
+      "year": 2026,
+      "outlet": "تلفزيون لبنان",
+      "outletEn": "Lebanon TV (Télé Liban)",
+      "description": "المقابلة التلفزيونية عبر تلفزيون لبنان بمناسبة نيل دبلوم الذكاء الاصطناعي.",
+      "descriptionEn": "TV interview on Lebanon TV's national channel upon receiving the AI diploma.",
+      "type": "tv",
+      "links": [
+        { "label": "Facebook Reel", "url": "https://www.facebook.com/reel/1940248253195041" }
+      ],
+      "image": null,
+      "featured": true
+    },
+    {
+      "id": "marfaa-diploma-report-2026",
+      "title": "تقرير موقع المرفأ — نيل الدبلوم الجامعي",
+      "titleEn": "Al-Marfaa Report — University Diploma",
+      "date": "2026-02-03",
+      "year": 2026,
+      "outlet": "موقع المرفأ",
+      "outletEn": "Al-Marfaa News",
+      "description": "التقرير المصور لموقع المرفأ حول نيل الدبلوم الجامعي في الذكاء الاصطناعي.",
+      "descriptionEn": "Video report by Al-Marfaa news site on receiving the university AI diploma.",
+      "type": "online",
+      "links": [
+        { "label": "Facebook Reel", "url": "https://www.facebook.com/reel/1248820560430711" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "yasour-diploma-2026",
+      "title": "موقع يا صور — دبلوم الذكاء الاصطناعي",
+      "titleEn": "Ya Sour — AI Diploma News",
+      "date": "2026-01-31",
+      "year": 2026,
+      "outlet": "يا صور",
+      "outletEn": "Ya Sour News",
+      "description": "موقع يا صور وخبر نيل الدبلوم الجامعي في الذكاء الإصطناعي.",
+      "descriptionEn": "Ya Sour news site coverage of receiving the university diploma in Artificial Intelligence.",
+      "type": "online",
+      "links": [
+        { "label": "yasour.org", "url": "https://www.yasour.org/744459" },
+        { "label": "Facebook Post", "url": "https://www.facebook.com/yasour.org/posts/pfbid0baTvdTRiUjXT3GqCuAtTX6pGYCQ7oHycbJzs9Qe1LSP3K1Nb7dk4D2d7eZoY4Wv4l" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "innovators-morse-code-2025",
+      "title": "مقطع Innovators Academy — لعبة Morse Code",
+      "titleEn": "Innovators Academy — Morse Code Game Clip",
+      "date": "2025-12-29",
+      "year": 2025,
+      "outlet": "Innovators Academy",
+      "outletEn": "Innovators Academy",
+      "description": "مقطع مصور من معهد Innovators — الطالب علي حميّة بعد إتمام Advanced Robotics Course – ESP وبناء لعبة Morse Code بيديه.",
+      "descriptionEn": "Clip from Innovators Academy after completing the Advanced Robotics Course — Ali built a Morse Code game from scratch, bridging hardware and logical thinking.",
+      "type": "social",
+      "links": [
+        { "label": "Facebook Reel", "url": "https://www.facebook.com/reel/2045564696280320" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "lbci-arabic-ai-olympiad-2025",
+      "title": "مقابلة LBCI — الأولمبياد العربي للذكاء الاصطناعي",
+      "titleEn": "LBCI Interview — Arab AI Olympiad 2nd Place",
+      "date": "2025-06-04",
+      "year": 2025,
+      "outlet": "LBCI",
+      "outletEn": "LBCI (Lebanese Broadcasting Corp. International)",
+      "description": "مقابلة عبر قناة LBCI حول الفوز بالمرتبة الثانية على الصعيد العربي في الاولمبياد العربي للذكاء الاصطناعي.",
+      "descriptionEn": "Live TV interview on LBCI about winning 2nd place in the Arab AI Olympiad, representing Lebanon at the regional level.",
+      "type": "tv",
+      "links": [
+        { "label": "Facebook Video 1", "url": "https://www.facebook.com/watch/?v=1983497972058220" },
+        { "label": "Facebook Video 2", "url": "https://www.facebook.com/watch/?v=541119318880852" }
+      ],
+      "image": null,
+      "featured": true
+    },
+    {
+      "id": "sawtalfarah-olympiad-2025",
+      "title": "صوت الفرح — الأولمبياد العربي للذكاء الاصطناعي",
+      "titleEn": "Sawt Al-Farah — Arab AI Olympiad Coverage",
+      "date": "2025-05-03",
+      "year": 2025,
+      "outlet": "صوت الفرح",
+      "outletEn": "Sawt Al-Farah",
+      "description": "علي حميّة من صور يتألق عربيًا ويهدي لبنان إنجازًا في الذكاء الاصطناعي.",
+      "descriptionEn": "Ali Hamieh from Tyre shines on the Arab stage, gifting Lebanon an achievement in Artificial Intelligence.",
+      "type": "online",
+      "links": [
+        { "label": "sawtalfarah.com", "url": "https://www.sawtalfarah.com/?p=342325" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "lebanon24-olympiad-2025",
+      "title": "لبنان 24 — الأولمبياد العربي للذكاء الاصطناعي",
+      "titleEn": "Lebanon 24 — Arab AI Olympiad",
+      "date": "2025-04-30",
+      "year": 2025,
+      "outlet": "لبنان 24",
+      "outletEn": "Lebanon 24",
+      "description": "لبنان يتألق في الأولمبياد العربي للذكاء الاصطناعي — إنجاز جديد يضاف إلى سجل الابتكار.",
+      "descriptionEn": "Lebanon shines in the Arab AI Olympiad — a new achievement added to the innovation record.",
+      "type": "online",
+      "links": [
+        { "label": "lebanon24.com", "url": "https://www.lebanon24.com/news/lebanon/1353823/lebanon24-article" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "alimantv-olympiad-2025",
+      "title": "قناة الإيمان — الأولمبياد العربي للذكاء الاصطناعي",
+      "titleEn": "Al-Iman TV — Arab AI Olympiad",
+      "date": "2025-04-29",
+      "year": 2025,
+      "outlet": "قناة الإيمان",
+      "outletEn": "Al-Iman TV",
+      "description": "إنجاز لبناني لافت في الأولمبياد العربي للذكاء الاصطناعي 2025.",
+      "descriptionEn": "A remarkable Lebanese achievement at the Arab AI Olympiad 2025.",
+      "type": "online",
+      "links": [
+        { "label": "alimantv.com.lb", "url": "https://www.alimantv.com.lb/article/17218/AlimanTV-Article" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "mayadeen-olympiad-2025",
+      "title": "قناة الميادين — الأولمبياد العربي للذكاء الاصطناعي",
+      "titleEn": "Al-Mayadeen — Arab AI Olympiad",
+      "date": "2025-04-28",
+      "year": 2025,
+      "outlet": "قناة الميادين",
+      "outletEn": "Al-Mayadeen TV",
+      "description": "حقق لبنان إنجازًا لافتًا في مجال التكنولوجيا والذكاء الاصطناعي — علي حميّة ومحمد ملحم وجهاد دياب من Innovators Academy يحرزون المركز الثاني.",
+      "descriptionEn": "Lebanon achieved a remarkable milestone in tech and AI — Ali Hamieh, Mohammad Malhem, and Jihad Diab from Innovators Academy secured 2nd place.",
+      "type": "tv",
+      "links": [
+        { "label": "Facebook Post", "url": "https://www.facebook.com/share/p/1DsA7uX3jk/" }
+      ],
+      "image": null,
+      "featured": true
+    },
+    {
+      "id": "nna-olympiad-2025",
+      "title": "الوكالة الوطنية للإعلام — الأولمبياد العربي للذكاء الاصطناعي",
+      "titleEn": "NNA Lebanon — Arab AI Olympiad",
+      "date": "2025-04-28",
+      "year": 2025,
+      "outlet": "الوكالة الوطنية للإعلام",
+      "outletEn": "National News Agency Lebanon (NNA)",
+      "description": "فوز طلاب من معهد Innovators Academy في مسابقة ضمن الأولمبياد العربي للذكاء الاصطناعي في الأردن.",
+      "descriptionEn": "Students from Innovators Academy win at the Arab AI Olympiad in Jordan — official National News Agency coverage.",
+      "type": "online",
+      "links": [
+        { "label": "nna-leb.gov.lb", "url": "https://nna-leb.gov.lb/ar/news/346193/%D9%81%D9%88%D8%B2-%D8%B7%D9%84%D8%A7%D8%A8-%D9%85%D9%86-%D9%85%D8%B9%D9%87%D8%AF-innovators-academy-%D9%81%D9%8A-%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D8%A9-%D8%B6%D9%85%D9%86" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "znn-olympiad-2025",
+      "title": "موقع ZNN — الأولمبياد العربي للذكاء الاصطناعي",
+      "titleEn": "ZNN Lebanon — Arab AI Olympiad",
+      "date": "2025-04-28",
+      "year": 2025,
+      "outlet": "ZNN",
+      "outletEn": "ZNN Lebanon",
+      "description": "طلاب لبنانيون يحتلون المركز الثاني في مجال التكنولوجيا والذكاء الاصطناعي.",
+      "descriptionEn": "Lebanese students claim 2nd place in technology and artificial intelligence.",
+      "type": "online",
+      "links": [
+        { "label": "znnlb.com", "url": "https://znnlb.com/?p=586630" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "lebanon24-mc2-2024",
+      "title": "لبنان 24 — فوز مشروع A.S.D في MC2",
+      "titleEn": "Lebanon 24 — A.S.D Project Wins MC2 1st Place",
+      "date": "2024-05-23",
+      "year": 2024,
+      "outlet": "لبنان 24",
+      "outletEn": "Lebanon 24",
+      "description": "مشروع A.S.D يفوز بالمرتبة الأولى عن فئة الإبتكارات في المباراة التكنولوجيّة الرابعة MC2.",
+      "descriptionEn": "The A.S.D project wins 1st place in the Innovation category at the 4th MC2 Technology Competition.",
+      "type": "online",
+      "links": [
+        { "label": "lebanon24.com", "url": "https://www.lebanon24.com/news/wedding-events/1203209/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-asd-%D9%8A%D9%81%D9%88%D8%B2-%D8%A8%D8%A7%D9%84%D9%85%D8%B1%D8%AA%D8%A8%D8%A9-%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89-%D8%B9%D9%86-%D9%81%D8%A6%D8%A9-%D8%A7%D9%84%D8%A5%D8%A8%D8%AA%D9%83%D8%A7%D8%B1%D8%A7%D8%AA-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%AA%D9%83%D9%86%D9%88%D9%84%D9%88%D8%AC" }
+      ],
+      "image": null,
+      "featured": true
+    },
+    {
+      "id": "mahdischool-mc2-2024",
+      "title": "ثانوية المهدي — MC2 أربع مراتب في المراكز الأولى",
+      "titleEn": "Al-Mahdi School — 4 Top Spots at MC2",
+      "date": "2024-05-18",
+      "year": 2024,
+      "outlet": "مدرسة المهدي / بلدتي",
+      "outletEn": "Al-Mahdi School / Baldatee",
+      "description": "أحرزت ثانوية المهدي/صور في المباراة التكنولوجية الرابعة MC2 أربع مراتب ضمن المراتب الثلاثة الأولى.",
+      "descriptionEn": "Al-Mahdi Secondary School in Tyre secured four placements in the top three spots at the 4th MC2 Technology Competition.",
+      "type": "online",
+      "links": [
+        { "label": "Facebook Post", "url": "https://www.facebook.com/share/p/1BXzjapSQ1/" },
+        { "label": "baldatee.com", "url": "https://baldatee.com/?p=81725" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "jadeed-arc-robotics-2023",
+      "title": "مقابلة قناة الجديد — بطولة الروبوت ARC",
+      "titleEn": "Al-Jadeed Interview — ARC Robotics Championship",
+      "date": "2023-05-25",
+      "year": 2023,
+      "outlet": "قناة الجديد",
+      "outletEn": "Al-Jadeed TV",
+      "description": "مقابلة عبر قناة الجديد — مشروع اللبناني علي حميه الإبتكاري يفوز بالمرتبة الثانية لبطولة الروبوت. هذا ما يميّز Alzhelper!",
+      "descriptionEn": "Al-Jadeed TV interview — Ali Hamieh's innovative Alzhelper project wins 2nd place at the ARC Robotics Championship.",
+      "type": "tv",
+      "links": [
+        { "label": "YouTube", "url": "https://www.youtube.com/watch?v=ikI3PcbU91g" }
+      ],
+      "image": null,
+      "featured": true
+    },
+    {
+      "id": "noursat-alzhelper-2023",
+      "title": "مقابلة نورسات — مشروع Alzhelper",
+      "titleEn": "Noursat Interview — Alzhelper Project",
+      "date": "2023-05-19",
+      "year": 2023,
+      "outlet": "نورسات",
+      "outletEn": "Noursat TV",
+      "description": "مقابلة عبر قناة نورسات حول مشروع Alzhelper المبتكر الموجه لمرضى الزهايمر.",
+      "descriptionEn": "Interview on Noursat TV about the Alzhelper innovative project designed for Alzheimer's patients.",
+      "type": "tv",
+      "links": [
+        { "label": "Facebook Video", "url": "https://www.facebook.com/share/v/1PUcmQQqSE/" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "radio-liban-alzhelper-2023",
+      "title": "إذاعة لبنان — مشروع Alzhelper والمرتبة الثانية في ARC",
+      "titleEn": "Radio Lebanon — Alzhelper & ARC 2nd Place",
+      "date": "2023-05-14",
+      "year": 2023,
+      "outlet": "إذاعة لبنان",
+      "outletEn": "Radio Lebanon",
+      "description": "مقابلة عبر إذاعة لبنان حول الفكرة المبتكرة الموجهة لمرضى الزهايمر وذويهم والتي فازت بالمرتبة الثانية عن فئة المشاريع المبتكرة لخدمة الانسان في بطولة ARC، 300 مشارك من 70 فريق من لبنان وسوريا.",
+      "descriptionEn": "Radio Lebanon interview on the Alzheimer's-aid innovation that won 2nd place at the ARC championship among 300 participants from 70 teams across Lebanon and Syria.",
+      "type": "radio",
+      "links": [
+        { "label": "Facebook Audio", "url": "https://www.facebook.com/share/v/1LXFT2hPjE/" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "lebtv-arc-robotics-2023",
+      "title": "تلفزيون لبنان — علي حمية والمرتبة الثانية في ARC",
+      "titleEn": "Lebanon TV — Ali Hamieh & ARC 2nd Place",
+      "date": "2023-05-11",
+      "year": 2023,
+      "outlet": "تلفزيون لبنان",
+      "outletEn": "Lebanon TV (Télé Liban)",
+      "description": "مقابلة عبر تلفزيون لبنان مع علي حمية الحائز وفريقه على المرتبة الثانية لبطولة الروبوت ARC.",
+      "descriptionEn": "Lebanon TV interview with Ali Hamieh and his team who won 2nd place at the ARC Robotics Championship.",
+      "type": "tv",
+      "links": [
+        { "label": "Facebook Video", "url": "https://www.facebook.com/share/v/191qVNcjEv/" }
+      ],
+      "image": null,
+      "featured": true
+    },
+    {
+      "id": "bintjbeil-alzhelper-2023",
+      "title": "موقع بنت جبيل — مشروع Alzhelper",
+      "titleEn": "Bint Jbeil — Alzhelper Project (World's First)",
+      "date": "2023-05-07",
+      "year": 2023,
+      "outlet": "بنت جبيل",
+      "outletEn": "Bint Jbeil News",
+      "description": "فكرة مبتكرة هي الأولى من نوعها على صعيد العالم — مشروع ابتكاري لمرضى الزهايمر للطالب علي حمية ابن الـ 13 عاماً يفوز بالمرتبة الثانية لبطولة الروبوت في لبنان.",
+      "descriptionEn": "A world-first innovation — 13-year-old Ali Hamieh's Alzheimer's-aid project wins 2nd place at Lebanon's Robotics Championship.",
+      "type": "online",
+      "links": [
+        { "label": "bintjbeil.org", "url": "https://bintjbeil.org/post/64256/" },
+        { "label": "Photos 1", "url": "https://www.facebook.com/share/p/1Cmzsz12tW/" },
+        { "label": "Photos 2", "url": "https://www.facebook.com/share/p/1HcKT6qiin/" }
+      ],
+      "image": null,
+      "featured": false
+    },
+    {
+      "id": "innovators-pingpong-2023",
+      "title": "Innovators Academy — لعبة Ping Pong بالـ Python",
+      "titleEn": "Innovators Academy — Ping Pong Game in Python",
+      "date": "2023-02-03",
+      "year": 2023,
+      "outlet": "Innovators Academy",
+      "outletEn": "Innovators Academy",
+      "description": "شغل طلابنا في كورس البايثون — علي حمية (١٢ سنة) برمج لعبة Ping Pong. أول مشاركة في عمر 12 سنة.",
+      "descriptionEn": "Python course student showcase — 12-year-old Ali Hamieh programs a Ping Pong game. His very first public appearance at age 12.",
+      "type": "social",
+      "links": [
+        { "label": "Facebook Video", "url": "https://www.facebook.com/share/v/1ELM1Dq7SC/" }
+      ],
+      "image": null,
+      "featured": false
+    }
+  ]
 }

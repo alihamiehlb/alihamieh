@@ -76,6 +76,26 @@ async function main() {
     }
   }
 
+  // Convert project images (jpeg/png) to WebP
+  const projectsDir = path.join(publicDir, "projects");
+  if (fs.existsSync(projectsDir)) {
+    for (const name of fs.readdirSync(projectsDir)) {
+      const ext = path.extname(name).toLowerCase();
+      if (![".jpg", ".jpeg", ".png"].includes(ext)) continue;
+      const baseName = path.basename(name, ext);
+      const outputName = `${baseName}.webp`;
+      const outputPath = path.join(projectsDir, outputName);
+      if (fs.existsSync(outputPath)) continue; // already converted
+      const inputPath = path.join(projectsDir, name);
+      await sharp(inputPath)
+        .resize({ width: 1200, withoutEnlargement: true })
+        .webp({ quality: 82, effort: 4 })
+        .toFile(outputPath);
+      const kb = Math.round(fs.statSync(outputPath).size / 1024);
+      console.log(`  → ${outputName} (${kb} KB)`);
+    }
+  }
+
   console.log("Image optimization done.");
 }
 

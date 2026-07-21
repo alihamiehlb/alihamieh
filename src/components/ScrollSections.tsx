@@ -512,8 +512,8 @@ export default function ScrollSections({
                 whileHover={lite ? undefined : { y: -8, boxShadow: "0 32px 64px rgba(42,154,173,0.2)" }}
               >
                 <div className="project-meta">
-                  <h3>{int.title}</h3>
-                  <span className="badge">{int.channel}</span>
+                  <h3>{int.titleEn || int.title}</h3>
+                  <span className="badge">{int.outletEn || int.outlet}</span>
                 </div>
                 <p className="project-desc">{int.description}</p>
                 <div className="tags">

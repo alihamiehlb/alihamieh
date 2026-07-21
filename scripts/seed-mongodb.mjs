@@ -43,6 +43,7 @@ async function main() {
   const projectsData = JSON.parse(fs.readFileSync(path.join(contentDir, 'projects.json'), 'utf8'));
   const achievementsData = JSON.parse(fs.readFileSync(path.join(contentDir, 'achievements.json'), 'utf8'));
   const deployedData = JSON.parse(fs.readFileSync(path.join(contentDir, 'deployed.json'), 'utf8'));
+  const interviewsData = JSON.parse(fs.readFileSync(path.join(contentDir, 'interviews.json'), 'utf8'));
 
   // Import models
   const Cv = (await import('../src/lib/models/Cv.ts')).default;
@@ -50,6 +51,7 @@ async function main() {
   const Project = (await import('../src/lib/models/Project.ts')).default;
   const Achievement = (await import('../src/lib/models/Achievement.ts')).default;
   const Deployed = (await import('../src/lib/models/Deployed.ts')).default;
+  const Interview = (await import('../src/lib/models/Interview.ts')).default;
 
   // Clear existing data
   console.log('Clearing existing data...');
@@ -58,6 +60,7 @@ async function main() {
   await Project.deleteMany({});
   await Achievement.deleteMany({});
   await Deployed.deleteMany({});
+  await Interview.deleteMany({});
 
   // Seed CV
   console.log('Seeding CV...');
@@ -85,6 +88,11 @@ async function main() {
   console.log('Seeding Deployed projects...');
   const deployedArray = deployedData.projects || [];
   await Deployed.insertMany(deployedArray);
+
+  // Seed Interviews
+  console.log('Seeding Interviews...');
+  const interviewsArray = interviewsData.interviews || [];
+  await Interview.insertMany(interviewsArray);
 
   console.log('MongoDB seeding completed successfully!');
   await mongoose.disconnect();

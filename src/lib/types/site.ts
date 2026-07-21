@@ -38,12 +38,17 @@ export type ProjectRecord = {
 export type InterviewRecord = {
   id: string;
   title: string;
-  channel: string;
+  titleEn?: string;
   date: string;
+  year: number;
+  outlet: string;
+  outletEn?: string;
   description: string;
-  url: string;
-  thumbnail?: string;
-  image?: string;
+  descriptionEn?: string;
+  type: string;
+  links: { label: string; url: string }[];
+  image: string | null;
+  featured: boolean;
 };
 
 export type ProfileRecord = {
