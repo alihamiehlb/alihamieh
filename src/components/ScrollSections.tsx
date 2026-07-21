@@ -26,6 +26,7 @@ import SocialLinks from "./SocialLinks";
 import AmbientMotion from "./AmbientMotion";
 import LoadingLink from "./LoadingLink";
 import CvOpenButton from "./CvOpenButton";
+import { Tv, Radio, Globe } from "lucide-react";
 
 const MotionLink = motion.create(LoadingLink);
 
@@ -519,7 +520,7 @@ export default function ScrollSections({
                       <img src={int.image} alt={int.titleEn || int.title} className="interview-card-img" />
                     ) : (
                       <div className="interview-card-thumb-placeholder">
-                        {int.type === "tv" ? "📺" : int.type === "radio" ? "🎙️" : "🌐"}
+                        {int.type === "tv" ? <Tv size={48} strokeWidth={1} color="rgba(42,154,173,0.5)" /> : int.type === "radio" ? <Radio size={48} strokeWidth={1} color="rgba(42,154,173,0.5)" /> : <Globe size={48} strokeWidth={1} color="rgba(42,154,173,0.5)" />}
                       </div>
                     )}
                     <span className={`interview-card-type interview-card-type--${int.type || "online"}`}>

@@ -228,14 +228,17 @@ function scanProject(entry) {
 
 function main() {
   const outPath = path.join(root, "content", "projects.json");
+  let manualProjects = [];
+  try {
+    const existing = JSON.parse(fs.readFileSync(outPath, "utf8")).projects || [];
+    manualProjects = existing.filter(p => p.manual === true);
+  } catch { /* ignore */ }
+
   let projects = SHOWCASE_DIRS.map(scanProject)
     .filter(Boolean)
     .filter((p) => !EXCLUDE_SLUGS.has(p.id));
-  if (!projects.length && fs.existsSync(outPath)) {
-    try {
-      projects = JSON.parse(fs.readFileSync(outPath, "utf8")).projects || [];
-    } catch { /* ignore */ }
-  }
+  
+  projects = [...projects, ...manualProjects];
   projects.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
   fs.writeFileSync(outPath, JSON.stringify({ projects }, null, 2), "utf8");
   console.log(`Wrote projects.json — ${projects.length} (repo-analyzed descriptions)`);

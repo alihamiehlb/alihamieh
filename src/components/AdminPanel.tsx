@@ -502,7 +502,25 @@ export default function AdminPanel() {
                     </div>
                     <div className="admin-field col-span-2">
                       <label>Images (Comma Separated URLs)</label>
-                      <textarea rows={2} value={Array.isArray(p.images) ? p.images.join(", ") : p.images} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, images: e.target.value.split(",").map(t => t.trim()).filter(Boolean) } : item))} />
+                      <div className="image-input-group" style={{ alignItems: "flex-start" }}>
+                        <textarea rows={2} value={Array.isArray(p.images) ? p.images.join(", ") : p.images} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, images: e.target.value.split(",").map(t => t.trim()).filter(Boolean) } : item))} placeholder="Upload or paste URLs..." style={{ flex: 1 }} />
+                        <label className="admin-btn admin-btn--ghost upload-btn" style={{ whiteSpace: "nowrap" }}>
+                          Upload Image
+                          <input type="file" accept="image/*" hidden onChange={(e) => {
+                            const f = e.target.files?.[0];
+                            if (f) uploadFile(f, (url) => {
+                                const currentImages = Array.isArray(p.images) ? [...p.images] : [];
+                                currentImages.push(url);
+                                setProjects(projects.map((item, j) => j === i ? { ...item, images: currentImages } : item));
+                            });
+                          }} />
+                        </label>
+                      </div>
+                      <div className="mt-2 flex gap-2 overflow-x-auto">
+                        {(p.images || []).map((imgUrl, imgIdx) => (
+                          <img key={imgIdx} src={imgUrl} alt={`Preview ${imgIdx}`} className="admin-image-preview" style={{ width: "80px", height: "80px", objectFit: "cover" }} />
+                        ))}
+                      </div>
                     </div>
                     <div className="admin-field col-span-2" data-color-mode="dark">
                       <label>Project Content (Markdown)</label>
