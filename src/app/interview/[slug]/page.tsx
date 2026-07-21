@@ -147,6 +147,16 @@ export default async function InterviewPage({
 
       {/* ── Right Scrolling Column ── */}
       <section className="split-right">
+        {interview.image && (
+          <div className="interview-hero-image" style={{ marginBottom: "2rem", borderRadius: "var(--radius-md)", overflow: "hidden" }}>
+            <img 
+              src={interview.image} 
+              alt={interview.titleEn || interview.title} 
+              style={{ width: "100%", height: "auto", display: "block" }} 
+            />
+          </div>
+        )}
+
         {/* Arabic description block */}
         <div className="interview-ar-block split-content" dir="rtl">
           <p className="interview-ar-label">التغطية الإعلامية</p>
