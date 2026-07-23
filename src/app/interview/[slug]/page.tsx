@@ -210,15 +210,14 @@ export default async function InterviewPage({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Event",
-              name: interview.titleEn || interview.title,
+              "@type": "Article",
+              headline: interview.titleEn || interview.title,
               description: interview.descriptionEn || interview.description,
-              startDate: interview.date,
-              location: {
-                "@type": "Place",
+              publisher: {
+                "@type": "Organization",
                 name: interview.outletEn || interview.outlet,
               },
-              performer: {
+              author: {
                 "@type": "Person",
                 name: "Ali Hamieh",
               },
