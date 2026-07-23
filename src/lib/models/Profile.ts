@@ -22,17 +22,17 @@ export interface IProfile extends Document {
 
 const ProfileSchema = new Schema<IProfile>(
   {
-    github: { type: String, required: true },
-    instagram: { type: String, required: true },
-    linkedin: { type: String, required: true },
-    linktree: { type: String, required: true },
+    github: { type: String },
+    instagram: { type: String },
+    linkedin: { type: String },
+    linktree: { type: String },
     printsLb: {
-      name: { type: String, required: true },
-      url: { type: String, required: true },
-      tagline: { type: String, required: true },
+      name: { type: String },
+      url: { type: String },
+      tagline: { type: String },
     },
-    title: { type: String, required: true },
-    headline: { type: String, required: true },
+    title: { type: String },
+    headline: { type: String },
     aiDiploma: { type: String },
     githubBio: { type: String },
     publicRepos: { type: Number },

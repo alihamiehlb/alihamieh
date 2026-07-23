@@ -17,10 +17,10 @@ export interface IDeployed extends Document {
 const DeployedSchema = new Schema<IDeployed>(
   {
     id: { type: String, required: true, unique: true },
-    name: { type: String, required: true },
-    description: { type: String, required: true },
+    name: { type: String },
+    description: { type: String },
     homepage: { type: String, default: null },
-    github: { type: String, required: true },
+    github: { type: String },
     language: { type: String },
     stars: { type: Number },
     featured: { type: Boolean, default: false },

@@ -21,19 +21,19 @@ export interface IInterview extends Document {
 const InterviewSchema = new Schema<IInterview>(
   {
     id: { type: String, required: true, unique: true },
-    title: { type: String, required: true },
+    title: { type: String },
     titleEn: { type: String },
-    date: { type: String, required: true },
-    year: { type: Number, required: true },
-    outlet: { type: String, required: true },
+    date: { type: String },
+    year: { type: Number },
+    outlet: { type: String },
     outletEn: { type: String },
-    description: { type: String, required: true },
+    description: { type: String },
     descriptionEn: { type: String },
-    type: { type: String, required: true },
+    type: { type: String },
     links: [
       {
-        label: { type: String, required: true },
-        url: { type: String, required: true },
+        label: { type: String },
+        url: { type: String },
       },
     ],
     image: { type: String, default: null },

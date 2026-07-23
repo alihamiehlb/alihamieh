@@ -45,8 +45,8 @@ const CvSchema = new Schema<ICv>(
   {
     skills: [{ type: String }],
     summary: { type: String },
-    name: { type: String, required: true },
-    title: { type: String, required: true },
+    name: { type: String },
+    title: { type: String },
     birthDate: { type: String },
     tagline: { type: String },
     email: { type: String },
@@ -56,35 +56,35 @@ const CvSchema = new Schema<ICv>(
     highlights: [{ type: String }],
     experience: [
       {
-        title: { type: String, required: true },
-        period: { type: String, required: true },
-        summary: { type: String, required: true },
+        title: { type: String },
+        period: { type: String },
+        summary: { type: String },
       },
     ],
     education: [
       {
-        school: { type: String, required: true },
-        detail: { type: String, required: true },
+        school: { type: String },
+        detail: { type: String },
       },
     ],
     skillGroups: [
       {
-        label: { type: String, required: true },
+        label: { type: String },
         items: [{ type: String }],
       },
     ],
     selectedProjects: [
       {
-        name: { type: String, required: true },
-        role: { type: String, required: true },
-        url: { type: String, required: true },
+        name: { type: String },
+        role: { type: String },
+        url: { type: String },
       },
     ],
     certifications: [{ type: String }],
     learningSources: [
       {
-        name: { type: String, required: true },
-        focus: { type: String, required: true },
+        name: { type: String },
+        focus: { type: String },
       },
     ],
     lastUpdated: { type: String },

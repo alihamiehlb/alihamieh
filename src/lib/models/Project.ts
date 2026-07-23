@@ -26,9 +26,9 @@ export interface IProject extends Document {
 const ProjectSchema = new Schema<IProject>(
   {
     id: { type: String, required: true, unique: true },
-    title: { type: String, required: true },
+    title: { type: String },
     slug: { type: String },
-    description: { type: String, required: true },
+    description: { type: String },
     overview: { type: String },
     content: { type: String },
     tags: [{ type: String }],

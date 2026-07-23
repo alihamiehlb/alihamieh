@@ -1,17 +1,14 @@
 {
+  "skills": [],
+  "summary": "Self-driven developer and ethical hacker with 230+ hours of academy training and hands-on builds across web, mobile, AI, embedded hardware, and security. Founded printsLB, a Lebanese 3D-printing platform. Comfortable on Linux (Arch, Ubuntu, Kali, Parrot, NetHunter) and embedded stacks (ESP32, Arduino, custom firmware). Competed in robotics (WRO) and cybersecurity programs while pursuing an AI diploma at MUC University.",
   "name": "Ali Hamieh",
+  "title": "Full-Stack Developer",
   "birthDate": "2009-05-14",
-  "title": "Student at Al Mahdi School · Founder of printsLB",
   "tagline": "Cybersecurity · Embedded Systems · ML · Full-Stack Development",
   "email": "alihamiehlb@gmail.com",
   "phone": "+961 76 696 385",
-  "linkedin": "https://linkedin.com/in/ali-hamieh-a98b6b302",
-  "github": "https://github.com/alihamiehlb",
-  "instagram": "https://www.instagram.com/alihamiehlb/",
-  "linktree": "https://linktr.ee/alihamiehlb",
   "location": "Tyre, South Lebanon",
   "documentFileName": "Ali_Hamieh_CV_2026.html",
-  "summary": "Self-driven developer and ethical hacker with 230+ hours of academy training and hands-on builds across web, mobile, AI, embedded hardware, and security. Founded printsLB, a Lebanese 3D-printing platform. Comfortable on Linux (Arch, Ubuntu, Kali, Parrot, NetHunter) and embedded stacks (ESP32, Arduino, custom firmware). Competed in robotics (WRO) and cybersecurity programs while pursuing an AI diploma at MUC University.",
   "highlights": [
     "Founder of printsLB — online 3D printing service (printslb.com)",
     "AI diploma at MUC University (started at age 15)",
@@ -24,48 +21,58 @@
     {
       "title": "Founder — printsLB",
       "period": "2024 — Present",
-      "summary": "Built and deployed a full-stack 3D printing ordering platform for Lebanon. Product design, customer flows, and live deployment at printslb.com."
+      "summary": "Built and deployed a full-stack 3D printing ordering platform for Lebanon. Product design, customer flows, and live deployment at printslb.com.",
+      "_id": "6a5fa91059279747d196837a"
     },
     {
       "title": "Freelance & client web projects",
       "period": "2023 — Present",
-      "summary": "Delivered production sites for clients (e.g. soccer academy management, pharmacy, bakery) with admin panels, Postgres backends, and Vercel deployment."
+      "summary": "Delivered production sites for clients (e.g. soccer academy management, pharmacy, bakery) with admin panels, Postgres backends, and Vercel deployment.",
+      "_id": "6a5fa91059279747d196837b"
     },
     {
       "title": "Embedded & hardware projects",
       "period": "2022 — Present",
-      "summary": "ESP32 and Arduino firmware, sensor builds, PCB-related prototyping (KiCad), and custom hardware enclosures. Forks and tooling around ESP32 Marauder and DSAI Mochi."
+      "summary": "ESP32 and Arduino firmware, sensor builds, PCB-related prototyping (KiCad), and custom hardware enclosures. Forks and tooling around ESP32 Marauder and DSAI Mochi.",
+      "_id": "6a5fa91059279747d196837c"
     },
     {
       "title": "Cybersecurity & automation",
       "period": "2022 — Present",
-      "summary": "Offensive security training (Semicolon), VPN/tunnel tooling, news automation bots, and security-focused Python utilities."
+      "summary": "Offensive security training (Semicolon), VPN/tunnel tooling, news automation bots, and security-focused Python utilities.",
+      "_id": "6a5fa91059279747d196837d"
     }
   ],
   "education": [
     {
       "school": "Al Mahdi School",
-      "detail": "Current student — Tyre, Lebanon"
+      "detail": "Current student — Tyre, Lebanon",
+      "_id": "6a5fa91059279747d196837e"
     },
     {
       "school": "MUC University",
-      "detail": "Diploma in Artificial Intelligence (2023–2025)"
+      "detail": "Diploma in Artificial Intelligence (2023–2025)",
+      "_id": "6a5fa91059279747d196837f"
     },
     {
       "school": "Innovators Academy",
-      "detail": "Programming, Flutter, Python, web development, AI, and robotics"
+      "detail": "Programming, Flutter, Python, web development, AI, and robotics",
+      "_id": "6a5fa91059279747d1968380"
     },
     {
       "school": "Semicolon Academy",
-      "detail": "Offensive cybersecurity — one-year program (2019–2023)"
+      "detail": "Offensive cybersecurity — one-year program (2019–2023)",
+      "_id": "6a5fa91059279747d1968381"
     },
     {
       "school": "Hexapi Academy",
-      "detail": "PCB design, electronics, and hardware prototyping"
+      "detail": "PCB design, electronics, and hardware prototyping",
+      "_id": "6a5fa91059279747d1968382"
     },
     {
       "school": "Alison",
-      "detail": "Python fundamentals certification"
+      "detail": "Python fundamentals certification",
+      "_id": "6a5fa91059279747d1968383"
     }
   ],
   "skillGroups": [
@@ -83,7 +90,8 @@
         "Node.js",
         "Vercel",
         "Git"
-      ]
+      ],
+      "_id": "6a5fa91059279747d1968384"
     },
     {
       "label": "Security & AI",
@@ -94,7 +102,8 @@
         "Deep Learning",
         "Data Science",
         "Generative Robotics"
-      ]
+      ],
+      "_id": "6a5fa91059279747d1968385"
     },
     {
       "label": "Embedded & hardware",
@@ -110,7 +119,8 @@
         "Blender",
         "Phone Repair",
         "Generative Robotics"
-      ]
+      ],
+      "_id": "6a5fa91059279747d1968386"
     },
     {
       "label": "Systems",
@@ -120,7 +130,8 @@
         "Windows desktop & tooling",
         "Bash / shell",
         "System administration"
-      ]
+      ],
+      "_id": "6a5fa91059279747d1968387"
     },
     {
       "label": "Soft skills",
@@ -132,62 +143,34 @@
         "Problem solving",
         "Adaptability",
         "Time management"
-      ]
-    }
-  ],
-  "skills": [],
-  "achievements": [
-    {
-      "title": "3rd Place — Google AI Hackathon Lebanon",
-      "subtitle": "2026",
-      "summary": "Awarded 3rd place at the Google AI Hackathon held in Lebanon, organized by Google Developer Groups (GDG), DevLeb and Supportful.",
-      "implementation": "Developed an AI-powered solution during the hackathon, focusing on practical implementation and rapid prototyping."
-    },
-    {
-      "title": "1st Place — MC2 Robotics Innovation Competition",
-      "subtitle": "Lebanon",
-      "summary": "Won first place with the AlzHelper robotics project.",
-      "implementation": ""
-    },
-    {
-      "title": "2nd Place — ARC Robotics Competition",
-      "subtitle": "Lebanon",
-      "summary": "National robotics and AI competition.",
-      "implementation": ""
-    },
-    {
-      "title": "2nd Place — Arabian Olympiad (AI & Python)",
-      "subtitle": "Arab World",
-      "summary": "Runner-up in the AI & Python category.",
-      "implementation": ""
-    },
-    {
-      "title": "13th Place — Arabian Cybersecurity Olympiad",
-      "subtitle": "Arab World",
-      "summary": "Defensive Cybersecurity category representing Lebanon.",
-      "implementation": ""
+      ],
+      "_id": "6a5fa91059279747d1968388"
     }
   ],
   "selectedProjects": [
     {
       "name": "printsLB",
       "role": "Founder",
-      "url": "https://printslb.com"
+      "url": "https://printslb.com",
+      "_id": "6a5fa91059279747d1968389"
     },
     {
       "name": "SSA Academy",
       "role": "Full-stack web",
-      "url": "https://ssa-shoot-score-academy.vercel.app"
+      "url": "https://ssa-shoot-score-academy.vercel.app",
+      "_id": "6a5fa91059279747d196838a"
     },
     {
       "name": "Hash-Sec Tunnel",
       "role": "Mobile / Azure VPN",
-      "url": "https://github.com/alihamiehlb"
+      "url": "https://github.com/alihamiehlb",
+      "_id": "6a5fa91059279747d196838b"
     },
     {
       "name": "Khaybar News Bot",
       "role": "Python automation",
-      "url": "https://github.com/alihamiehlb"
+      "url": "https://github.com/alihamiehlb",
+      "_id": "6a5fa91059279747d196838c"
     }
   ],
   "certifications": [
@@ -196,28 +179,34 @@
     "Innovators Academy — robotics & programming tracks",
     "Semicolon Academy — offensive cybersecurity",
     "STEAM Center AIO — cybersecurity & olympiad (completion certificate)",
-    "Alison — Python fundamentals"
+    "Alison — Python fundamentals",
+    "MUC ai diploma"
   ],
   "learningSources": [
     {
       "name": "Innovators Academy",
-      "focus": "Robotics, innovation, and competition-ready engineering"
+      "focus": "Robotics, innovation, and competition-ready engineering",
+      "_id": "6a5fa91059279747d196838d"
     },
     {
       "name": "Semicolon",
-      "focus": "Offensive cybersecurity and secure development"
+      "focus": "Offensive cybersecurity and secure development",
+      "_id": "6a5fa91059279747d196838e"
     },
     {
       "name": "STEAM Center AIO",
-      "focus": "Cybersecurity certifications and olympiad — same STEAM Center AIO program"
+      "focus": "Cybersecurity certifications and olympiad — same STEAM Center AIO program",
+      "_id": "6a5fa91059279747d196838f"
     },
     {
       "name": "Hexapi Academy",
-      "focus": "PCB design, electronics, and hardware prototyping"
+      "focus": "PCB design, electronics, and hardware prototyping",
+      "_id": "6a5fa91059279747d1968390"
     },
     {
       "name": "Alison",
-      "focus": "Certifications and self-paced learning"
+      "focus": "Certifications and self-paced learning",
+      "_id": "6a5fa91059279747d1968391"
     }
   ],
   "lastUpdated": "2026-07-21",

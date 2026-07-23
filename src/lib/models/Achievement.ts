@@ -17,12 +17,12 @@ export interface IAchievement extends Document {
 const AchievementSchema = new Schema<IAchievement>(
   {
     id: { type: String, required: true, unique: true },
-    title: { type: String, required: true },
-    description: { type: String, required: true },
+    title: { type: String },
+    description: { type: String },
     detail: { type: String },
     instagramHighlight: { type: String },
-    category: { type: String, required: true },
-    image: { type: String, required: true },
+    category: { type: String },
+    image: { type: String },
     source: { type: String },
     sourceUrl: { type: String },
   },

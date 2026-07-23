@@ -1,127 +1,101 @@
-{
-  "username": "alihamiehlb",
-  "updatedAt": "2026-07-21",
-  "projects": [
-    {
-      "id": "PrintsLB",
-      "name": "printsLB",
-      "description": "3d printing saas",
-      "homepage": "https://printslb.com",
-      "github": "https://github.com/alihamiehlb/PrintsLB",
-      "language": "TypeScript",
-      "stars": 1,
-      "featured": true,
-      "isFounder": true
-    },
-    {
-      "id": "alihamieh",
-      "name": "alihamieh",
-      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
-      "homepage": "https://alihamieh.vercel.app",
-      "github": "https://github.com/alihamiehlb/alihamieh",
-      "language": "TypeScript",
-      "stars": 2,
-      "featured": true,
-      "isFounder": false
-    },
-    {
-      "id": "ekconstructions",
-      "name": "ekconstructions",
-      "description": "client site",
-      "homepage": "https://ekconstructions.vercel.app",
-      "github": "https://github.com/alihamiehlb/ekconstructions",
-      "language": "TypeScript",
-      "stars": 1,
-      "featured": true,
-      "isFounder": false
-    },
-    {
-      "id": "ssa-shoot-score-academy",
-      "name": "ssa shoot score academy",
-      "description": "its a site for khali that is for his academy for admin control and invoice and player managment and stats with great desgin",
-      "homepage": "https://ssa-shoot-score-academy.vercel.app",
-      "github": "https://github.com/alihamiehlb/ssa-shoot-score-academy",
-      "language": "TypeScript",
-      "stars": 1,
-      "featured": true,
-      "isFounder": false
-    },
-    {
-      "id": "rawan-pharmcay",
-      "name": "rawan pharmcay",
-      "description": "pharmacy website 👍🏿",
-      "homepage": "https://rawan-pharmcay.vercel.app",
-      "github": "https://github.com/alihamiehlb/rawan-pharmcay",
-      "language": "TypeScript",
-      "stars": 0,
-      "featured": true,
-      "isFounder": false
-    },
-    {
-      "id": "lynos-sweets",
-      "name": "lynos sweets",
-      "description": "a website for a bakery ,to place there products in and showcase them neatly , it has a great humble admin panel which serves its purpose, and it has a data base sql postgres",
-      "homepage": "https://lynos-sweets.vercel.app",
-      "github": "https://github.com/alihamiehlb/lynos-sweets",
-      "language": "TypeScript",
-      "stars": 1,
-      "featured": true,
-      "isFounder": false
-    },
-    {
-      "id": "othersidemen",
-      "name": "othersidemen",
-      "description": "e-commerse site for otherside men",
-      "homepage": null,
-      "github": "https://github.com/alihamiehlb/othersidemen",
-      "language": "TypeScript",
-      "stars": 0,
-      "featured": false,
-      "isFounder": false
-    },
-    {
-      "id": "mission-sni-spoofing",
-      "name": "mission sni spoofing",
-      "description": "idk just an app forked from the hash-sec repo for the bypass of the restrictions alfa and touch put on the free 20gbs to be used everywher , i did make this script phone compatible and more user freindly it functions as the main scriipt and requires the same requirments but it has a great ui for the user expierence m3ash ele 5ele2 ektob so 👍🏿",
-      "homepage": null,
-      "github": "https://github.com/alihamiehlb/mission-sni-spoofing",
-      "language": "Python",
-      "stars": 0,
-      "featured": true,
-      "isFounder": false
-    },
-    {
-      "id": "agriwand",
-      "name": "agriwand",
-      "description": "agricultural wand that detects plant desieeses",
-      "homepage": null,
-      "github": "https://github.com/alihamiehlb/agriwand",
-      "language": "Python",
-      "stars": 1,
-      "featured": false,
-      "isFounder": false
-    },
-    {
-      "id": "sho-3am-yseer",
-      "name": "sho 3am yseer",
-      "description": "a news website for lebaneese peaople to the correct news",
-      "homepage": null,
-      "github": "https://github.com/alihamiehlb/sho-3am-yseer",
-      "language": "Python",
-      "stars": 1,
-      "featured": false,
-      "isFounder": false
-    },
-    {
-      "id": "portfolio",
-      "name": "portfolio",
-      "description": "my personal porfolio website",
-      "homepage": null,
-      "github": "https://github.com/alihamiehlb/portfolio",
-      "language": "HTML",
-      "stars": 0,
-      "featured": false,
-      "isFounder": false
-    }
-  ]
-}
+[
+  {
+    "id": "sho-3am-yseer",
+    "name": "sho 3am yseer",
+    "description": "a news website for lebaneese peaople to the correct news",
+    "homepage": null,
+    "github": "https://github.com/alihamiehlb/sho-3am-yseer",
+    "language": "Python",
+    "stars": 1,
+    "featured": false,
+    "isFounder": false
+  },
+  {
+    "id": "ekconstructions",
+    "name": "ekconstructions",
+    "description": "client site",
+    "homepage": "https://ekconstructionsau.com",
+    "github": "https://github.com/alihamiehlb/ekconstructions",
+    "language": "TypeScript",
+    "stars": 1,
+    "featured": true,
+    "isFounder": false
+  },
+  {
+    "id": "rawan-pharmcay",
+    "name": "rawan pharmcay",
+    "description": "pharmacy website 👍🏿",
+    "homepage": "https://rawan-pharmcay.vercel.app",
+    "github": "https://github.com/alihamiehlb/rawan-pharmcay",
+    "language": "TypeScript",
+    "stars": 0,
+    "featured": true,
+    "isFounder": false
+  },
+  {
+    "id": "lynos-sweets",
+    "name": "lynos sweets",
+    "description": "a website for a bakery ,to place there products in and showcase them neatly , it has a great humble admin panel which serves its purpose, and it has a data base sql postgres",
+    "homepage": "https://lynos-sweets-otat.vercel.app/",
+    "github": "https://github.com/alihamiehlb/lynos-sweets",
+    "language": "TypeScript",
+    "stars": 1,
+    "featured": true,
+    "isFounder": false
+  },
+  {
+    "id": "mission-sni-spoofing",
+    "name": "mission sni spoofing",
+    "description": "idk just an app forked from the hash-sec repo for the bypass of the restrictions alfa and touch put on the free 20gbs to be used everywher , i did make this script phone compatible and more user freindly it functions as the main scriipt and requires the same requirments but it has a great ui for the user expierence m3ash ele 5ele2 ektob so 👍🏿",
+    "homepage": null,
+    "github": "https://github.com/alihamiehlb/mission-sni-spoofing",
+    "language": "Python",
+    "stars": 0,
+    "featured": true,
+    "isFounder": false
+  },
+  {
+    "id": "othersidemen",
+    "name": "othersidemen",
+    "description": "e-commerse site for otherside men",
+    "homepage": "https://twoside-store.pages.dev/",
+    "github": "https://github.com/alihamiehlb/othersidemen",
+    "language": "TypeScript",
+    "stars": 0,
+    "featured": false,
+    "isFounder": false
+  },
+  {
+    "id": "PrintsLB",
+    "name": "printsLB",
+    "description": "3d printing saas",
+    "homepage": "https://printslb.com",
+    "github": "https://github.com/alihamiehlb/PrintsLB",
+    "language": "TypeScript",
+    "stars": 1,
+    "featured": true,
+    "isFounder": true
+  },
+  {
+    "id": "ssa-shoot-score-academy",
+    "name": "ssa shoot score academy",
+    "description": "its a site for khali that is for his academy for admin control and invoice and player managment and stats with great desgin",
+    "homepage": "https://ssa-shoot-score-academy.vercel.app",
+    "github": "https://github.com/alihamiehlb/ssa-shoot-score-academy",
+    "language": "TypeScript",
+    "stars": 1,
+    "featured": true,
+    "isFounder": false
+  },
+  {
+    "id": "agriwand",
+    "name": "agriwand",
+    "description": "agricultural wand that detects plant desieeses",
+    "homepage": null,
+    "github": "https://github.com/alihamiehlb/agriwand",
+    "language": "Python",
+    "stars": 1,
+    "featured": false,
+    "isFounder": false
+  }
+]
