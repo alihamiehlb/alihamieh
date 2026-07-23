@@ -34,10 +34,10 @@ function emptyDeployed(): DeployedRecord {
   return { id: `repo-${Date.now()}`, name: "my-project", description: "", homepage: "", github: "https://github.com/alihamiehlb/", language: "TypeScript", featured: true, isFounder: false };
 }
 function emptyProject(): ProjectRecord {
-  return { id: `project-${Date.now()}`, title: "", description: "", tags: [], featured: false, images: [], content: "" };
+  return { id: `project-${Date.now()}`, title: "", description: "", tags: [], featured: false, images: [], content: "", overview: "", techStack: [], dependencies: [], highlights: [], scripts: [], url: "", path: "", fileCount: 0, languages: [] };
 }
 function emptyInterview(): InterviewRecord {
-  return { id: `interview-${Date.now()}`, title: "", outlet: "", date: "", year: new Date().getFullYear(), description: "", type: "online", links: [], image: null, featured: false };
+  return { id: `interview-${Date.now()}`, title: "", titleEn: "", outlet: "", outletEn: "", date: "", year: new Date().getFullYear(), description: "", descriptionEn: "", type: "online", links: [], image: null, featured: false };
 }
 
 function AccordionItem({ title, isOpen, onToggle, children, onMoveUp, onMoveDown, onDelete, isFirst, isLast }: any) {
@@ -307,13 +307,12 @@ export default function AdminPanel() {
 
       {/* Main Content */}
       <main className="admin-main">
-        <header className="admin-topbar">
+        <header className="admin-topbar" style={{ position: 'sticky', top: 0, zIndex: 100, background: 'var(--bg-main)', borderBottom: '1px solid var(--border)' }}>
           <div className="admin-topbar-title">
             <h1>{tab.charAt(0).toUpperCase() + tab.slice(1)} Management</h1>
             <p className="admin-guide">{GUIDES[tab]}</p>
           </div>
           <div className="admin-topbar-actions">
-            {status && <span className={`admin-status-badge ${error ? 'error' : 'success'}`}>{status}</span>}
             <button
               type="button"
               className={`admin-btn admin-btn--primary ${hasUnsaved ? 'pulse-glow' : ''}`}
@@ -493,12 +492,44 @@ export default function AdminPanel() {
                       <input value={p.title} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, title: e.target.value } : item))} />
                     </div>
                     <div className="admin-field col-span-2">
-                      <label>Description</label>
+                      <label>Overview (Long Description)</label>
+                      <textarea rows={4} value={(p.overview as string) || ""} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, overview: e.target.value } : item))} />
+                    </div>
+                    <div className="admin-field col-span-2">
+                      <label>Description (Short)</label>
                       <textarea rows={3} value={p.description} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, description: e.target.value } : item))} />
                     </div>
                     <div className="admin-field col-span-2">
                       <label>Tags (Comma Separated)</label>
                       <input value={Array.isArray(p.tags) ? p.tags.join(", ") : p.tags} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, tags: e.target.value.split(",").map(t => t.trim()) } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Tech Stack (Comma Separated)</label>
+                      <input value={Array.isArray(p.techStack) ? p.techStack.join(", ") : ((p.techStack as string) || "")} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, techStack: e.target.value.split(",").map(t => t.trim()).filter(Boolean) } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Dependencies (Comma Separated)</label>
+                      <input value={Array.isArray(p.dependencies) ? p.dependencies.join(", ") : ((p.dependencies as string) || "")} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, dependencies: e.target.value.split(",").map(t => t.trim()).filter(Boolean) } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Highlights (Comma Separated)</label>
+                      <input value={Array.isArray(p.highlights) ? p.highlights.join(", ") : ((p.highlights as string) || "")} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, highlights: e.target.value.split(",").map(t => t.trim()).filter(Boolean) } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Scripts (Comma Separated)</label>
+                      <input value={Array.isArray(p.scripts) ? p.scripts.join(", ") : ((p.scripts as string) || "")} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, scripts: e.target.value.split(",").map(t => t.trim()).filter(Boolean) } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>External URL</label>
+                      <input value={(p.url as string) || ""} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, url: e.target.value } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Local Path</label>
+                      <input value={(p.path as string) || ""} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, path: e.target.value } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>File Count (Number)</label>
+                      <input type="number" value={(p.fileCount as number) || 0} onChange={(e) => setProjects(projects.map((item, j) => j === i ? { ...item, fileCount: parseInt(e.target.value) || 0 } : item))} />
                     </div>
                     <div className="admin-field col-span-2">
                       <label>Images (Comma Separated URLs)</label>
@@ -565,20 +596,64 @@ export default function AdminPanel() {
                       <input value={int.title} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, title: e.target.value } : item))} />
                     </div>
                     <div className="admin-field">
+                      <label>Title (English)</label>
+                      <input value={int.titleEn || ""} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, titleEn: e.target.value } : item))} />
+                    </div>
+                    <div className="admin-field">
                       <label>Outlet</label>
                       <input value={int.outlet} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, outlet: e.target.value } : item))} />
                     </div>
                     <div className="admin-field">
-                      <label>Date (e.g. Oct 2024)</label>
+                      <label>Outlet (English)</label>
+                      <input value={int.outletEn || ""} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, outletEn: e.target.value } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Date (String e.g. Oct 2024)</label>
                       <input value={int.date} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, date: e.target.value } : item))} />
                     </div>
                     <div className="admin-field">
-                      <label>First Link URL</label>
-                      <input value={int.links?.[0]?.url || ""} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, links: [{ label: "Link", url: e.target.value }] } : item))} />
+                      <label>Year (Number)</label>
+                      <input type="number" value={int.year || 2024} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, year: parseInt(e.target.value) || 2024 } : item))} />
+                    </div>
+                    <div className="admin-field">
+                      <label>Type (online, tv, radio, podcast)</label>
+                      <input value={int.type || "online"} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, type: e.target.value } : item))} />
                     </div>
                     <div className="admin-field col-span-2">
                       <label>Description</label>
                       <textarea rows={2} value={int.description} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, description: e.target.value } : item))} />
+                    </div>
+                    <div className="admin-field col-span-2">
+                      <label>Description (English)</label>
+                      <textarea rows={2} value={int.descriptionEn || ""} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, descriptionEn: e.target.value } : item))} />
+                    </div>
+                    <div className="admin-field col-span-2">
+                      <label>Links</label>
+                      <div className="flex flex-col gap-2">
+                        {(int.links || []).map((link, linkIdx) => (
+                          <div key={linkIdx} className="flex gap-2 w-full">
+                            <input placeholder="Label (e.g. Watch)" value={link.label} style={{flex: 1}} onChange={(e) => {
+                                const newLinks = [...(int.links || [])];
+                                newLinks[linkIdx] = { ...newLinks[linkIdx], label: e.target.value };
+                                setInterviews(interviews.map((item, j) => j === i ? { ...item, links: newLinks } : item));
+                            }} />
+                            <input placeholder="URL" value={link.url} style={{flex: 2}} onChange={(e) => {
+                                const newLinks = [...(int.links || [])];
+                                newLinks[linkIdx] = { ...newLinks[linkIdx], url: e.target.value };
+                                setInterviews(interviews.map((item, j) => j === i ? { ...item, links: newLinks } : item));
+                            }} />
+                            <button type="button" className="admin-btn admin-btn--danger admin-btn--small" onClick={() => {
+                                const newLinks = [...(int.links || [])];
+                                newLinks.splice(linkIdx, 1);
+                                setInterviews(interviews.map((item, j) => j === i ? { ...item, links: newLinks } : item));
+                            }}>X</button>
+                          </div>
+                        ))}
+                        <button type="button" className="admin-btn admin-btn--ghost admin-btn--small mt-1" style={{alignSelf: "flex-start"}} onClick={() => {
+                            const newLinks = [...(int.links || []), { label: "Link", url: "" }];
+                            setInterviews(interviews.map((item, j) => j === i ? { ...item, links: newLinks } : item));
+                        }}>+ Add Link</button>
+                      </div>
                     </div>
                     <div className="admin-field col-span-2">
                       <label>Image URL</label>
@@ -593,6 +668,12 @@ export default function AdminPanel() {
                         </label>
                       </div>
                       {int.image && <img src={int.image} alt="Preview" className="admin-image-preview mt-2" />}
+                    </div>
+                    <div className="admin-field col-span-2">
+                       <label className="toggle-switch">
+                          <input type="checkbox" checked={int.featured || false} onChange={(e) => setInterviews(interviews.map((item, j) => j === i ? { ...item, featured: e.target.checked } : item))} />
+                          <span className="slider"></span> Featured Interview
+                       </label>
                     </div>
                   </AccordionItem>
                 ))}
@@ -709,7 +790,9 @@ export default function AdminPanel() {
                  <div className="admin-card-body grid-2">
                     <div className="admin-field col-span-2"><label>Hero Title</label><input value={profile.title} onChange={(e) => setProfile({ ...profile, title: e.target.value })} /></div>
                     <div className="admin-field col-span-2"><label>Hero Subtitle (Headline)</label><input value={profile.headline} onChange={(e) => setProfile({ ...profile, headline: e.target.value })} /></div>
-                    <div className="admin-field col-span-2"><label>AI Diploma Line</label><input value={profile.aiDiploma} onChange={(e) => setProfile({ ...profile, aiDiploma: e.target.value })} /></div>
+                    <div className="admin-field"><label>AI Diploma Line</label><input value={profile.aiDiploma || ""} onChange={(e) => setProfile({ ...profile, aiDiploma: e.target.value })} /></div>
+                    <div className="admin-field"><label>GitHub Bio (Optional override)</label><input value={profile.githubBio || ""} onChange={(e) => setProfile({ ...profile, githubBio: e.target.value })} /></div>
+                    <div className="admin-field"><label>Public Repos Override</label><input type="number" value={profile.publicRepos || 0} onChange={(e) => setProfile({ ...profile, publicRepos: parseInt(e.target.value) || 0 })} /></div>
                     <h3 className="col-span-2 mt-4 form-section-title">Social Links</h3>
                     <div className="admin-field"><label>GitHub URL</label><input value={profile.github} onChange={(e) => setProfile({ ...profile, github: e.target.value })} /></div>
                     <div className="admin-field"><label>LinkedIn URL</label><input value={profile.linkedin} onChange={(e) => setProfile({ ...profile, linkedin: e.target.value })} /></div>
@@ -725,6 +808,26 @@ export default function AdminPanel() {
           )}
         </div>
       </main>
+
+      {/* Toast Notification Container */}
+      {status && (
+        <div className={`admin-toast ${error ? 'error' : 'success'}`} style={{
+          position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 1000,
+          background: error ? 'var(--red)' : (status.includes('ing…') ? 'var(--accent)' : 'var(--green)'),
+          color: '#fff', padding: '1rem 1.5rem', borderRadius: '8px',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
+          display: 'flex', alignItems: 'center', gap: '0.75rem',
+          fontWeight: 600, fontSize: '0.95rem',
+          animation: 'slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+        }}>
+          {(status === "Saving…" || status === "Uploading…") ? (
+             <div className="spinner" style={{ width: '18px', height: '18px', borderTopColor: 'currentColor' }}></div>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points={error ? "18 6 6 18" : "20 6 9 17 4 12"}></polyline>{error && <polyline points="6 6 18 18"></polyline>}</svg>
+          )}
+          {status}
+        </div>
+      )}
     </div>
   );
 }

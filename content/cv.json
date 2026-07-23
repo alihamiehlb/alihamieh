@@ -2,7 +2,7 @@
   "skills": [],
   "summary": "Self-driven developer and ethical hacker with 230+ hours of academy training and hands-on builds across web, mobile, AI, embedded hardware, and security. Founded printsLB, a Lebanese 3D-printing platform. Comfortable on Linux (Arch, Ubuntu, Kali, Parrot, NetHunter) and embedded stacks (ESP32, Arduino, custom firmware). Competed in robotics (WRO) and cybersecurity programs while pursuing an AI diploma at MUC University.",
   "name": "Ali Hamieh",
-  "title": "Full-Stack Developer",
+  "title": "Student at Al Mahdi School · Founder of printsLB",
   "birthDate": "2009-05-14",
   "tagline": "Cybersecurity · Embedded Systems · ML · Full-Stack Development",
   "email": "alihamiehlb@gmail.com",
@@ -209,10 +209,12 @@
       "_id": "6a5fa91059279747d1968391"
     }
   ],
-  "lastUpdated": "2026-07-21",
+  "lastUpdated": "2026-07-23",
   "sourcePdfs": [
     "Ali_Hamieh_Professional_CV_Final.pdf",
     "Profile.pdf",
     "ali_hamieh_cv_not_all_complete_8_11_2024.pdf"
-  ]
+  ],
+  "linkedin": "https://linkedin.com/in/ali-hamieh-a98b6b302",
+  "github": "https://github.com/alihamiehlb"
 }

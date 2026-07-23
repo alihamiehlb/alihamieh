@@ -1,271 +1,202 @@
-[
-  {
-    "id": "holy-tunnel-operation",
-    "title": "Hash-Sec Tunnel",
-    "slug": "holy-tunnel-operation",
-    "description": "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone.",
-    "overview": "Flutter client provisions a VM in your Azure subscription, runs the hamieh relay, and uses Android VpnService + tun2socks so browsing goes through the tunnel. Fork of mission-sni-spoofing with on-device login instead of desktop CLI.",
-    "tags": [
-      "mobile",
-      "security",
-      "azure"
-    ],
-    "techStack": [],
-    "languages": [
-      {
-        "name": "Python",
-        "count": 25,
-        "_id": "6a5fa91159279747d196839b"
-      },
-      {
-        "name": "Dart",
-        "count": 1,
-        "_id": "6a5fa91159279747d196839c"
-      }
-    ],
-    "dependencies": [],
-    "highlights": [
-      "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone."
-    ],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [],
-    "featured": false
-  },
-  {
-    "id": "automation-pentagon",
-    "title": "News Bot",
-    "slug": "automation-pentagon",
-    "description": "Telegram-to-WhatsApp news bot — watches channels, filters posts with Gemini AI, translates to Arabic, and forwards text and media to a WhatsApp group.",
-    "overview": "Python bot using Telethon and Green API: urgency detection, bias filtering, media forwarding, and Docker/Railway deployment. Automates a news desk workflow end to end.",
-    "tags": [
-      "automation",
-      "python",
-      "ai"
-    ],
-    "techStack": [
-      "Python"
-    ],
-    "languages": [
-      {
-        "name": "Python",
-        "count": 9,
-        "_id": "6a5fa91159279747d196839e"
-      }
-    ],
-    "dependencies": [],
-    "highlights": [
-      "Telegram-to-WhatsApp news bot — watches channels, filters posts with Gemini AI, translates to Arabic, and forwards text and media to a WhatsApp group."
-    ],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [],
-    "featured": false
-  },
-  {
-    "id": "trading_bot",
-    "title": "RL Trading Agent",
-    "slug": "trading_bot",
-    "description": "Reinforcement-learning forex bot — trains an agent in a custom Gym environment to go long, short, or stay out using historical price windows.",
-    "overview": "RLTradingAgent includes trading_env.py (balance, commission, positions), training scripts, checkpoints, and evaluation plots. It simulates 0.01-lot trades and learns from market features over sliding windows.",
-    "tags": [
-      "python",
-      "ml",
-      "finance"
-    ],
-    "techStack": [],
-    "languages": [
-      {
-        "name": "Python",
-        "count": 19,
-        "_id": "6a5fa91159279747d19683a2"
-      }
-    ],
-    "dependencies": [],
-    "highlights": [
-      "Reinforcement-learning forex bot — trains an agent in a custom Gym environment to go long, short, or stay out using historical price windows."
-    ],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [],
-    "featured": false
-  },
-  {
-    "id": "advertisment-proj",
-    "title": "Hamieh Ads",
-    "slug": "advertisment-proj",
-    "description": "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks.",
-    "overview": "Combines a Dart/Flutter front end with Go binaries (whatsapp.go, native libs) for Windows/Android builds. Built for campaign and messaging automation use cases.",
-    "tags": [
-      "mobile",
-      "flutter",
-      "go"
-    ],
-    "techStack": [],
-    "languages": [
-      {
-        "name": "Dart",
-        "count": 39,
-        "_id": "6a5fa91159279747d19683a6"
-      },
-      {
-        "name": "JavaScript",
-        "count": 1,
-        "_id": "6a5fa91159279747d19683a7"
-      }
-    ],
-    "dependencies": [],
-    "highlights": [
-      "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks."
-    ],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [],
-    "featured": false
-  },
-  {
-    "id": "hamieh-jammer",
-    "title": "Hamieh Jammer",
-    "slug": "hamieh-jammer",
-    "description": "A custom hardware jammer and RF testing tool, built as a fork of nrfbox.",
-    "tags": [
-      "hardware",
-      "rf",
-      "security"
-    ],
-    "techStack": [],
-    "languages": [],
-    "dependencies": [],
-    "highlights": [],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [
-      "/projects/hamieh-jammer-fork-of-nrfbox.webp"
-    ],
-    "featured": true
-  },
-  {
-    "id": "morse-code-trainer",
-    "title": "Morse Code Trainer",
-    "slug": "morse-code-trainer",
-    "description": "A physical morse code trainer device developed entirely from scratch.",
-    "tags": [
-      "hardware",
-      "arduino"
-    ],
-    "techStack": [],
-    "languages": [],
-    "dependencies": [],
-    "highlights": [],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [
-      "/projects/mores-code-tranier-allme-developed.webp"
-    ],
-    "featured": true
-  },
-  {
-    "id": "dasai-hamieh",
-    "title": "Dasai Hamieh",
-    "slug": "dasai-hamieh",
-    "description": "A hardware companion display with custom 3D printed casing and light-up electronics. Fully modeled in Fusion 360 and assembled by hand.",
-    "tags": [
-      "hardware",
-      "3d-printing",
-      "electronics"
-    ],
-    "techStack": [],
-    "languages": [],
-    "dependencies": [],
-    "highlights": [],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [
-      "/projects/dasai-hamieh-fork-of-dasaimochi-withcase.webp",
-      "/projects/dasai-hamieh-without-case-light-up.webp",
-      "/projects/in-fusion-360-dasaihamieh.webp",
-      "/projects/sketching-of-dasai-hamieh.webp",
-      "/projects/v1-dasai-hamieh-case.webp"
-    ],
-    "featured": true
-  },
-  {
-    "id": "hobby-rocket",
-    "title": "Hobby Rocket",
-    "slug": "hobby-rocket",
-    "description": "A fully custom 3D printed hobby rocket designed from scratch with aerodynamic considerations.",
-    "tags": [
-      "hardware",
-      "3d-printing",
-      "aerospace"
-    ],
-    "techStack": [],
-    "languages": [],
-    "dependencies": [],
-    "highlights": [],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [
-      "/projects/hobby-3d-printed-rocket-hamiehrocketv1.webp"
-    ],
-    "featured": true
-  },
-  {
-    "id": "electric-boat",
-    "title": "Electric Boat Project",
-    "slug": "electric-boat",
-    "description": "An RC electric boat project featuring custom propulsion and hull design.",
-    "tags": [
-      "hardware",
-      "rc",
-      "engineering"
-    ],
-    "techStack": [],
-    "languages": [],
-    "dependencies": [],
-    "highlights": [],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [
-      "/projects/electric-boat-project.webp"
-    ],
-    "featured": true
-  },
-  {
-    "id": "kalo-academy",
-    "title": "SSA Academy",
-    "slug": "kalo-academy",
-    "description": "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard.",
-    "overview": "Next.js app with Postgres (Prisma): search players, export CSV/JSON, generate invoices, and run the academy back-office. Live at ssa-shoot-score-academy.vercel.app.",
-    "tags": [
-      "web",
-      "education"
-    ],
-    "techStack": [],
-    "languages": [
-      {
-        "name": "TypeScript",
-        "count": 17,
-        "_id": "6a5fa91159279747d1968399"
-      }
-    ],
-    "dependencies": [],
-    "highlights": [
-      "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard."
-    ],
-    "structure": [],
-    "scripts": [],
-    "fileCount": 0,
-    "images": [],
-    "featured": false
-  }
-]
+{
+  "projects": [
+    {
+      "id": "kalo-academy",
+      "title": "SSA Academy",
+      "slug": "kalo-academy",
+      "tags": [
+        "web",
+        "education"
+      ],
+      "description": "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard.",
+      "overview": "Next.js app with Postgres (Prisma): search players, export CSV/JSON, generate invoices, and run the academy back-office. Live at ssa-shoot-score-academy.vercel.app.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "TypeScript",
+          "count": 17
+        }
+      ],
+      "highlights": [
+        "SSA (Shoot Soccer Academy) — staff manage player rosters, guardians, invoices, and stats from one dashboard."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "holy-tunnel-operation",
+      "title": "Hash-Sec Tunnel",
+      "slug": "holy-tunnel-operation",
+      "tags": [
+        "mobile",
+        "security",
+        "azure"
+      ],
+      "description": "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone.",
+      "overview": "Flutter client provisions a VM in your Azure subscription, runs the hamieh relay, and uses Android VpnService + tun2socks so browsing goes through the tunnel. Fork of mission-sni-spoofing with on-device login instead of desktop CLI.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 25
+        },
+        {
+          "name": "Dart",
+          "count": 1
+        }
+      ],
+      "highlights": [
+        "Android VPN app that routes your traffic through your own Azure relay with TLS SNI set to look like Microsoft Teams — sign in with Microsoft and start the tunnel from the phone."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "automation-pentagon",
+      "title": "Khaybar News Bot",
+      "slug": "automation-pentagon",
+      "tags": [
+        "automation",
+        "python",
+        "ai"
+      ],
+      "description": "Telegram-to-WhatsApp news bot — watches channels, filters posts with Gemini AI, translates to Arabic, and forwards text and media to a WhatsApp group.",
+      "overview": "Python bot using Telethon and Green API: urgency detection, bias filtering, media forwarding, and Docker/Railway deployment. Automates a news desk workflow end to end.",
+      "techStack": [
+        "Python"
+      ],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 9
+        }
+      ],
+      "highlights": [
+        "Telegram-to-WhatsApp news bot — watches channels, filters posts with Gemini AI, translates to Arabic, and forwards text and media to a WhatsApp group."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "automation_secret_mission",
+      "title": "Automation Secret Mission",
+      "slug": "automation_secret_mission",
+      "tags": [
+        "automation",
+        "python"
+      ],
+      "description": "> Arabic Version available here: [إقرأ النسخة العربية من هنا (README_AR.md)](./README_AR.md)",
+      "overview": "# scrible-mission 🤖🗞️ > [!NOTE] > **Arabic Version available here:** [إقرأ النسخة العربية من هنا (README_AR.md)](./README_AR.md) An advanced, AI-powered automated news monitoring and analysis system for Telegram. Designed for high-fidelity extraction, filtering, and reporting of military and geopolitical news. --- ## 🏗️ System Architecture & Workflow The system follows a modular pipeline designed to handle high message volumes while maintaining data integrity and generating premium reports. ```mermaid graph TD A[Telegram Channels] -->|Telethon Listener| B[Message Ingestion] B -->|Regex/Keyword Filter| C[Relevance Filtering] C -->|Deduplication| D[SQLite + FTS5] D -->|Persistent Volume| E[(/data/app.db)] F[User Commands/Scheduler] -->|Trigger| G[Batch Processor] G -->|Context Chunking| H[AI Analysis Layer] H -->|LLM: OpenAI/Gemini| I[Structured Insights] I -->|python-docx| J[Premium DO",
+      "techStack": [
+        "Python"
+      ],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 14
+        }
+      ],
+      "highlights": [
+        "> Arabic Version available here: [إقرأ النسخة العربية من هنا (README_AR.md)](./README_AR.md)"
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "trading_bot",
+      "title": "RL Trading Agent",
+      "slug": "trading_bot",
+      "tags": [
+        "python",
+        "ml",
+        "finance"
+      ],
+      "description": "Reinforcement-learning forex bot — trains an agent in a custom Gym environment to go long, short, or stay out using historical price windows.",
+      "overview": "RLTradingAgent includes trading_env.py (balance, commission, positions), training scripts, checkpoints, and evaluation plots. It simulates 0.01-lot trades and learns from market features over sliding windows.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 19
+        }
+      ],
+      "highlights": [
+        "Reinforcement-learning forex bot — trains an agent in a custom Gym environment to go long, short, or stay out using historical price windows."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "data_cleaning",
+      "title": "Data Cleaning Pipeline",
+      "slug": "data_cleaning",
+      "tags": [
+        "python",
+        "data"
+      ],
+      "description": "Data pipeline that turns raw spreadsheets into cleaned JSON and formatted Word reports with stats and loss summaries.",
+      "overview": "Python scripts extract, aggregate, and document structured datasets (including israel_losses workbooks) — export to DOCX/JSON for analysis and presentation.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Python",
+          "count": 4
+        }
+      ],
+      "highlights": [
+        "Data pipeline that turns raw spreadsheets into cleaned JSON and formatted Word reports with stats and loss summaries."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    },
+    {
+      "id": "advertisment-proj",
+      "title": "Hamieh Ads",
+      "slug": "advertisment-proj",
+      "tags": [
+        "mobile",
+        "flutter",
+        "go"
+      ],
+      "description": "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks.",
+      "overview": "Combines a Dart/Flutter front end with Go binaries (whatsapp.go, native libs) for Windows/Android builds. Built for campaign and messaging automation use cases.",
+      "techStack": [],
+      "dependencies": [],
+      "languages": [
+        {
+          "name": "Dart",
+          "count": 39
+        },
+        {
+          "name": "JavaScript",
+          "count": 1
+        }
+      ],
+      "highlights": [
+        "Flutter + Go tooling around WhatsApp automation and ad workflows — mobile UI with native bridges for messaging tasks."
+      ],
+      "structure": [],
+      "scripts": [],
+      "fileCount": 0,
+      "featured": false
+    }
+  ]
+}
