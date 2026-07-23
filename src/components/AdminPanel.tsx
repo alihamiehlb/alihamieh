@@ -28,16 +28,16 @@ const GUIDES = {
 type Tab = "achievements" | "deployed" | "projects" | "interviews" | "profile" | "cv";
 
 function emptyAchievement(): AchievementRecord {
-  return { id: `item-${Date.now()}`, title: "", description: "", detail: "", instagramHighlight: "", category: "Academy", image: "", source: "certificate", implementation: "" };
+  return { id: `item-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`, title: "", description: "", detail: "", instagramHighlight: "", category: "Academy", image: "", source: "certificate", implementation: "" };
 }
 function emptyDeployed(): DeployedRecord {
-  return { id: `repo-${Date.now()}`, name: "my-project", description: "", homepage: "", github: "https://github.com/alihamiehlb/", language: "TypeScript", featured: true, isFounder: false };
+  return { id: `repo-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`, name: "my-project", description: "", homepage: "", github: "https://github.com/alihamiehlb/", language: "TypeScript", featured: true, isFounder: false };
 }
 function emptyProject(): ProjectRecord {
-  return { id: `project-${Date.now()}`, title: "", description: "", tags: [], featured: false, images: [], content: "", overview: "", techStack: [], dependencies: [], highlights: [], scripts: [], url: "", path: "", fileCount: 0, languages: [] };
+  return { id: `proj-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`, title: "", description: "", tags: [], featured: false, images: [], content: "", overview: "", techStack: [], dependencies: [], highlights: [], scripts: [], url: "", path: "", fileCount: 0, languages: [] };
 }
 function emptyInterview(): InterviewRecord {
-  return { id: `interview-${Date.now()}`, title: "", titleEn: "", outlet: "", outletEn: "", date: "", year: new Date().getFullYear(), description: "", descriptionEn: "", type: "online", links: [], image: null, featured: false };
+  return { id: `int-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`, title: "", titleEn: "", outlet: "", outletEn: "", date: "", year: new Date().getFullYear(), description: "", descriptionEn: "", type: "online", links: [], image: null, featured: false };
 }
 
 function AccordionItem({ title, isOpen, onToggle, children, onMoveUp, onMoveDown, onDelete, isFirst, isLast }: any) {
@@ -189,22 +189,33 @@ export default function AdminPanel() {
         learningSources
       },
     };
-    const res = await fetch("/api/admin/content", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const data = await res.json();
-    if (!res.ok) {
-      setStatus(data.error || "Save failed");
+    try {
+      const res = await fetch("/api/admin/content", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      let data;
+      try {
+        data = await res.json();
+      } catch (e) {
+        throw new Error(`Server returned non-JSON response. Status: ${res.status}`);
+      }
+      if (!res.ok) {
+        setStatus(data.error || "Save failed");
+        setError(true);
+        return;
+      }
+      setStorageHint(data.storageHint);
+      setStatus(`Saved successfully!`);
+      setError(false);
+      setHasUnsaved(false);
+      setTimeout(() => setStatus(""), 4000);
+    } catch (e: any) {
+      console.error(e);
+      setStatus(e.message || "Network Error");
       setError(true);
-      return;
     }
-    setStorageHint(data.storageHint);
-    setStatus(`Saved successfully!`);
-    setError(false);
-    setHasUnsaved(false);
-    setTimeout(() => setStatus(""), 4000);
   }
 
   async function uploadFile(file: File, onUrl: (url: string) => void) {

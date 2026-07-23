@@ -3,6 +3,17 @@
   "updatedAt": "2026-07-23",
   "achievements": [
     {
+      "id": "item-ai-hackathon-2026",
+      "title": "AI Agents Hackathon 2026",
+      "description": "won 3d place in the ai agents hackathon",
+      "detail": "in the competition organized by google develeb and supportful for ai agents hackathon i made in 2 days a complete working demo of my app safe stay which solves the problem of finding houses to rent in crisis like the displacment that happend this year in lebanon so we made a centeralized app that gathers from the internet the listings and filters them from multiple sources and puts them on the app which also has a rag chatbot in it that helps users find the best suitable house for them",
+      "instagramHighlight": "",
+      "category": "Academy",
+      "image": "/uploads/google_ai_hackathon_2026.png",
+      "source": "certificate",
+      "sourceUrl": "https://www.instagram.com/p/DZ2QqWWDeVF/?img_index=1"
+    },
+    {
       "id": "wro",
       "title": "World Robot Olympiad",
       "description": "Robotics competition — design, build, and program competition robots.",
