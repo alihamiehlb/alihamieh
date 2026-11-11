@@ -12,3 +12,6 @@ out
 /me_crossing.png
 /me_standing.png
 *.tsbuildinfo
+.open-next
+.wrangler
+.dev.vars
