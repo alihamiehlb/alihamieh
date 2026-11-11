@@ -208,10 +208,21 @@ async function main() {
   const insta = await syncInstagramPosts();
   achievements.push(...insta);
 
+  let existingAchievements = [];
+  try {
+    const raw = JSON.parse(fs.readFileSync(OUT_FILE, "utf8"));
+    existingAchievements = Array.isArray(raw) ? raw : (raw.achievements || []);
+  } catch { /* ignore */ }
+
+  const catalogIds = new Set(CERT_CATALOG.map((c) => safeName(c.file).replace(/\.[a-z]+$/, "")));
+  const customAchievements = existingAchievements.filter(
+    (a) => !catalogIds.has(a.id) && !a.id.startsWith("instagram-")
+  );
+
   const payload = {
     instagram: INSTAGRAM,
     updatedAt: new Date().toISOString().slice(0, 10),
-    achievements,
+    achievements: [...customAchievements, ...achievements],
   };
 
   fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true });

@@ -363,7 +363,7 @@ export default function ScrollSections({
                     </div>
                     <p className="project-desc">{p.description}</p>
                     <div className="tags">
-                      {p.tags.slice(0, 4).map((t) => (
+                      {p.tags.slice(0, 4).map((t: string) => (
                         <span key={t}>{t}</span>
                       ))}
                     </div>
@@ -709,7 +709,7 @@ function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boole
               <h3 className="carousel-title">{p.title}</h3>
               <p className="carousel-desc">{p.description}</p>
               <div className="tags">
-                {p.tags.slice(0, 6).map((t) => (
+                {p.tags.slice(0, 6).map((t: string) => (
                   <span key={t}>{t}</span>
                 ))}
               </div>

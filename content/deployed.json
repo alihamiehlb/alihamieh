@@ -1,6 +1,6 @@
 {
   "username": "alihamiehlb",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-11-11",
   "projects": [
     {
       "id": "PrintsLB",
@@ -14,13 +14,24 @@
       "isFounder": true
     },
     {
-      "id": "alihamieh",
-      "name": "alihamieh",
-      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
-      "homepage": "https://alihamieh.vercel.app",
-      "github": "https://github.com/alihamiehlb/alihamieh",
+      "id": "saade-construction",
+      "name": "saade construction",
+      "description": "Open-source project on GitHub.",
+      "homepage": "https://saade-construction.vercel.app",
+      "github": "https://github.com/alihamiehlb/saade-construction",
+      "language": "CSS",
+      "stars": 0,
+      "featured": true,
+      "isFounder": false
+    },
+    {
+      "id": "KHOTWA",
+      "name": "KHOTWA",
+      "description": "book store by ibrahim hershi",
+      "homepage": "https://khotwa-kappa.vercel.app",
+      "github": "https://github.com/alihamiehlb/KHOTWA",
       "language": "TypeScript",
-      "stars": 2,
+      "stars": 0,
       "featured": true,
       "isFounder": false
     },
@@ -32,6 +43,17 @@
       "github": "https://github.com/alihamiehlb/ekconstructions",
       "language": "TypeScript",
       "stars": 1,
+      "featured": true,
+      "isFounder": false
+    },
+    {
+      "id": "alihamieh",
+      "name": "alihamieh",
+      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
+      "homepage": "https://alihamieh.vercel.app",
+      "github": "https://github.com/alihamiehlb/alihamieh",
+      "language": "TypeScript",
+      "stars": 2,
       "featured": true,
       "isFounder": false
     },
@@ -69,12 +91,12 @@
       "isFounder": false
     },
     {
-      "id": "othersidemen",
-      "name": "othersidemen",
-      "description": "e-commerse site for otherside men",
+      "id": "tanta-rat",
+      "name": "tanta rat",
+      "description": "rat rat rat rat rat 6767",
       "homepage": null,
-      "github": "https://github.com/alihamiehlb/othersidemen",
-      "language": "TypeScript",
+      "github": "https://github.com/alihamiehlb/tanta-rat",
+      "language": "Kotlin",
       "stars": 0,
       "featured": false,
       "isFounder": false
@@ -86,8 +108,19 @@
       "homepage": null,
       "github": "https://github.com/alihamiehlb/mission-sni-spoofing",
       "language": "Python",
-      "stars": 0,
+      "stars": 1,
       "featured": true,
+      "isFounder": false
+    },
+    {
+      "id": "othersidemen",
+      "name": "othersidemen",
+      "description": "e-commerse site for otherside men",
+      "homepage": null,
+      "github": "https://github.com/alihamiehlb/othersidemen",
+      "language": "TypeScript",
+      "stars": 0,
+      "featured": false,
       "isFounder": false
     },
     {

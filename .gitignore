@@ -11,3 +11,4 @@ out
 # Duplicate / unused media (hero uses character.gif)
 /me_crossing.png
 /me_standing.png
+*.tsbuildinfo

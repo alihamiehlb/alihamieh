@@ -91,7 +91,7 @@ async function main() {
 
   // Seed Interviews
   console.log('Seeding Interviews...');
-  const interviewsArray = interviewsData.interviews || [];
+  const interviewsArray = Array.isArray(interviewsData) ? interviewsData : (interviewsData.interviews || []);
   await Interview.insertMany(interviewsArray);
 
   console.log('MongoDB seeding completed successfully!');

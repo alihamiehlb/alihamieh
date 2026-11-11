@@ -227,17 +227,29 @@ function scanProject(entry) {
 
 function main() {
   const outPath = path.join(root, "content", "projects.json");
-  let manualProjects = [];
+  let existingProjects = [];
   try {
-    const existing = JSON.parse(fs.readFileSync(outPath, "utf8")).projects || [];
-    manualProjects = existing.filter(p => p.manual === true);
+    const raw = JSON.parse(fs.readFileSync(outPath, "utf8"));
+    existingProjects = Array.isArray(raw) ? raw : (raw.projects || []);
   } catch { /* ignore */ }
 
-  let projects = SHOWCASE_DIRS.map(scanProject)
+  if (!fs.existsSync(FOLDERS_ROOT)) {
+    console.log(`FOLDERS_ROOT (${FOLDERS_ROOT}) not found — keeping ${existingProjects.length} existing projects in projects.json`);
+    return;
+  }
+
+  const manualProjects = existingProjects.filter((p) => p.manual === true);
+
+  let scanned = SHOWCASE_DIRS.map(scanProject)
     .filter(Boolean)
     .filter((p) => !EXCLUDE_SLUGS.has(p.id));
-  
-  projects = [...projects, ...manualProjects];
+
+  if (scanned.length === 0 && existingProjects.length > 0) {
+    console.log(`No projects scanned from ${FOLDERS_ROOT} — keeping ${existingProjects.length} existing projects in projects.json`);
+    return;
+  }
+
+  let projects = [...scanned, ...manualProjects];
   projects.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
   fs.writeFileSync(outPath, JSON.stringify({ projects }, null, 2), "utf8");
   console.log(`Wrote projects.json — ${projects.length} (repo-analyzed descriptions)`);
