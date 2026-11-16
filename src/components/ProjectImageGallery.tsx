@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function ProjectImageGallery({ images, title }: { images: string[], title: string }) {
@@ -21,13 +20,11 @@ export default function ProjectImageGallery({ images, title }: { images: string[
             transition={{ duration: 0.4 }}
             className="split-gallery-image-wrapper"
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={images[currentIndex]}
               alt={`${title} screenshot ${currentIndex + 1}`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              quality={90}
-              priority
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </motion.div>
         </AnimatePresence>
@@ -58,12 +55,11 @@ export default function ProjectImageGallery({ images, title }: { images: string[
               className={`split-gallery-thumb ${i === currentIndex ? "active" : ""}`}
               onClick={() => setCurrentIndex(i)}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={img}
                 alt={`Thumbnail ${i + 1}`}
-                fill
-                sizes="120px"
-                quality={60}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </button>
           ))}
