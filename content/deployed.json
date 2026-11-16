@@ -1,6 +1,6 @@
 {
   "username": "alihamiehlb",
-  "updatedAt": "2026-11-11",
+  "updatedAt": "2026-11-16",
   "projects": [
     {
       "id": "PrintsLB",
@@ -12,6 +12,17 @@
       "stars": 1,
       "featured": true,
       "isFounder": true
+    },
+    {
+      "id": "alihamieh",
+      "name": "alihamieh",
+      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
+      "homepage": "https://alihamieh.vercel.app",
+      "github": "https://github.com/alihamiehlb/alihamieh",
+      "language": "TypeScript",
+      "stars": 2,
+      "featured": true,
+      "isFounder": false
     },
     {
       "id": "saade-construction",
@@ -43,17 +54,6 @@
       "github": "https://github.com/alihamiehlb/ekconstructions",
       "language": "TypeScript",
       "stars": 1,
-      "featured": true,
-      "isFounder": false
-    },
-    {
-      "id": "alihamieh",
-      "name": "alihamieh",
-      "description": "a personal portfolio nothin much but this is the new one for me with admin pannel and some extra perks and features",
-      "homepage": "https://alihamieh.vercel.app",
-      "github": "https://github.com/alihamiehlb/alihamieh",
-      "language": "TypeScript",
-      "stars": 2,
       "featured": true,
       "isFounder": false
     },
