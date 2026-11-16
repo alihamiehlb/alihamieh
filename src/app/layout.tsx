@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/icon.gif",
+    icon: "/portrait-poster.webp",
   },
 };
 
@@ -102,13 +102,6 @@ export default function RootLayout({
           href="/portrait-poster.webp"
           as="image"
           type="image/webp"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          href="/character.gif"
-          as="image"
-          type="image/gif"
           fetchPriority="high"
         />
       </head>

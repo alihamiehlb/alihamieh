@@ -81,6 +81,7 @@ export default function AchievementsSection({
           >
             @alihamiehlb
           </a>
+          <span className="mobile-swipe-hint">Swipe cards to browse</span>
         </motion.p>
 
         {/* ────── Awards & Competitions ────── */}

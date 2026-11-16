@@ -1,16 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function ProjectImageGallery({ images, title }: { images: string[], title: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   if (!images || images.length === 0) return null;
 
   return (
     <div className="split-gallery-interactive">
-      <div className="split-gallery-main">
+      <div
+        className="split-gallery-main"
+        onTouchStart={(event) => {
+          const touch = event.touches[0];
+          touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+        }}
+        onTouchEnd={(event) => {
+          const start = touchStart.current;
+          const touch = event.changedTouches[0];
+          touchStart.current = null;
+          if (!start || !touch || images.length < 2) return;
+          const dx = touch.clientX - start.x;
+          const dy = touch.clientY - start.y;
+          if (Math.abs(dx) < 44 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+          setCurrentIndex((index) => (index + (dx < 0 ? 1 : -1) + images.length) % images.length);
+        }}
+      >
         <AnimatePresence mode="popLayout">
           <motion.div
             key={currentIndex}
@@ -33,12 +50,14 @@ export default function ProjectImageGallery({ images, title }: { images: string[
           <>
             <button 
               className="split-gallery-nav prev"
+              aria-label="Previous image"
               onClick={() => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)}
             >
               ‹
             </button>
             <button 
               className="split-gallery-nav next"
+              aria-label="Next image"
               onClick={() => setCurrentIndex((prev) => (prev + 1) % images.length)}
             >
               ›

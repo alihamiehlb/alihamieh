@@ -2,6 +2,7 @@
 
 import { motion, useSpring } from "framer-motion";
 import { useEffect, useRef } from "react";
+import PortraitVideo from "./PortraitVideo";
 
 type CharacterAvatarProps = {
   mouseX: number;
@@ -78,12 +79,7 @@ export default function CharacterAvatar({ mouseX, mouseY }: CharacterAvatarProps
         className="character-frame"
         style={{ translateZ: 20 }}
       >
-        <img
-          src="/character.gif"
-          alt="Ali Hamieh Avatar"
-          className="character-video ready"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
+        <PortraitVideo mode="loop" ready={false} attachSrc />
       </motion.div>
 
       <motion.div

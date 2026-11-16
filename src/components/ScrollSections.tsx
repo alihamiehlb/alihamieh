@@ -155,6 +155,13 @@ export default function ScrollSections({
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!lite) return;
+    containerRef.current
+      ?.querySelector(".section-nav a.active")
+      ?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [active, lite]);
+
   return (
     <motion.div
       ref={containerRef}
@@ -174,7 +181,10 @@ export default function ScrollSections({
         <CvOpenButton variant="nav" />
       </nav>
 
-      <aside className="scroll-rail">
+      <aside
+        className={`scroll-rail${lite || active !== "hero" ? " scroll-rail--hidden" : ""}`}
+        aria-hidden={lite || active !== "hero"}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
@@ -500,6 +510,7 @@ export default function ScrollSections({
             viewport={{ once: true }}
           >
             Media appearances, TV segments, and interviews.
+            <span className="mobile-swipe-hint">Swipe cards to browse</span>
           </motion.p>
           <div className="interview-grid mt-4">
             {interviews.map((int: any, i: number) => (
@@ -618,6 +629,7 @@ function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boole
   const [current, setCurrent] = useState(0);
   const [imgIdx, setImgIdx] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
   const total = projects.length;
   const p = projects[current];
 
@@ -650,6 +662,23 @@ function ProjectsCarousel({ projects, lite }: { projects: Project[]; lite: boole
       className="projects-carousel"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={(event) => {
+        setPaused(true);
+        const touch = event.touches[0];
+        touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+      }}
+      onTouchEnd={(event) => {
+        const start = touchStart.current;
+        const touch = event.changedTouches[0];
+        touchStart.current = null;
+        setPaused(false);
+        if (!start || !touch) return;
+        const dx = touch.clientX - start.x;
+        const dy = touch.clientY - start.y;
+        if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
+        if (dx < 0) next();
+        else prev();
+      }}
     >
       <AnimatePresence mode="wait">
         <motion.div

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 import type { Metadata } from "next";
 import { Trophy } from "lucide-react";
+import AchievementPager from "@/components/AchievementPager";
 
 export async function generateMetadata({
   params,
@@ -70,6 +71,7 @@ export default async function AchievementPage({
             </div>
           )}
         </div>
+        <AchievementPager items={site.achievements} currentId={achievement.id} />
       </aside>
 
       {/* ── Right Scrolling Column ── */}
@@ -103,6 +105,7 @@ export default async function AchievementPage({
             )}
           </div>
         </div>
+
       </section>
 
       <script

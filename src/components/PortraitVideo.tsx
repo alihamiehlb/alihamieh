@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 export const PORTRAIT_POSTER = "/portrait-poster.webp";
-export const PORTRAIT_VIDEO = "/character.mp4";
+export const PORTRAIT_VIDEO = "/character-optimized.mp4";
 
 type PortraitVideoProps = {
   className?: string;
@@ -20,18 +20,6 @@ function posterFallback() {
   return "/me_standing.png";
 }
 
-function isSlowConnection() {
-  if (typeof navigator === "undefined") return false;
-  const conn = (
-    navigator as Navigator & {
-      connection?: { saveData?: boolean; effectiveType?: string };
-    }
-  ).connection;
-  if (conn?.saveData) return true;
-  const t = conn?.effectiveType;
-  return t === "slow-2g" || t === "2g" || t === "3g";
-}
-
 export default function PortraitVideo({
   className = "",
   mode,
@@ -44,28 +32,22 @@ export default function PortraitVideo({
   const videoRef = externalRef ?? internalRef;
   const [posterOk, setPosterOk] = useState(true);
   const [loadVideo, setLoadVideo] = useState(false);
-  const [needsTap, setNeedsTap] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
+  const isReady = ready || videoReady;
 
   const poster = posterOk ? PORTRAIT_POSTER : posterFallback();
 
   useEffect(() => {
-    setNeedsTap(isSlowConnection());
-  }, []);
-
-  useEffect(() => {
-    if (mode === "scrub") {
-      setLoadVideo(attachSrc);
-      return;
-    }
-    if (!needsTap) setLoadVideo(true);
-  }, [mode, attachSrc, needsTap]);
+    setLoadVideo(attachSrc);
+  }, [attachSrc]);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !loadVideo) return;
 
     const onCanPlay = () => {
+      setVideoReady(true);
       onReady?.();
       if (mode === "loop") {
         video.loop = true;
@@ -87,7 +69,7 @@ export default function PortraitVideo({
       <img
         src={poster}
         alt=""
-        className={`character-poster${ready && showVideo ? " character-poster--hidden" : ""}`}
+        className={`character-poster${isReady && showVideo ? " character-poster--hidden" : ""}`}
         decoding="async"
         fetchPriority="high"
         onError={() => setPosterOk(false)}
@@ -96,38 +78,26 @@ export default function PortraitVideo({
       {showVideo && (
         <video
           ref={videoRef}
-          className={`character-video${ready ? " ready" : ""}`}
+          className={`character-video${isReady ? " ready" : ""}`}
           src={PORTRAIT_VIDEO}
           muted
           playsInline
           loop={mode === "loop"}
-          preload={needsTap ? "none" : "auto"}
+          preload="metadata"
           poster={poster}
-          aria-hidden={!ready}
+          aria-hidden={!isReady}
           aria-label="Portrait video"
           onError={() => setVideoFailed(true)}
         />
       )}
 
-      {needsTap && !loadVideo && !videoFailed && (
-        <button
-          type="button"
-          className="portrait-load-btn"
-          onClick={() => setLoadVideo(true)}
-        >
-          Play portrait video
-        </button>
-      )}
-
-      {!ready && loadVideo && !videoFailed && (
+      {!isReady && loadVideo && !videoFailed && (
         <span className="character-loading" aria-live="polite">
           Loading video…
         </span>
       )}
 
-      {videoFailed && (
-        <span className="character-loading character-loading--static">Portrait</span>
-      )}
+      {videoFailed && <span className="character-error-note">Animation unavailable · poster shown</span>}
     </div>
   );
 }
