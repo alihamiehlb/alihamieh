@@ -6,11 +6,8 @@ import type { Achievement, CvData, DeployedProject, ProfileData, Project } from 
 export const revalidate = 120;
 
 export default async function Home() {
-  console.log("[Home] start rendering");
   const siteRaw = await getSiteContent();
-  console.log("[Home] getSiteContent finished");
   const site = JSON.parse(JSON.stringify(siteRaw)); // Fix Next.js hydration dev-mode cyclic issues
-  console.log("[Home] JSON parse finished, returning PortfolioShell");
 
   return (
     <PortfolioShell

@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { isAdminSession } from "@/lib/admin-auth";
 import { getSiteContent } from "@/lib/get-site-content";
 import { readOverrides, storageHint, writeOverrides } from "@/lib/storage";
-import { readOverridesFromMongo, writeOverridesToMongo, mongoStorageHint } from "@/lib/mongodb-storage";
 import type { AdminContentPayload } from "@/lib/types/site";
 import { revalidatePath } from "next/cache";
 
@@ -19,6 +18,7 @@ export async function GET() {
   
   if (process.env.MONGODB_URI) {
     try {
+      const { readOverridesFromMongo, mongoStorageHint } = await import("@/lib/mongodb-storage");
       console.log('Attempting to read from MongoDB...');
       overrides = await readOverridesFromMongo();
       console.log('MongoDB read result:', overrides ? 'Success' : 'No data');
@@ -91,6 +91,7 @@ export async function PUT(req: Request) {
     
     // Use MongoDB if configured, otherwise fall back to local/blob storage
     if (process.env.MONGODB_URI) {
+      const { writeOverridesToMongo, mongoStorageHint } = await import("@/lib/mongodb-storage");
       result = await writeOverridesToMongo(body);
       revalidatePath("/");
       revalidatePath("/cv");
