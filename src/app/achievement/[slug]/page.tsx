@@ -1,7 +1,6 @@
 import { getSiteContent } from "@/lib/get-site-content";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import Markdown from "react-markdown";
 import type { Metadata } from "next";
 import { Trophy } from "lucide-react";
@@ -78,23 +77,18 @@ export default async function AchievementPage({
         {achievement.image && (
           <div style={{ marginBottom: '3rem' }}>
             <div style={{
-              position: 'relative',
-              width: '100%',
-              aspectRatio: '16/10',
               borderRadius: '16px',
               overflow: 'hidden',
               border: '1px solid var(--glass-border)',
               boxShadow: 'var(--shadow)',
               background: 'var(--ice)',
+              textAlign: 'center',
             }}>
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={achievement.image}
                 alt={achievement.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 55vw"
-                quality={85}
-                priority
-                style={{ objectFit: 'contain' }}
+                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain', maxHeight: '70vh' }}
               />
             </div>
           </div>
